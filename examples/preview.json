@@ -1,0 +1,42 @@
+{
+  "title": "股市的减震器，怎么还会帮倒忙？",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "原创短样结构示例；机制示例见SqueezeMetrics 2017 GEX白皮书第4、6页。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "开场",
+      "opening": true,
+      "delivery": "explain",
+      "text": "大家好，我是久留美。今天和萌智子聊个怪事：为什么股市有时很安静，有时却突然大起大落？"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "开场",
+      "opening": true,
+      "delivery": "question",
+      "text": "你不是翻到一篇研究期权对冲的白皮书吗？你说的减震器，到底怎么回事？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "发现",
+      "delivery": "explain",
+      "text": "我最意外的是，有些交易来自对冲调整。比如做市商卖出一份看跌期权，价格下跌以后，可能还要继续卖出股票，控制自己的方向风险。",
+      "source_refs": [{"page": 4, "note": "卖出看跌期权后的动态对冲例子"}]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "发现",
+      "delivery": "comment",
+      "text": "等等，他在给自己降风险，市场却可能更颠了。这有点像每个人都踩刹车，后面反而堵起来了？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "发现",
+      "delivery": "explain",
+      "text": "对，把这些订单放在一起，就能看见一股影响波动的力量。这正是那篇白皮书想研究的东西。但怎样估计仓位，里面还带着模型假设。",
+      "source_refs": [{"page": 6, "note": "负Gamma反馈可能放大波动"}]
+    }
+  ]
+}

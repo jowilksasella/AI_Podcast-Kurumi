@@ -1,0 +1,31 @@
+{
+  "index_home": "",
+  "model_dir": "checkpoints",
+  "ffmpeg": "ffmpeg",
+  "device": "cuda:0",
+  "use_bf16": true,
+  "offline": true,
+  "emo_alpha": 0.5,
+  "duration_factor": 1.0,
+  "segment_chars": 50,
+  "sample_rate": 24000,
+  "voices": {
+    "久留美": {
+      "reference_audio": "local-assets/kurumi_reference.wav",
+      "identity_label": "久留美角色分工；铃木爱奈公开日语样本参考声线",
+      "source_kind": "seiyuu_sample",
+      "source_url": "https://atrays.jp/actor/talent/suzuki-aina/",
+      "reference_language": "ja",
+      "emotion_audio": {}
+    },
+    "萌智子": {
+      "reference_audio": "local-assets/mochiko_reference.wav",
+      "identity_label": "萌智子角色分工；濑户麻沙美公开日语样本参考声线",
+      "source_kind": "seiyuu_sample",
+      "source_url": "https://www.starcrew.co.jp/talent/setoasami/",
+      "reference_language": "ja",
+      "emotion_audio": {}
+    }
+  }
+}
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "久留美主讲研究播客"
+  short_description: "将PDF与研究资料改编成普通话角色闲聊，先短试听，再制作完整音频与字幕"
+  default_prompt: "用 $research-podcast-kurumi 将这份资料做成久留美主讲的普通话闲聊，先出30到60秒试听。"

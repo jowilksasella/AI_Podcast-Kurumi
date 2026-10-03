@@ -5,16 +5,25 @@
 这是音频制作仓库，与 [AI_Animation-Kurumi](https://github.com/jowilksasella/AI_Animation-Kurumi) 分工：
 本仓库负责资料、剧本、声线、音频、字幕和章节；动画仓库可接收这些产物做画面。这里默认不制作动漫小人或视频。
 
-## v0.2.0：保留历史的连续语气版本
+## 版本链：v0.1.0 原版与 v0.2.0 连续模式尝试
 
-本说明对应 **v0.2.0** 独立版本：版本分支为 `release/v0.2.0`，版本 tag 标识为 `v0.2.0`。旧 `main` 保持不变，原有历史保留，不覆盖或强制改写旧 refs。
-下面的安装与引用固定到 `v0.2.0`，不使用未修改的 `main`。
-此前包版本为 `0.1.0`，没有对应的 `v0.1.0` 发布 tag。
+**v0.1.0** 是此次从原始 commit `e23d5bf` 补标的完整原版快照（原包版本为 `0.1.0`），不是此前已经发布过的版本。**v0.2.0** 是独立的连续模式尝试，版本分支为 `release/v0.2.0`，版本 tag 标识为 `v0.2.0`。旧 `main` 仍保持在 `e23d5bf`，不覆盖原版历史。
+
+| 版本 | 内容 | 源码与发布入口 |
+|---|---|---|
+| v0.1.0 | 原始 commit `e23d5bf` 的完整原版 | [源码 tree](https://github.com/jowilksasella/AI_Podcast-Kurumi/tree/v0.1.0) · [Release](https://github.com/jowilksasella/AI_Podcast-Kurumi/releases/tag/v0.1.0) |
+| v0.2.0 | 连续调用模式、显式参数与缓存的独立尝试 | [源码 tree](https://github.com/jowilksasella/AI_Podcast-Kurumi/tree/v0.2.0) · [Release](https://github.com/jowilksasella/AI_Podcast-Kurumi/releases/tag/v0.2.0) |
+
+[比较 v0.1.0 与 v0.2.0](https://github.com/jowilksasella/AI_Podcast-Kurumi/compare/v0.1.0...v0.2.0)。需要原版时直接克隆：
+
+    git clone --branch v0.1.0 https://github.com/jowilksasella/AI_Podcast-Kurumi.git
+
+也可从 [GitHub Tags](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags) 下载 `v0.1.0` 原版源码，无需 revert 或 cherry-pick。下文安装与运行说明对应 `v0.2.0`，不修改旧 `main`。
 
 - 默认 `speech_mode="continuous"`：每个角色 turn 的完整 `tts_text` 一次 native 调用，保持短段的跨句上下文，而不是逐句重启。
 - 一次外部调用不等于内部一个 context。低显存或 token 预算会触发 native 拆段；连续模式明确拒绝这种超限，不静默碎切或漏字。
 - 保留用户确认的平稳原声与显式生成参数。声线校准约 5–15 秒即可，不能代替正式 30–60 秒样片的确认。
-- [版本化连续语气经验](docs/continuity-v0.2.0.md) 与 [发布说明](docs/release-notes-v0.2.0.md) 记录本次认可短样、接口和局限，不保证任意声线或长稿都无跳层。
+- [版本化连续语气经验](docs/continuity-v0.2.0.md) 记录 5.91 秒认可短样的个案；[发布说明](docs/release-notes-v0.2.0.md) 同时记录后续 52.51 秒双人音频与两位声优轻状态校准均未获用户认可。v0.2.0 不代表整体声线优化成功，47 项 CPU 测试通过也不保证音色或连续听感。
 
 ## 以后怎么用
 

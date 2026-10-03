@@ -2,8 +2,9 @@
 
 ## 版本与历史
 
-v0.2.0 是独立版本，版本分支为 `release/v0.2.0`，版本 tag 标识为 `v0.2.0`。旧 `main` 与既有远端历史 `e23d5bf` 保持不变；不覆盖或强制改写旧 refs，旧输出保留。
-包版本从 `0.1.0` 更新到 `0.2.0`；此前没有对应的 `v0.1.0` 发布 tag。README 的安装、clone 与 tree 引用固定到 `v0.2.0`，不使用未修改的 `main`。
+v0.1.0 是此次从原始 commit `e23d5bf` 补标的完整原版快照，保留当时 `0.1.0` 包版本与全部原版内容，不表示此前已经有过 v0.1.0 发布。
+v0.2.0 是独立的连续模式尝试，版本分支为 `release/v0.2.0`，版本 tag 标识为 `v0.2.0`，包版本更新为 `0.2.0`。旧 `main` 仍在 `e23d5bf`，原版历史与旧输出保留。
+需要原版可直接 `git clone --branch v0.1.0 https://github.com/jowilksasella/AI_Podcast-Kurumi.git`，或从 [GitHub Tags](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags) 下载原版源码，无需 revert 或 cherry-pick。两版本的 tree、Release 与 [对比入口](https://github.com/jowilksasella/AI_Podcast-Kurumi/compare/v0.1.0...v0.2.0) 见 README。
 
 ## 新默认：continuous
 
@@ -26,12 +27,13 @@ speaker 与默认 emotion 沿用同一用户确认的平稳原声；额外 `emot
 - 可选 `voice_cache_dir` 跨进程保存 native conditioning tensors。源码随本版打包；缓存 `.pt` 和真实声音留本地，不提供预建角色声音库。
 - conditioning 缓存依赖兼容的 native source、基础权重、参考和运行环境；不是训练模型、LoRA 或 VC，不能独立代替 base 权重。参考同路径替换和模型/编码环境变化必须失效，缓存 miss 回到 native 编码。
 
-## 本次认可短样与局限
+## 认可短样、后续未认可结果与局限
 
 正文“大家好，我是久留美。今天聊期权对冲。”共 18 字符（含标点），whole-text 单 native call，actual native 日志 `segments count=1`，输出 5.91 秒；同原声、同默认 IndexTTS 2.5、同 seed 与显式参数记录。用户试听认可，没有外部分句/拼接/剪静音/额外 fade/别人 emotion/LoRA/VC。
 
 此前剪三处 pause 没有解决 TTS 连续生成需求。目标是平滑韵律状态，不是零停顿或固定 F0。
 认可仅限这次短样，不保证所有 voice 或长稿无气声/无跳层，也不是 ASR 认证。历史 UI 实际参数未知，不宣称唯一根因或逐位复现。20.067 秒 JA reference 在所用 native 中只取前 15 秒；音色仍需人类确认。
+后续 **52.51 秒双人音频**与**两位声优的轻状态校准**均未获用户认可。因此 v0.2.0 仅是连续调用策略的独立尝试，不能把 5.91 秒个案推广为本版整体声线已优化或音色成功的保证。
 完整事实、机制与适用边界见 [continuity-v0.2.0.md](continuity-v0.2.0.md)。
 
 ## 迁移与验证边界
@@ -39,7 +41,8 @@ speaker 与默认 emotion 沿用同一用户确认的平稳原声；额外 `emot
 固定 `v0.2.0` 源码/Skill，使用本地已确认参考与显式 recipe；旧分段确有需要时明确配置 `legacy_chunks`。正常 turn 继续复用，新生成结果按新缓存签名检查，不为少量修订重推整集。
 
 - 按 AGENTS 规定完成完整 CPU 单元测试：**47 项通过，耗时 10.061 秒，无 skip**。
-- 本次整合未新增 GPU 测试或 ASR 推理。
+- 上述 CPU 回归验证未新增 GPU 测试或 ASR 推理；它不替代真实音频试听。
 - **5.91 秒用户认可短样来自此前真实的原生 IndexTTS 2.5 实验，不是 CPU fixture 生成的音频。** CPU 测试结果与人类试听反馈是不同证据，前者不证明声线或听感。
+- **47 项 CPU 测试通过不等于音色成功**，也不改变后续双人音频和轻状态校准未获认可的结果。
 
 公开仓库只保存代码、文档和原创结构示例；私有素材、实际本机路径、登录态、权重、音频、`.pt` 与完整 ASR 私有记录保持本地。

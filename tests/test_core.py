@@ -24,6 +24,28 @@ class PlanTests(unittest.TestCase):
         self.assertLessEqual(result["lead_text_fraction"], .75)
         self.assertNotIn("id", self.plan["lines"][0])
 
+    def test_example_fits_continuous_low_vram_and_preserves_source_anchors(self):
+        lines = self.plan["lines"]
+        self.assertTrue(all(len(line["text"]) <= 40 for line in lines))
+        self.assertTrue(all("tts_text" not in line and "<" not in line["text"] for line in lines))
+        self.assertTrue(all(a["speaker"] != b["speaker"] for a, b in zip(lines, lines[1:])))
+        characters = sum(len(line["text"]) for line in lines)
+        self.assertTrue(230 <= characters <= 250)
+        pages = {ref["page"] for line in lines for ref in line.get("source_refs", [])}
+        self.assertEqual(pages, {4, 6})
+        self.assertEqual(self.plan["source_note"],
+                         "原创短样结构示例；机制示例见SqueezeMetrics 2017 GEX白皮书第4、6页。")
+        text = "".join(line["text"] for line in lines)
+        for condition in ("卖出一份看跌期权", "可能还要继续卖出股票", "控制自己的方向风险", "模型假设"):
+            self.assertIn(condition, text)
+        # TestWaveBackend's deterministic CPU fixture, not a native speech or
+        # voice-duration claim: include the normal inter-role/chapter gaps.
+        seconds = sum(len(line["text"]) * .18 + .2 for line in lines)
+        for index, line in enumerate(lines):
+            end = index == len(lines) - 1 or lines[index + 1]["chapter"] != line["chapter"]
+            seconds += line.get("after_ms", 750 if end else 140) / 1000
+        self.assertTrue(30 <= seconds <= 60)
+
     def test_missing_setup_is_rejected(self):
         del self.plan["lines"][0]["opening"]
         with self.assertRaisesRegex(ValueError, "opening"):

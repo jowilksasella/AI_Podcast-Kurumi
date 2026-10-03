@@ -3,12 +3,15 @@ from __future__ import annotations
 import copy
 import os
 import re
+import shutil
+import wave
 from pathlib import Path
 
 from . import audio
 from .core import (chapter_ranges, file_state, lead_speech_share, load_json,
                    natural_chunks, resolve_path, save_json, shifted_opening_rows,
                    validate_plan, write_documents)
+from .engine import speech_settings
 
 
 def load_config(path):
@@ -37,7 +40,7 @@ def line_signature(line, config, plan_base, limit):
     if line.get("reuse_audio"):
         return {"text": line["text"], "speaker": line["speaker"],
                 "reuse_audio": file_state(resolve_path(line["reuse_audio"], plan_base)),
-                "sample_rate": config.get("sample_rate", 24000)}
+                "sample_rate": config.get("sample_rate", 22050)}
     voice, emotion, _ = resolve_voice(config, line["speaker"], line["delivery"])
     home = os.environ.get("INDEXTTS_HOME") or config.get("index_home", "")
     return {
@@ -49,9 +52,13 @@ def line_signature(line, config, plan_base, limit):
         "engine": "IndexTTS2.5", "seed": config.get("seed", 20261002),
         "device": config.get("device", "cuda:0"),
         "use_bf16": config.get("use_bf16", True),
-        "emo_alpha": config.get("emo_alpha", .5),
+        "emo_alpha": config.get("emo_alpha", .5) if emotion else 1.0,
         "duration_factor": config.get("duration_factor", 1.0),
-        "sample_rate": config.get("sample_rate", 24000), "chunk_chars": limit,
+        "sample_rate": config.get("sample_rate", 22050),
+        "chunk_chars": limit if config.get("speech_mode", "continuous") == "legacy_chunks" else None,
+        "speech_pipeline_version": 2, "lang": "ZH", "use_random": False,
+        "use_emo_text": False, "emo_vector": None,
+        **speech_settings(config),
     }
 
 
@@ -67,13 +74,14 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
     if stage == "preview" and sum(len(r["text"]) for r in plan["lines"]) > 360:
         raise ValueError("write a genuine 30–60 second preview instead of synthesizing a long episode")
     config = load_config(config_path)
+    settings = speech_settings(config)
     out = Path(out).resolve()
     out.mkdir(parents=True, exist_ok=True)
     work = out / "work"
     work.mkdir(exist_ok=True)
     cache_path = work / "cache.json"
     cache = load_json(cache_path) if cache_path.is_file() else {}
-    rate = int(config.get("sample_rate", 24000))
+    rate = int(config.get("sample_rate", 22050))
     binary = config.get("ffmpeg", "ffmpeg")
     limit = int(config.get("segment_chars", 50))
     clips, rows_notes = [], {}
@@ -101,33 +109,55 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
                     if backend is None:
                         from .engine import IndexBackend
                         backend = IndexBackend(config)
-                    last_error = None
-                    for attempt, chunk_limit in enumerate((limit, min(limit, 30))):
-                        try:
-                            parts = []
-                            for part, chunk in enumerate(natural_chunks(line.get("tts_text", line["text"]), chunk_limit), 1):
-                                raw = work / f"{name}_part{part:02d}_raw.wav"
-                                pcm = work / f"{name}_part{part:02d}.wav"
-                                seed = int(config.get("seed", 20261002)) + int.from_bytes(name.encode(), "little") % 10000 + part
-                                raw.unlink(missing_ok=True)
-                                backend.synthesize(chunk, raw, voice, emotion, seed)
-                                audio.normalize_source(raw, pcm, rate, binary)
-                                samples = audio.trim_edges(audio.read_pcm(pcm, rate), rate)
-                                visible = re.sub(r"<([^<>|]+)\|[^<>]+>", r"\1", chunk)
-                                if not plausible_duration(len(samples) / rate, visible,
-                                                          float(config.get("duration_factor", 1))):
-                                    raise RuntimeError("speech duration suggests repeated or missing text")
-                                if parts:
-                                    import numpy as np
-                                    parts.append(np.zeros(round(.11 * rate)))
-                                parts.append(samples)
-                            import numpy as np
-                            audio.write_pcm(cached, np.concatenate(parts), rate)
-                            break
-                        except (RuntimeError, ValueError) as error:
-                            last_error = error
-                            if attempt:
-                                raise RuntimeError(f"{name}: bounded repair failed: {last_error}") from error
+                    tts_text = line.get("tts_text", line["text"])
+                    if settings["speech_mode"] == "continuous":
+                        raw = work / f"{name}_raw.wav"
+                        raw.unlink(missing_ok=True)
+                        seed = int(config.get("seed", 20261002)) + int.from_bytes(name.encode(), "little") % 10000 + 1
+                        # Exactly one full-turn call. Duration/context errors
+                        # propagate: never retry by splitting or flatten pauses.
+                        backend.synthesize(tts_text, raw, voice, emotion, seed)
+                        with wave.open(str(raw), "rb") as native:
+                            compatible = (native.getnchannels() == 1 and native.getsampwidth() == 2
+                                          and native.getframerate() == rate and native.getcomptype() == "NONE")
+                        if compatible:
+                            shutil.copyfile(raw, cached)
+                        else:
+                            audio.normalize_source(raw, cached, rate, binary)
+                        samples = audio.read_pcm(cached, rate)
+                        visible = re.sub(r"<([^<>|]+)\|[^<>]+>", r"\1", tts_text)
+                        if not plausible_duration(len(samples) / rate, visible,
+                                                  float(config.get("duration_factor", 1))):
+                            cached.unlink(missing_ok=True)
+                            raise RuntimeError(f"{name}: continuous speech duration is implausible; revise the turn, no split retry")
+                    else:
+                        last_error = None
+                        for attempt, chunk_limit in enumerate((limit, min(limit, 30))):
+                            try:
+                                parts = []
+                                for part, chunk in enumerate(natural_chunks(tts_text, chunk_limit), 1):
+                                    raw = work / f"{name}_part{part:02d}_raw.wav"
+                                    pcm = work / f"{name}_part{part:02d}.wav"
+                                    seed = int(config.get("seed", 20261002)) + int.from_bytes(name.encode(), "little") % 10000 + part
+                                    raw.unlink(missing_ok=True)
+                                    backend.synthesize(chunk, raw, voice, emotion, seed)
+                                    audio.normalize_source(raw, pcm, rate, binary)
+                                    samples = audio.trim_edges(audio.read_pcm(pcm, rate), rate)
+                                    visible = re.sub(r"<([^<>|]+)\|[^<>]+>", r"\1", chunk)
+                                    if not plausible_duration(len(samples) / rate, visible,
+                                                              float(config.get("duration_factor", 1))):
+                                        raise RuntimeError("speech duration suggests repeated or missing text")
+                                    if parts:
+                                        import numpy as np
+                                        parts.append(np.zeros(round(.11 * rate)))
+                                    parts.append(samples)
+                                import numpy as np
+                                audio.write_pcm(cached, np.concatenate(parts), rate)
+                                break
+                            except (RuntimeError, ValueError) as error:
+                                last_error = error
+                                if attempt:
+                                    raise RuntimeError(f"{name}: bounded repair failed: {last_error}") from error
                     if not cached.is_file():
                         raise RuntimeError(f"{name}: no verified speech")
                 cache[name] = {"signature": signature, "audio_state": file_state(cached)}
@@ -159,6 +189,12 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
                 "sample_rate": rate, "duration_seconds": total,
                 "lead_speech_fraction": share, "speaker_seconds": seconds,
                 "voice_notes": rows_notes, "turns": rows, "chapters": chapter_ranges(rows, total)}
+    manifest.update(settings)
+    manifest["audio_processing"] = {
+        "fresh_turn_trim_or_fade": settings["speech_mode"] == "legacy_chunks",
+        "renderer_sample_rate_conversion_possible": True,
+        "turn_mixing": True, "episode_loudnorm": True,
+    }
     audio.export_mp3(wav, out / "episode.mp3", manifest, binary)
     write_documents(out, manifest)
     return manifest

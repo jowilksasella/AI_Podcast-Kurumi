@@ -5,25 +5,41 @@
   "device": "cuda:0",
   "use_bf16": true,
   "offline": true,
-  "emo_alpha": 0.5,
+  "emo_alpha": 1.0,
   "duration_factor": 1.0,
+  "seed": 20261004,
+  "speech_mode": "continuous",
+  "generation_kwargs": {
+    "do_sample": false,
+    "top_p": 0.8,
+    "top_k": 30,
+    "temperature": 0.4,
+    "num_beams": 3,
+    "repetition_penalty": 8.0,
+    "length_penalty": 0.0,
+    "max_mel_tokens": 1500,
+    "diffusion_steps": 25
+  },
+  "max_text_tokens_per_segment": 160,
+  "interval_silence_ms": 0,
+  "voice_cache_dir": "local-assets/conditioning-cache",
   "segment_chars": 50,
-  "sample_rate": 24000,
+  "sample_rate": 22050,
   "voices": {
     "久留美": {
       "reference_audio": "local-assets/kurumi_reference.wav",
-      "identity_label": "久留美角色分工；铃木爱奈公开日语样本参考声线",
-      "source_kind": "seiyuu_sample",
-      "source_url": "https://atrays.jp/actor/talent/suzuki-aina/",
-      "reference_language": "ja",
+      "identity_label": "久留美角色分工；用户确认的原声参考（请如实填写身份来源）",
+      "source_kind": "user_reference",
+      "source_url": "",
+      "reference_language": "",
       "emotion_audio": {}
     },
     "萌智子": {
       "reference_audio": "local-assets/mochiko_reference.wav",
-      "identity_label": "萌智子角色分工；濑户麻沙美公开日语样本参考声线",
-      "source_kind": "seiyuu_sample",
-      "source_url": "https://www.starcrew.co.jp/talent/setoasami/",
-      "reference_language": "ja",
+      "identity_label": "萌智子角色分工；用户确认的原声参考（请如实填写身份来源）",
+      "source_kind": "user_reference",
+      "source_url": "",
+      "reference_language": "",
       "emotion_audio": {}
     }
   }

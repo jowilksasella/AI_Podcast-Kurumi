@@ -89,7 +89,7 @@ class AudioPipelineTests(unittest.TestCase):
         save_json(self.plan_path, self.plan)
         for name in ("lead.wav", "partner.wav"):
             audio.write_pcm(self.root / name, np.ones(2400) * 500, 24000)
-        save_json(self.config_path, {"voices": {
+        save_json(self.config_path, {"sample_rate": 24000, "voices": {
             "久留美": {"reference_audio": "lead.wav", "identity_label": "Test fixture"},
             "萌智子": {"reference_audio": "partner.wav", "identity_label": "Test fixture"}
         }})
@@ -138,6 +138,16 @@ class AudioPipelineTests(unittest.TestCase):
         self.assertTrue((out / "opening-preview.wav").is_file())
 
     def test_shorter_chunk_retry_is_bounded_and_cached(self):
+        config = load_json(self.config_path)
+        config["speech_mode"] = "legacy_chunks"
+        save_json(self.config_path, config)
+        # Deliberately overlong legacy fixture. The shipped default example
+        # must no longer depend on >40-character turns to exercise repair.
+        self.plan["lines"][0]["text"] = (
+            "大家好，我是久留美。今天和萌智子聊个怪事："
+            "为什么股市有时很安静，有时却突然大起大落？"
+        )
+        save_json(self.plan_path, self.plan)
         class RepeatingBackend(TestWaveBackend):
             def synthesize(self, text, target, voice, emotion, seed):
                 super().synthesize(text, target, voice, emotion, seed)

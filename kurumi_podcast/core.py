@@ -91,16 +91,30 @@ def validate_plan(data, stage="preview"):
 def natural_chunks(text, limit=50):
     if limit < 8:
         raise ValueError("chunk limit is too short")
-    pieces = re.findall(r"[^。！？!?]*[。！？!?]+|[^。！？!?]+$", text, re.S)
+    # Tokenize first: even punctuation inside a phoneme annotation is indivisible.
+    atoms = re.findall(r"<[^<>]+\|[^<>]+>|.", text, re.S)
+
+    def split_at(items, punctuation):
+        groups, current = [], []
+        for atom in items:
+            current.append(atom)
+            if atom in punctuation:
+                groups.append(current)
+                current = []
+        if current:
+            groups.append(current)
+        return groups
+
+    pieces = split_at(atoms, "。！？!?")
     result, buffer = [], ""
     for sentence in pieces:
-        fragments = re.findall(r"[^，；]*[，；]+|[^，；]+$", sentence, re.S) if len(sentence) > limit else [sentence]
-        for fragment in fragments:
+        fragments = split_at(sentence, "，；") if len(sentence) > limit else [sentence]
+        for atoms in fragments:
+            fragment = "".join(atoms)
             if buffer and len(buffer + fragment) > limit:
                 result.append(buffer)
                 buffer = ""
-            atoms = re.findall(r"<[^<>]+\|[^<>]+>|.", fragment, re.S)
-            if len(fragment) > limit and len(atoms) > limit:
+            if len(atoms) > limit:
                 if buffer:
                     result.append(buffer)
                     buffer = ""

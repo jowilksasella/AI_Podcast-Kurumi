@@ -2,7 +2,7 @@
   "title": "股市的减震器，怎么还会帮倒忙？",
   "language": "普通话",
   "lead": "久留美",
-  "source_note": "原创短样结构示例；机制示例见SqueezeMetrics 2017 GEX白皮书第4、6页。",
+  "source_note": "保留的2026-10-02 GEX讲解示例，依据原开场修订文字稿改写；沿用当时SqueezeMetrics 2017 GEX白皮书第4、6页的动态对冲说明，不是新研究或新投资结论。新渲染仍待试听认可，30–60秒仅为目标。",
   "lines": [
     {
       "speaker": "久留美",
@@ -16,27 +16,61 @@
       "chapter": "开场",
       "opening": true,
       "delivery": "question",
-      "text": "你不是翻到一篇研究期权对冲的白皮书吗？你说的减震器，到底怎么回事？"
+      "text": "你不是翻到一篇研究期权对冲的白皮书吗？你说的那个减震器，到底怎么回事？"
     },
     {
       "speaker": "久留美",
       "chapter": "发现",
-      "delivery": "explain",
-      "text": "我最意外的是，有些交易来自对冲调整。比如做市商卖出一份看跌期权，价格下跌以后，可能还要继续卖出股票，控制自己的方向风险。",
-      "source_refs": [{"page": 4, "note": "卖出看跌期权后的动态对冲例子"}]
+      "delivery": "question",
+      "text": "我最意外的是，股市居然也有减震器。那怎么有时候一跌起来，根本刹不住呢？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "发现",
+      "delivery": "joke",
+      "text": "它不会还兼职拆家吧？"
     },
     {
       "speaker": "萌智子",
       "chapter": "发现",
-      "delivery": "comment",
-      "text": "等等，他在给自己降风险，市场却可能更颠了。这有点像每个人都踩刹车，后面反而堵起来了？"
+      "delivery": "explain",
+      "text": "不是故意的。做市商卖了看跌期权，价格一变，对冲仓位也得跟着调。",
+      "source_refs": [
+        {
+          "page": 4,
+          "note": "保留原GEX讲解：卖出看跌期权后的动态对冲例子"
+        }
+      ]
     },
     {
       "speaker": "久留美",
       "chapter": "发现",
       "delivery": "explain",
-      "text": "对，把这些订单放在一起，就能看见一股影响波动的力量。这正是那篇白皮书想研究的东西。但怎样估计仓位，里面还带着模型假设。",
-      "source_refs": [{"page": 6, "note": "负Gamma反馈可能放大波动"}]
+      "text": "比如市场已经在跌，他为了管住自己的风险，反而还得继续卖出。",
+      "source_refs": [
+        {
+          "page": 4,
+          "note": "示例对冲方向，不代表所有市场参与者"
+        }
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "发现",
+      "delivery": "comment",
+      "text": "哦，自己坐稳了，路却更颠了。这种订单凑在一起，就可能放大波动。",
+      "source_refs": [
+        {
+          "page": 6,
+          "note": "保留原GEX讲解：负Gamma反馈可能放大波动；坐稳是类比"
+        }
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "发现",
+      "delivery": "explain",
+      "text": "白皮书想估计的就是这股力量，不是给我们一张明天涨跌的答案纸。"
     }
   ]
 }

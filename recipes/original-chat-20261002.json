@@ -1,0 +1,98 @@
+{
+  "id": "original-chat-20261002",
+  "schema_version": 1,
+  "claim": "Restore selected reference inputs and October 2 settings, not historical waveform bits or listening quality.",
+  "binding_kind": "new-current-environment",
+  "native_history": "The available infer_v2_5.py changed on October 3; no historical native backup is established.",
+  "settings": {
+    "seed": 20261002,
+    "seed_offset": 900,
+    "opening_seed": 2026100200,
+    "lang": "ZH",
+    "emo_alpha": 0.5,
+    "use_random": false,
+    "duration_factor": 1.0,
+    "interval_silence": 110,
+    "max_text_tokens_per_segment": 180,
+    "max_mel_tokens": 1500,
+    "opening_max_text_tokens_per_segment": 120,
+    "opening_max_mel_tokens": 1000,
+    "diffusion_steps": 25,
+    "decoder": {
+      "do_sample": true,
+      "top_p": 0.8,
+      "top_k": 30,
+      "temperature": 0.8,
+      "num_beams": 3,
+      "repetition_penalty": 10.0,
+      "length_penalty": 0.0
+    },
+    "sample_rate": 24000,
+    "segment_chars": 50,
+    "chunk_policy": "natural-short-turns",
+    "device": "cuda:0",
+    "use_bf16": true,
+    "use_cuda_kernel": false,
+    "use_deepspeed": false,
+    "use_accel": false,
+    "use_torch_compile": false,
+    "use_qwen_emo": false,
+    "vram_offload": true,
+    "offline": true,
+    "cpu_threads": 4,
+    "postprocess": {
+      "trim_threshold_db": -42,
+      "trim_hop_ms": 10,
+      "head_keep_ms": 50,
+      "tail_keep_ms": 65,
+      "fade_ms": 6,
+      "chunk_gap_ms": 110,
+      "mix_gain": 0.82,
+      "loudnorm": "I=-18:TP=-1.5:LRA=9",
+      "turn_gap_ms": 140,
+      "comment_gap_ms": 90,
+      "chapter_gap_ms": 750,
+      "ending_gap_ms": 650
+    }
+  },
+  "voices": {
+    "久留美": {
+      "actor": "铃木爱奈",
+      "identity_label": "久留美角色分工；铃木爱奈公开日语样本参考声线",
+      "source_kind": "seiyuu_sample",
+      "source_url": "https://atrays.jp/actor/talent/suzuki-aina/",
+      "reference_language": "ja",
+      "speaker_slot": "kurumi_ja.wav",
+      "emotion_slots": {
+        "explain": "kurumi_explain.wav",
+        "comment": "kurumi_explain.wav",
+        "question": "kurumi_question.wav",
+        "joke": "kurumi_joke.wav"
+      }
+    },
+    "萌智子": {
+      "actor": "濑户麻沙美",
+      "identity_label": "萌智子角色分工；濑户麻沙美公开日语样本参考声线",
+      "source_kind": "seiyuu_sample",
+      "source_url": "https://www.starcrew.co.jp/talent/setoasami/",
+      "reference_language": "ja",
+      "speaker_slot": "mochiko_ja.wav",
+      "emotion_slots": {
+        "explain": "mochiko_explain.wav",
+        "comment": "mochiko_comment.wav",
+        "question": "mochiko_question.wav",
+        "joke": "kurumi_joke.wav"
+      }
+    }
+  },
+  "assets": {
+    "kurumi_ja.wav": {"sha256": "0154228bb45f82b4f0ab700b2ffb01ac368b204607335020501231cd5dbfe5e3", "size": 624128},
+    "mochiko_ja.wav": {"sha256": "896682702270716e41c0da48909aa3e92a54b158b6730b388cebe7b3c09c64ce", "size": 672092},
+    "kurumi_explain.wav": {"sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb", "size": 180586},
+    "kurumi_question.wav": {"sha256": "84f6494b38c6b8010dd27fbb4a7896887365ead78876beefed690efef4d8189c", "size": 229074},
+    "kurumi_joke.wav": {"sha256": "99d7eb2ad70f80f032c53e0257359780a5b1885a0cb98b927cdb4dc549b30ea8", "size": 110134},
+    "mochiko_explain.wav": {"sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a", "size": 269806},
+    "mochiko_comment.wav": {"sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d", "size": 156558},
+    "mochiko_question.wav": {"sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd", "size": 161424}
+  }
+}

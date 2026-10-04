@@ -9,6 +9,7 @@ from pathlib import Path
 
 from .core import load_json, resolve_path, validate_plan
 from .pipeline import extract_source, load_config, patch_opening, render, resolve_voice
+from .recipe import bind_original, validate_runtime
 
 
 def caller_path(value):
@@ -19,6 +20,10 @@ def caller_path(value):
 def parser():
     root = argparse.ArgumentParser(description="Preview-first Kurumi-led research dialogue.")
     subs = root.add_subparsers(dest="command", required=True)
+    bind = subs.add_parser("bind-original", help="verify eight frozen reference slots and lock a new local environment")
+    bind.add_argument("--assets", required=True)
+    bind.add_argument("--index-home", required=True)
+    bind.add_argument("--out", default="config.local.json")
     extract = subs.add_parser("extract", help="extract PDF/TXT/Markdown with source page anchors")
     extract.add_argument("source")
     extract.add_argument("--out", required=True)
@@ -48,6 +53,13 @@ def doctor(config_path, plan_path=None, import_native=False):
     from .engine import import_engine, index_home
     config = load_config(config_path)
     report = {"ready": True, "missing": [], "voices": {}}
+    plan = validate_plan(load_json(plan_path), "opening") if plan_path else None
+    try:
+        report["runtime"] = validate_runtime(config, plan)
+    except (ValueError, FileNotFoundError) as error:
+        report["ready"] = False
+        report["missing"].append(str(error))
+        return report  # Never import the native engine on a failed restoration lock.
     try:
         home = index_home(config)
         report["index_home"] = str(home)
@@ -57,20 +69,18 @@ def doctor(config_path, plan_path=None, import_native=False):
     binary = config.get("ffmpeg", "ffmpeg")
     if not (shutil.which(binary) or Path(binary).is_file()):
         report["missing"].append("ffmpeg executable")
-    if plan_path:
-        plan = validate_plan(load_json(plan_path), "opening")
-        names = sorted({r["speaker"] for r in plan["lines"]})
-    else:
-        names = sorted(config.get("voices", {}))
-    for name in names:
+    pairs = sorted({(r["speaker"], r["delivery"]) for r in plan["lines"]}) if plan else sorted({
+        (name, delivery) for name, profile in config.get("voices", {}).items()
+        for delivery in ({"explain"} | set(profile.get("emotion_audio", {})))})
+    for name, delivery in pairs:
         try:
-            voice, emotion, profile = resolve_voice(config, name, "explain")
-            report["voices"][name] = {"reference_audio": str(voice),
-                                      "emotion_audio": str(emotion) if emotion else None,
-                                      "identity_label": profile.get("identity_label", name)}
+            voice, emotion, profile = resolve_voice(config, name, delivery)
+            report["voices"].setdefault(name, {})[delivery] = {
+                "reference_audio": str(voice), "emotion_audio": str(emotion) if emotion else None,
+                "identity_label": profile.get("identity_label", name)}
         except (ValueError, FileNotFoundError) as error:
             report["missing"].append(str(error))
-    if import_native and home:
+    if import_native and home and not report["missing"]:
         cls = import_engine(home)
         report["engine_class"] = cls.__name__
         report["engine_method"] = "infer" if callable(getattr(cls, "infer", None)) else "missing"
@@ -83,7 +93,12 @@ def doctor(config_path, plan_path=None, import_native=False):
 def main(argv=None):
     args = parser().parse_args(argv)
     try:
-        if args.command == "extract":
+        if args.command == "bind-original":
+            data = bind_original(caller_path(args.assets), caller_path(args.index_home), caller_path(args.out))
+            result = {"output": str(caller_path(args.out)), "recipe": data["recipe"],
+                      "binding_kind": "new-current-environment", "listening_verified": False,
+                      "historical_native_verified": False, "historical_bits_verified": False}
+        elif args.command == "extract":
             data = extract_source(caller_path(args.source), caller_path(args.out))
             result = {"output": str(caller_path(args.out)), "pages": data["page_count"],
                       "empty_text_pages": data["empty_text_pages"]}
@@ -110,4 +125,3 @@ def main(argv=None):
     except (ValueError, RuntimeError, FileNotFoundError, ImportError) as error:
         print(f"ERROR: {error}", file=sys.stderr)
         return 2
-

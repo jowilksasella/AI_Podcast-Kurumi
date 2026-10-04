@@ -44,28 +44,30 @@ def normalize_source(source, target, rate, binary="ffmpeg"):
     ffmpeg(binary, ["-i", source, "-ac", "1", "-ar", rate, "-c:a", "pcm_s16le", target])
 
 
-def trim_edges(samples, rate):
+def trim_edges(samples, rate, settings=None):
     import numpy as np
-    hop = max(1, round(rate * .01))
+    settings = settings or {}
+    hop = max(1, round(rate * settings.get("trim_hop_ms", 10) / 1000))
     count = len(samples) // hop
     if not count:
         raise ValueError("empty audio")
     rms = np.sqrt(np.mean(samples[:count * hop].reshape(count, hop) ** 2, axis=1))
-    active = np.flatnonzero(rms > 32768 * 10 ** (-42 / 20))
+    active = np.flatnonzero(rms > 32768 * 10 ** (settings.get("trim_threshold_db", -42) / 20))
     if not len(active):
         raise ValueError("no audible speech")
-    start = max(0, int(active[0]) * hop - round(rate * .05))
-    end = min(len(samples), (int(active[-1]) + 1) * hop + round(rate * .065))
+    start = max(0, int(active[0]) * hop - round(rate * settings.get("head_keep_ms", 50) / 1000))
+    end = min(len(samples), (int(active[-1]) + 1) * hop + round(rate * settings.get("tail_keep_ms", 65) / 1000))
     trimmed = samples[start:end].copy()
-    fade = min(round(rate * .006), len(trimmed) // 2)
+    fade = min(round(rate * settings.get("fade_ms", 6) / 1000), len(trimmed) // 2)
     if fade:
         trimmed[:fade] *= np.linspace(0, 1, fade)
         trimmed[-fade:] *= np.linspace(1, 0, fade)
     return trimmed
 
 
-def mix_turns(lines, clips, rate):
+def mix_turns(lines, clips, rate, settings=None):
     import numpy as np
+    settings = settings or {}
     if len(lines) != len(clips) or not lines:
         raise ValueError("each dialogue turn needs exactly one audio clip")
     rows, cursor = [], 0
@@ -75,7 +77,15 @@ def mix_turns(lines, clips, rate):
         rows.append({**line, "start": cursor / rate, "end": (cursor + len(clip)) / rate,
                      "duration": len(clip) / rate})
         chapter_end = i == len(lines) - 1 or lines[i + 1]["chapter"] != line["chapter"]
-        gap = line.get("after_ms", 750 if chapter_end else 140) / 1000
+        if i == len(lines) - 1:
+            default_gap = settings.get("ending_gap_ms", 750)
+        elif chapter_end:
+            default_gap = settings.get("chapter_gap_ms", 750)
+        elif line.get("delivery") == "comment":
+            default_gap = settings.get("comment_gap_ms", 140)
+        else:
+            default_gap = settings.get("turn_gap_ms", 140)
+        gap = line.get("after_ms", default_gap) / 1000
         if i == len(lines) - 1:
             gap = max(0, gap)
         if cursor + len(clip) + round(gap * rate) < 0:
@@ -84,7 +94,7 @@ def mix_turns(lines, clips, rate):
     mixed = np.zeros(cursor)
     for row, clip in zip(rows, clips):
         start = round(row["start"] * rate)
-        mixed[start:start + len(clip)] += clip * .82
+        mixed[start:start + len(clip)] += clip * settings.get("mix_gain", .82)
     return mixed, rows
 
 

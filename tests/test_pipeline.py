@@ -54,7 +54,7 @@ class SourceAndSignatureTests(unittest.TestCase):
         voice, mood = self.root / "voice.wav", self.root / "mood.wav"
         voice.write_bytes(b"voice")
         mood.write_bytes(b"mood")
-        config = {"_base": str(self.root), "voices": {
+        config = {"recipe": "custom", "_base": str(self.root), "voices": {
             "久留美": {"reference_audio": "voice.wav", "emotion_audio": {"question": "mood.wav"}}
         }}
         line = {"speaker": "久留美", "text": "这里是铺垫。", "delivery": "explain"}
@@ -89,7 +89,7 @@ class AudioPipelineTests(unittest.TestCase):
         save_json(self.plan_path, self.plan)
         for name in ("lead.wav", "partner.wav"):
             audio.write_pcm(self.root / name, np.ones(2400) * 500, 24000)
-        save_json(self.config_path, {"voices": {
+        save_json(self.config_path, {"recipe": "custom", "voices": {
             "久留美": {"reference_audio": "lead.wav", "identity_label": "Test fixture"},
             "萌智子": {"reference_audio": "partner.wav", "identity_label": "Test fixture"}
         }})

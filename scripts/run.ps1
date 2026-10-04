@@ -6,10 +6,12 @@ $ErrorActionPreference = "Stop"
 $Repo = Split-Path -Parent $PSScriptRoot
 $Caller = (Get-Location).Path
 $ConfigArg = $null
+$IndexHomeArg = $null
 for ($i = 0; $i -lt $Arguments.Count - 1; $i++) {
     if ($Arguments[$i] -eq "--config") { $ConfigArg = $Arguments[$i + 1] }
+    if ($Arguments[$i] -eq "--index-home") { $IndexHomeArg = $Arguments[$i + 1] }
 }
-$IndexHome = $env:INDEXTTS_HOME
+$IndexHome = if ($IndexHomeArg) { $IndexHomeArg } else { $env:INDEXTTS_HOME }
 if (-not $IndexHome -and $ConfigArg) {
     $ConfigPath = if ([IO.Path]::IsPathRooted($ConfigArg)) { $ConfigArg } else { Join-Path $Caller $ConfigArg }
     $Config = Get-Content -LiteralPath $ConfigPath -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -21,7 +23,7 @@ if (-not $IndexHome -and $ConfigArg) {
         }
     }
 }
-if (-not $IndexHome) { throw "Set INDEXTTS_HOME to the existing IndexTTS 2.5 directory." }
+if (-not $IndexHome) { throw "Pass --index-home, set INDEXTTS_HOME, or use --config with index_home for the existing IndexTTS 2.5 directory." }
 $IndexHome = (Resolve-Path -LiteralPath $IndexHome).Path
 $Python = Join-Path $IndexHome ".venv\Scripts\python.exe"
 if (-not (Test-Path -LiteralPath $Python)) {
@@ -48,4 +50,3 @@ try {
     $env:KURUMI_CALLER_CWD = $OldCaller
 }
 exit $Code
-

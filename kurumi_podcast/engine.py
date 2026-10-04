@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from .core import resolve_path
+from .recipe import effective_settings, native_inference_settings, validate_runtime, ORIGINAL, recipe_id
 
 
 def index_home(config):
@@ -31,46 +32,51 @@ class IndexBackend:
 
     def __init__(self, config):
         self.config = config
+        validate_runtime(config)
         self.model = None
         self.home = index_home(config)
 
     def _load(self):
         if self.model is not None:
             return
-        if self.config.get("offline", True):
+        validate_runtime(self.config)
+        settings = effective_settings(self.config)
+        if settings["offline"]:
             os.environ["HF_HUB_OFFLINE"] = "1"
             os.environ["TRANSFORMERS_OFFLINE"] = "1"
         os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
         cls = import_engine(self.home)
         import torch
-        torch.set_num_threads(int(self.config.get("cpu_threads", 4)))
+        torch.set_num_threads(int(settings["cpu_threads"]))
         model_dir = resolve_path(self.config.get("model_dir", "checkpoints"), self.home)
-        device = self.config.get("device", "cuda:0")
+        device = settings["device"]
         kwargs = dict(
             model_dir=str(model_dir), cfg_path=str(model_dir / "config.yaml"),
-            device=device, use_bf16=bool(self.config.get("use_bf16", True)) and device != "cpu",
-            use_cuda_kernel=False, use_deepspeed=False, use_accel=False,
-            use_torch_compile=False, use_qwen_emo=False, vram_offload=True,
+            device=device, use_bf16=bool(settings["use_bf16"]) and device != "cpu",
+            **{key: settings[key] for key in ("use_cuda_kernel", "use_deepspeed", "use_accel",
+                "use_torch_compile", "use_qwen_emo", "vram_offload")},
         )
         parameters = inspect.signature(cls.__init__).parameters
         if not any(p.kind == p.VAR_KEYWORD for p in parameters.values()):
+            if recipe_id(self.config) == ORIGINAL and set(kwargs) - set(parameters):
+                raise ValueError("bound native constructor cannot accept original settings")
             kwargs = {k: v for k, v in kwargs.items() if k in parameters}
         self.model = cls(**kwargs)
 
     def synthesize(self, text, target, voice, emotion, seed):
+        if recipe_id(self.config) == ORIGINAL and not emotion:
+            raise ValueError("original recipe requires independent emotion_audio before model loading")
         self._load()
         import numpy as np
         import torch
-        random.seed(seed)
-        np.random.seed(seed)
-        torch.manual_seed(seed)
+        if seed is not None:
+            random.seed(seed)
+            np.random.seed(seed)
+            torch.manual_seed(seed)
         self.model.infer(
-            spk_audio_prompt=str(voice), text=text, lang="ZH", output_path=str(target),
+            spk_audio_prompt=str(voice), text=text, output_path=str(target),
             emo_audio_prompt=str(emotion) if emotion else None,
-            emo_alpha=float(self.config.get("emo_alpha", .5)),
-            use_random=False, duration_factor=float(self.config.get("duration_factor", 1.0)),
-            interval_silence=110, max_text_tokens_per_segment=180,
-            max_mel_tokens=1300, diffusion_steps=25, verbose=False,
+            **native_inference_settings(self.config, self.config.get("_stage", "preview")),
         )
         if not Path(target).is_file():
             raise RuntimeError("the model returned without creating speech")
@@ -83,4 +89,3 @@ class IndexBackend:
             import torch
             if torch.cuda.is_available():
                 torch.cuda.empty_cache()
-

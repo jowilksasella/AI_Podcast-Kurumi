@@ -2,7 +2,7 @@
 
 **把 PDF / research paper 做成普通话女生闲聊：久留美主讲，先短试听，确认后做全篇。**
 
-当前 `main` 的 **v0.3.0 恢复工作流**使用 `original-chat-20261002`：恢复 10 月 2 日的**独立日语演员音色 + 原始中文聊天情绪**，并恢复有铺垫、好奇、轻吐槽、搭档有贡献的写法。不是仅退回 v0.1.0；v0.2.0 是另一个未获认可的实验，不作为默认制作入口。保留[历史标签](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags)供追溯，不按“最新 release”自动更换配方。
+当前 `main`（**v0.4.0**）的恢复工作流使用 `original-chat-20261002`（v0.3.0 起）：恢复 10 月 2 日的**独立日语演员音色 + 原始中文聊天情绪**，并恢复有铺垫、好奇、轻吐槽、搭档有贡献的写法。不是仅退回 v0.1.0；v0.2.0 是另一个未获认可的实验，不作为默认制作入口。保留[历史标签](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags)供追溯，不按“最新 release”自动更换配方。
 
 配方恢复不表示新文本的听感已通过。原来获认可的约 41 秒试听、后来修订的 60 秒开场和正文情绪库是不同产物；新预览仍须实际生成、试听和用户确认。详见[恢复与迁移](docs/original-chat-restoration.md)。
 
@@ -125,6 +125,6 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 
 - [IndexTTS](https://github.com/index-tts/index-tts) 与 [IndexTTS 2.5 模型说明](https://huggingface.co/IndexTeam/IndexTTS-2.5)
 - [FX 战士久留美角色资料](https://fxkurumi-info.com/)
-- [历史标签](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags)：v0.1.0 是历史模板，v0.2.0 是独立实验，默认使用当前 main 恢复工作流
+- [历史标签](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags)：v0.1.0 是历史模板，v0.2.0 是独立实验，v0.3.0 恢复原始配方，v0.4.0 加入 variant 换搭档、qa/分章工具与本地动画声线素材流程；默认使用当前 main 恢复工作流
 
 本仓库自有代码与文档采用 MIT；不分发上游模型或第三方素材。

@@ -7,7 +7,7 @@
 1. **声音**：铃木爱奈/濑户麻沙美的原始日语演员音色参考，与原始中文聊天片段的 delivery 情绪参考分开；alpha 0.5、原始解码采样和正文参数随配方保留。
 2. **写作**：人物与场景铺垫、好奇、轻玩笑、双方有实质贡献；久留美承担主要解释和串联，不退化为干巴巴的轮流念稿或老师/学生问答。
 
-当前 main 的 v0.3.0 恢复工作流以 `original-chat-20261002` 为入口；公开参数/资产身份见[配方](../recipes/original-chat-20261002.json)，本地绑定见[运行文档](../skills/research-podcast-kurumi/references/runtime.md)。v0.2.0 保留为未获认可的独立实验，不把它的换搭档、无外部情绪或连续上下文偏好带回原始模式。
+当前 main 的恢复工作流（v0.3.0 起，v0.4.0 沿用）以 `original-chat-20261002` 为入口；公开参数/资产身份见[配方](../recipes/original-chat-20261002.json)，本地绑定见[运行文档](../skills/research-podcast-kurumi/references/runtime.md)。v0.2.0 保留为未获认可的独立实验，不把它的换搭档、无外部情绪或连续上下文偏好带回原始模式。
 
 ## 已确认的输入失配
 

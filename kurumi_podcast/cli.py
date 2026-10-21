@@ -114,13 +114,19 @@ def main(argv=None):
             data = render(caller_path(args.plan), caller_path(args.config), caller_path(args.out),
                           args.stage, args.approved_preview)
             result = {"output": str(caller_path(args.out)), "duration_seconds": data["duration_seconds"],
-                      "lead_speech_fraction": data["lead_speech_fraction"], "stage": data["stage"]}
+                      "lead_speech_fraction": data["lead_speech_fraction"], "stage": data["stage"],
+                      "duration_ok": data["duration_ok"]}
+            if not data["duration_ok"]:
+                print(f"WARNING: preview is {data['duration_seconds']:.1f}s, outside 30–60s; "
+                      "listen, then revise the short script using its cache", file=sys.stderr)
         else:
             data = patch_opening(caller_path(args.plan), caller_path(args.base),
                                  caller_path(args.config), caller_path(args.out), args.replace_until)
             result = {"output": str(caller_path(args.out)), "duration_seconds": data["duration_seconds"],
                       "revision": data["revision"]}
         print(json.dumps(result, ensure_ascii=False, indent=2))
+        if not result.get("duration_ok", True):
+            return 3
         return 0 if result.get("ready", True) else 2
     except (ValueError, RuntimeError, FileNotFoundError, ImportError) as error:
         print(f"ERROR: {error}", file=sys.stderr)

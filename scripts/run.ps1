@@ -41,6 +41,9 @@ try {
     $env:PYTHONPATH = $Repo
     $env:KURUMI_CALLER_CWD = $Caller
     Set-Location -LiteralPath $IndexHome
+    # Windows PowerShell wraps redirected native stderr (e.g. model warnings) in
+    # ErrorRecords; under "Stop" that aborts the run. The exit code decides failure.
+    $ErrorActionPreference = "Continue"
     & $Python -X utf8 -m kurumi_podcast @Arguments
     $Code = $LASTEXITCODE
 } finally {

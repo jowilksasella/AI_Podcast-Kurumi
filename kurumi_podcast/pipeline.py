@@ -186,8 +186,8 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
     audio.ffmpeg(binary, ["-i", rough, "-af", "loudnorm=" + settings["postprocess"]["loudnorm"],
                           "-ac", "1", "-ar", rate, "-c:a", "pcm_s16le", wav])
     total = audio.duration(wav)
-    if stage == "preview" and not 30 <= total <= 60:
-        raise ValueError(f"preview is {total:.1f}s, outside 30–60s; revise the short script using its cache")
+    # Keep an out-of-range preview playable; the CLI reports it with a non-zero exit.
+    duration_ok = stage != "preview" or 30 <= total <= 60
     share, seconds = lead_speech_share(rows, plan["lead"])
     if stage == "full" and share < .60:
         raise ValueError("the lead's effective speech share is below 60%; redistribute dialogue")
@@ -195,7 +195,7 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
                 "stage": stage, "audio": "episode.mp3", "wav": "episode.wav",
                 "recipe": evidence["recipe"], "runtime": evidence,
                 "effective_settings": settings,
-                "sample_rate": rate, "duration_seconds": total,
+                "sample_rate": rate, "duration_seconds": total, "duration_ok": duration_ok,
                 "lead_speech_fraction": share, "speaker_seconds": seconds,
                 "voice_notes": rows_notes, "turns": rows, "chapters": chapter_ranges(rows, total)}
     audio.export_mp3(wav, out / "episode.mp3", manifest, binary)

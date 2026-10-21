@@ -10,6 +10,7 @@ import numpy as np
 from pypdf import PdfWriter
 
 from kurumi_podcast import audio
+from kurumi_podcast.cli import main
 from kurumi_podcast.core import load_json, save_json, validate_plan
 from kurumi_podcast.pipeline import (extract_source, line_signature, load_config,
                                      patch_opening, render)
@@ -99,6 +100,7 @@ class AudioPipelineTests(unittest.TestCase):
         out = self.root / "preview"
         first = render(self.plan_path, self.config_path, out, backend=self.backend)
         self.assertTrue(30 <= first["duration_seconds"] <= 60)
+        self.assertTrue(first["duration_ok"])
         self.assertTrue((out / "episode.mp3").is_file())
         self.assertTrue((out / "subtitles.srt").is_file())
         count = len(self.backend.calls)
@@ -136,6 +138,20 @@ class AudioPipelineTests(unittest.TestCase):
         self.assertGreater(new["speaker_characters"]["久留美"], old["speaker_characters"]["久留美"])
         self.assertTrue(new["revision"]["body_preserved"])
         self.assertTrue((out / "opening-preview.wav").is_file())
+
+    def test_out_of_range_preview_is_still_written_and_flagged(self):
+        self.plan["lines"] = self.plan["lines"][:3]
+        save_json(self.plan_path, self.plan)
+        out = self.root / "short"
+        result = render(self.plan_path, self.config_path, out, backend=self.backend)
+        self.assertLess(result["duration_seconds"], 30)
+        self.assertFalse(result["duration_ok"])
+        self.assertTrue((out / "episode.mp3").is_file())
+        self.assertFalse(load_json(out / "manifest.json")["duration_ok"])
+        with patch("kurumi_podcast.cli.render", return_value=result):
+            code = main(["render", str(self.plan_path), "--config", str(self.config_path),
+                         "--out", str(out)])
+        self.assertEqual(code, 3)
 
     def test_shorter_chunk_retry_is_bounded_and_cached(self):
         class RepeatingBackend(TestWaveBackend):

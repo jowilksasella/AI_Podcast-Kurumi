@@ -99,6 +99,37 @@ Linux/macOS 已有模型环境的占位调用：
 
 用 doctor/render 时把 `--config` 指向 variant 文件即可；计划里如写了 `recipe`，需为 `variant`。
 
+## 动画对白声线素材（本地、可选）
+
+默认音色仍是演员公开样本。用户明确要求试动画对白时，才走这条流程，产物只用于 variant 对比短样。素材来自用户本机已有的剧集或片段：不下载或录制串流、不上传到在线分离服务；`.gitignore` 已排除音视频，确认片段也不提交。
+
+1. **去 BGM**：audio-separator（[nomadkaraoke/python-audio-separator](https://github.com/nomadkaraoke/python-audio-separator)）装在独立 venv，不装进 IndexTTS 环境；首次使用会下载所选模型权重，需用户同意。
+
+       python -m kurumi_podcast separate-vocals 片段或剧集... --out voice-refs/vocals-run --separator PATH\audio-separator.exe
+
+   默认模型 `vocals_mel_band_roformer.ckpt`。`separation.json` 的 `removed_db` 越负说明原片越干净（约 −45 dB 以下几乎没去掉东西，−10～−20 dB 是明显 BGM 被去掉）。
+
+2. **按声线找角色**：在 IndexTTS 模型环境运行（需要其中的 CAM++ 权重与已缓存的 faster-whisper；不会下载）。正例是已确认的目标片段，反例按角色分组：
+
+       .\scripts\run.ps1 find-speaker --config config.original.local.json --target mochiko --positive 已确认萌智子\*.wav --negative kurumi=已确认久留美\a.wav yasuko=安子\b.wav --episode 2b=vocals\2b.wav=input\2b.wav --out voice-refs/mochiko_candidates
+
+   - 嵌入与 IndexTTS 合成时用的说话人条件相同（CAM++）。分数相对**最接近的其他角色**计算，所以每个容易混淆的声音都要有自己的反例组（例：CAM++ 听来铃木爱奈的久留美与冈咲美保的安子很接近）。
+   - 两集里完全相同的音频（OP/ED、预告）自动排除，避免把主题曲歌词当对白。
+   - Whisper 把快速对话并成一段时，前后半段声线不一致会标 `mixed`，不进高信心组。
+   - `--high SCORE MARGIN` 默认 0.6 / 0.15；声音接近的组合按用户确认结果校准（久留美对安子时 margin 0 更合适）。
+
+3. **人工核对**：从原片剪带编号、集数、时间戳、分数和日文转写的核对视频：
+
+       python -m kurumi_podcast review-video voice-refs/mochiko_candidates/candidates.json --episode 2b=D:\剧集\2b.mp4 --out voice-refs/review.mp4
+
+   同名 `.json` 记录每段在核对视频里的时间，便于用户说“7:37 以后”。
+
+4. **记录结论**：用户看完后，把认错的段落转为该角色的反例，其余进入已确认集（带 `.lst` 与 README 记录）：
+
+       python -m kurumi_podcast confirm-review voice-refs/review.json --confirmed voice-refs/kurumi_confirmed --reject 7:37- --reject-as yasuko --anchors voice-refs/anchors
+
+   `--reject` 接编号（`92-94`）或核对视频时间（`0:51~0:54`、`7:37-`）。自动排名不是身份证明；只有用户确认过的片段才进入已确认集，再用于下一集的正例或做 variant 音色参考。
+
 ## 计划结构
 
 必需 title、lead 和非空 lines；每轮包含 speaker、text、chapter。

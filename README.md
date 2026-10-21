@@ -38,6 +38,19 @@
 
 variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不同值会报错），执行方式与原始配方一致：每轮固定 seed、原始发音转换、不做分段重试、每种 delivery 必须有独立情绪参考。成品标为 `variant`，不是原始恢复。结构见 [variant.example.json](examples/variant.example.json) 与[运行文档](skills/research-podcast-kurumi/references/runtime.md#换搭档或换情绪映射variant-配置)。
 
+## 动画对白声线（本地、可选）
+
+想用动画里角色本身的声音做 variant 音色参考时，用四个命令在本机准备素材：
+
+| 命令 | 做什么 |
+|---|---|
+| `separate-vocals` | 用 audio-separator（独立 venv）的 MelBand RoFormer 去掉 BGM |
+| `find-speaker` | 用 IndexTTS 的 CAM++ 声线嵌入，从整集里按角色排出候选；OP/ED 自动排除 |
+| `review-video` | 从原片剪出带编号、时间戳和日文转写的核对视频 |
+| `confirm-review` | 记录用户结论：认错的转成该角色反例，其余进入已确认集 |
+
+自动排名只是候选，必须由人看过确认。素材只在本机使用，不上传、不提交。细节见[运行文档](skills/research-podcast-kurumi/references/runtime.md#动画对白声线素材本地可选)。
+
 ## 仓库里有什么
 
 | 入口 | 用途 |

@@ -52,7 +52,55 @@ def parser():
     chapters = subs.add_parser("package-chapters", help="cut per-chapter MP3s from a rendered episode")
     chapters.add_argument("output")
     chapters.add_argument("--ffmpeg", default="ffmpeg")
+    separate = subs.add_parser("separate-vocals", help="strip BGM from local clips/episodes via audio-separator")
+    separate.add_argument("inputs", nargs="+")
+    separate.add_argument("--out", required=True)
+    separate.add_argument("--separator", default="audio-separator", help="audio-separator executable")
+    separate.add_argument("--model", default="vocals_mel_band_roformer.ckpt")
+    separate.add_argument("--model-dir")
+    find = subs.add_parser("find-speaker", help="rank one character's lines in separated episode vocals")
+    find.add_argument("--target", required=True)
+    find.add_argument("--positive", nargs="+", required=True, help="confirmed clips of the target")
+    find.add_argument("--negative", nargs="+", required=True, help="CHARACTER=clip for each other voice")
+    find.add_argument("--episode", nargs="+", required=True, help="NAME=VOCALS.wav=MIX.wav")
+    find.add_argument("--out", required=True)
+    find.add_argument("--config", help="bound config whose IndexTTS home provides CAM++ and Whisper")
+    find.add_argument("--index-home")
+    find.add_argument("--whisper", default="large-v3")
+    find.add_argument("--high", type=float, nargs=2, default=(.6, .15), metavar=("SCORE", "MARGIN"))
+    find.add_argument("--medium", type=float, nargs=2, default=(.5, .05), metavar=("SCORE", "MARGIN"))
+    review = subs.add_parser("review-video", help="cut candidates into one labelled video for a person to check")
+    review.add_argument("candidates")
+    review.add_argument("--episode", nargs="+", required=True, help="NAME=VIDEO.mp4")
+    review.add_argument("--out", required=True)
+    review.add_argument("--tier", default="high")
+    review.add_argument("--top", type=int)
+    review.add_argument("--font")
+    confirm = subs.add_parser("confirm-review", help="record a person's verdict on a review video")
+    confirm.add_argument("index", help="the review video's .json index")
+    confirm.add_argument("--confirmed", required=True, help="folder of confirmed clips for the target")
+    confirm.add_argument("--reject", nargs="*", default=[], help="numbers (92-94) or video times (7:37-)")
+    confirm.add_argument("--reject-as", help="who the rejected clips actually are")
+    confirm.add_argument("--anchors", help="folder holding other characters' anchor clips")
     return root
+
+
+def engine_home(args):
+    from .engine import index_home
+    if args.config:
+        config = load_config(caller_path(args.config))
+    elif args.index_home:
+        config = {"index_home": str(caller_path(args.index_home)), "_base": os.getcwd()}
+    else:
+        raise ValueError("find-speaker needs --config or --index-home for CAM++ and Whisper")
+    return index_home(config), config.get("model_dir", "checkpoints")
+
+
+def pairs(items, parts):
+    split = [item.split("=", parts - 1) for item in items]
+    if any(len(p) != parts for p in split):
+        raise ValueError(f"expected {'='.join(['NAME'] + ['PATH'] * (parts - 1))}: {items}")
+    return [[p[0]] + [str(caller_path(x)) for x in p[1:]] for p in split]
 
 
 def doctor(config_path, plan_path=None, import_native=False):
@@ -130,6 +178,29 @@ def main(argv=None):
             result = qa_report(caller_path(args.output))
         elif args.command == "package-chapters":
             result = {"chapters": package_chapters(caller_path(args.output), args.ffmpeg)}
+        elif args.command == "separate-vocals":
+            from .voices import separate_vocals
+            result = {"files": separate_vocals([caller_path(p) for p in args.inputs], caller_path(args.out),
+                                               args.separator, args.model,
+                                               caller_path(args.model_dir) if args.model_dir else None)}
+        elif args.command == "find-speaker":
+            from .voices import find_speaker
+            home, model_dir = engine_home(args)
+            negatives = [f"{n}={caller_path(p)}" for n, p in pairs(args.negative, 2)]
+            result = find_speaker(args.target, [str(caller_path(p)) for p in args.positive], negatives,
+                                  pairs(args.episode, 3), caller_path(args.out), home, model_dir,
+                                  args.whisper, tuple(args.high), tuple(args.medium))
+        elif args.command == "review-video":
+            from .voices import review_video
+            index = review_video(caller_path(args.candidates), dict(pairs(args.episode, 2)),
+                                 caller_path(args.out), args.tier, args.top,
+                                 font=caller_path(args.font) if args.font else None)
+            result = {"output": str(caller_path(args.out)), "clips": len(index),
+                      "index": str(caller_path(args.out).with_suffix(".json")), "identity_verified": False}
+        elif args.command == "confirm-review":
+            from .voices import confirm_review
+            result = confirm_review(caller_path(args.index), caller_path(args.confirmed), args.reject,
+                                    args.reject_as, caller_path(args.anchors) if args.anchors else None)
         else:
             data = patch_opening(caller_path(args.plan), caller_path(args.base),
                                  caller_path(args.config), caller_path(args.out), args.replace_until)

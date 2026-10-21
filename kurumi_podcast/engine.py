@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from .core import resolve_path
-from .recipe import effective_settings, native_inference_settings, validate_runtime, ORIGINAL, recipe_id
+from .recipe import effective_settings, native_inference_settings, original_semantics, validate_runtime
 
 
 def index_home(config):
@@ -58,13 +58,13 @@ class IndexBackend:
         )
         parameters = inspect.signature(cls.__init__).parameters
         if not any(p.kind == p.VAR_KEYWORD for p in parameters.values()):
-            if recipe_id(self.config) == ORIGINAL and set(kwargs) - set(parameters):
+            if original_semantics(self.config) and set(kwargs) - set(parameters):
                 raise ValueError("bound native constructor cannot accept original settings")
             kwargs = {k: v for k, v in kwargs.items() if k in parameters}
         self.model = cls(**kwargs)
 
     def synthesize(self, text, target, voice, emotion, seed):
-        if recipe_id(self.config) == ORIGINAL and not emotion:
+        if original_semantics(self.config) and not emotion:
             raise ValueError("original recipe requires independent emotion_audio before model loading")
         self._load()
         import numpy as np

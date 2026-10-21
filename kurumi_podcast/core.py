@@ -88,6 +88,23 @@ def validate_plan(data, stage="preview"):
     return plan
 
 
+# Spoken lines are standard Mandarin in simplified characters; these are leads, not verdicts.
+CANTONESE = re.compile("[嘅咗喺啲冇唔佢嚟嘢咩噉乜睇揾嗰係]")
+TRADITIONAL = re.compile("[們這說來時對會開關於為與還點過實體經濟價錢當聽讓從後問應該現覺麼變買賣場數論產業頭進認識結構試義務幣貨險漲權選擇隨機縮減動態幾億萬樣準術據測線圖電腦網絡標處總導資訊題車門見風飛魚鳥龍無書學習寫讀話語請謝個長間東馬報類計劃層紀錄區價]")
+SPOKEN_LOCATOR = re.compile(r"第\s*[0-9一二三四五六七八九十百]+\s*[页頁节節章]|DOI|doi|[图表]\s*[0-9]+")
+
+
+def language_warnings(plan):
+    warnings = []
+    for line in plan["lines"]:
+        for issue, pattern in (("cantonese", CANTONESE), ("traditional", TRADITIONAL),
+                               ("spoken_locator", SPOKEN_LOCATOR)):
+            found = sorted(set(pattern.findall(line["text"])))
+            if found:
+                warnings.append({"id": line.get("id"), "issue": issue, "matches": found})
+    return warnings
+
+
 def natural_chunks(text, limit=50):
     if limit < 8:
         raise ValueError("chunk limit is too short")
@@ -190,13 +207,30 @@ def caption_chunks(text, limit=24):
     return natural_chunks(text, limit)
 
 
+def caption_spans(chunks, duration, pauses=(), reach=.6):
+    """Split a turn by text length, snapping each boundary to a nearby measured pause."""
+    count, offset, previous, spans = sum(len(c) for c in chunks), 0, 0., []
+    for i, chunk in enumerate(chunks):
+        offset += len(chunk)
+        end = duration * offset / count
+        if i < len(chunks) - 1:
+            near = [p for p in pauses if previous < p < duration and abs(p - end) <= reach]
+            if near:
+                end = min(near, key=lambda p: abs(p - end))
+        else:
+            end = duration
+        spans.append((previous, end))
+        previous = end
+    return spans
+
+
 def write_documents(out, manifest):
     out = Path(out)
     rows = manifest["turns"]
     text = [manifest["title"], "", "普通话角色闲聊 · AI生成/同人角色分工",
             f"主讲：{manifest['lead']}；时长：{time_label(manifest['duration_seconds'])}；"
             f"主讲有效发言占比：{manifest['lead_speech_fraction']:.1%}。",
-            "字幕为发言区间内按文字长度分配的初稿，非精确字级对齐。", ""]
+            "字幕在发言区间内按文字长度分配，并就近对齐到实际停顿；仍非字级对齐。", ""]
     for speaker, profile in manifest.get("voice_notes", {}).items():
         text.append(f"{speaker}：{profile.get('identity_label', speaker)}")
         if profile.get("source_url"):
@@ -211,12 +245,8 @@ def write_documents(out, manifest):
     for row in rows:
         text += [f"[{time_label(row['start'])}] {row['speaker']}：{row['text']}", ""]
         chunks = caption_chunks(row["text"])
-        count, offset = sum(len(c) for c in chunks), 0
-        for chunk in chunks:
-            start = row["start"] + row["duration"] * offset / count
-            offset += len(chunk)
-            end = row["start"] + row["duration"] * offset / count
-            subtitles += [str(cue), srt_time(start) + " --> " + srt_time(end),
+        for chunk, (start, end) in zip(chunks, caption_spans(chunks, row["duration"], row.get("pauses", []))):
+            subtitles += [str(cue), srt_time(row["start"] + start) + " --> " + srt_time(row["start"] + end),
                           row["speaker"] + "：" + chunk, ""]
             cue += 1
     (out / "transcript.txt").write_text("\n".join(text), encoding="utf-8-sig")

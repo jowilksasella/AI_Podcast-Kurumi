@@ -40,6 +40,15 @@ def duration(path):
         return wav.getnframes() / wav.getframerate()
 
 
+def duration_any(path, binary="ffmpeg"):
+    """Decoded duration of any FFmpeg-readable file."""
+    import tempfile
+    with tempfile.TemporaryDirectory() as directory:
+        target = Path(directory) / "decoded.wav"
+        ffmpeg(binary, ["-i", path, "-ac", "1", "-c:a", "pcm_s16le", target], timeout=600)
+        return duration(target)
+
+
 def normalize_source(source, target, rate, binary="ffmpeg"):
     ffmpeg(binary, ["-i", source, "-ac", "1", "-ar", rate, "-c:a", "pcm_s16le", target])
 
@@ -63,6 +72,26 @@ def trim_edges(samples, rate, settings=None):
         trimmed[:fade] *= np.linspace(0, 1, fade)
         trimmed[-fade:] *= np.linspace(1, 0, fade)
     return trimmed
+
+
+def pauses(samples, rate, threshold_db=-40, min_ms=150, hop_ms=10):
+    """Midpoints (seconds) of internal silent runs; edges are not pauses."""
+    import numpy as np
+    hop = max(1, round(rate * hop_ms / 1000))
+    count = len(samples) // hop
+    if not count:
+        return []
+    rms = np.sqrt(np.mean(samples[:count * hop].reshape(count, hop) ** 2, axis=1))
+    quiet = rms < 32768 * 10 ** (threshold_db / 20)
+    found, start = [], None
+    for i, value in enumerate(np.append(quiet, False)):
+        if value and start is None:
+            start = i
+        elif not value and start is not None:
+            if start > 0 and i < count and (i - start) * hop_ms >= min_ms:
+                found.append(round((start + i) / 2 * hop / rate, 3))
+            start = None
+    return found
 
 
 def mix_turns(lines, clips, rate, settings=None):

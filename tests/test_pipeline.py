@@ -13,7 +13,7 @@ from kurumi_podcast import audio
 from kurumi_podcast.cli import main
 from kurumi_podcast.core import load_json, save_json, validate_plan
 from kurumi_podcast.pipeline import (extract_source, line_signature, load_config,
-                                     patch_opening, render)
+                                     package_chapters, patch_opening, qa_report, render)
 
 EXAMPLE = Path(__file__).resolve().parents[1] / "examples" / "preview.json"
 
@@ -138,6 +138,25 @@ class AudioPipelineTests(unittest.TestCase):
         self.assertGreater(new["speaker_characters"]["久留美"], old["speaker_characters"]["久留美"])
         self.assertTrue(new["revision"]["body_preserved"])
         self.assertTrue((out / "opening-preview.wav").is_file())
+
+    def test_qa_and_chapter_packaging_on_rendered_output(self):
+        class PausingBackend(TestWaveBackend):
+            def synthesize(self, text, target, voice, emotion, seed):
+                t = np.arange(round((len(text) * .09 + .1) * self.rate)) / self.rate
+                tone = 4000 * np.sin(2 * np.pi * 200 * t)
+                audio.write_pcm(target, np.concatenate([tone, np.zeros(round(.4 * self.rate)), tone]), self.rate)
+
+        out = self.root / "qa"
+        manifest = render(self.plan_path, self.config_path, out, backend=PausingBackend())
+        self.assertTrue(all(row["pauses"] for row in manifest["turns"]))
+        report = qa_report(out)
+        self.assertEqual(report["clipped_samples"], 0)
+        self.assertFalse(report["listening_verified"])
+        self.assertEqual({f["issue"] for f in report["flags"]} - {"speaking_rate"}, set())
+        chapters = package_chapters(out)
+        self.assertEqual(len(chapters), len(manifest["chapters"]))
+        for chapter in chapters:
+            self.assertAlmostEqual(chapter["seconds"], chapter["end"] - chapter["start"], delta=.06)
 
     def test_out_of_range_preview_is_still_written_and_flagged(self):
         self.plan["lines"] = self.plan["lines"][:3]

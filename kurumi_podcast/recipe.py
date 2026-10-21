@@ -14,6 +14,9 @@ from pathlib import Path
 from .core import file_state, load_json, natural_chunks, resolve_path, save_json
 
 ORIGINAL = "original-chat-20261002"
+VARIANT = "variant"
+# A variant runs its own cast on the bound original's engine; these come from the base.
+INHERITED_ENGINE_KEYS = ("index_home", "model_dir", "ffmpeg")
 
 
 def original_recipe():
@@ -39,14 +42,50 @@ def content_identity(path):
 
 def recipe_id(config):
     value = config.get("recipe", ORIGINAL)
-    if value not in (ORIGINAL, "custom"):
+    if value not in (ORIGINAL, "custom", VARIANT):
         raise ValueError(f"unknown recipe {value!r}; no implicit recipe fallback")
-    if value == "custom" and config.get("original_lock"):
-        raise ValueError("custom is non-restoration; remove the original binding explicitly")
+    if value != ORIGINAL and config.get("original_lock"):
+        raise ValueError(f"{value} is non-restoration; remove the original binding explicitly")
     return value
 
 
+def original_semantics(config):
+    """Original and variant share per-turn seeding, pronunciation and no-retry execution."""
+    return recipe_id(config) in (ORIGINAL, VARIANT)
+
+
+def variant_base(config):
+    """Load the bound original config a variant inherits settings and engine from."""
+    if "_variant_base" in config:
+        return config["_variant_base"]
+    if not config.get("base_config"):
+        raise ValueError("variant needs base_config pointing at a bound original *.local.json")
+    path = resolve_path(config["base_config"], config.get("_base", "."))
+    base = load_json(path)
+    base["_base"] = str(path.parent)
+    if recipe_id(base) != ORIGINAL:
+        raise ValueError("variant base_config must be a bound original-chat-20261002 config")
+    for key in INHERITED_ENGINE_KEYS:
+        if key in base and key not in config:
+            config[key] = str(resolve_path(base[key], base["_base"])) if key == "index_home" else base[key]
+    config["_variant_base"] = base
+    return base
+
+
+def _variant_settings(config):
+    settings = effective_settings(variant_base(config))
+    aliases = {"speech_mode", "generation_kwargs", "interval_silence_ms"} & set(config)
+    if aliases:
+        raise ValueError(f"variant rejects alternate controls: {sorted(aliases)}")
+    for key, value in list(settings.items()) + list(settings["decoder"].items()):
+        if key in config and config[key] != value:
+            raise ValueError(f"variant inherits original settings; drift: {key}")
+    return settings
+
+
 def effective_settings(config):
+    if recipe_id(config) == VARIANT:
+        return _variant_settings(config)
     restored = recipe_id(config) == ORIGINAL
     if restored:
         aliases = {"speech_mode", "generation_kwargs", "interval_silence_ms"} & set(config)
@@ -160,8 +199,10 @@ def validate_runtime(config, plan=None):
     settings = effective_settings(config)
     recipe = original_recipe()
     if rid == "custom":
-        return {"recipe": "custom", "restoration": False, "label": "custom / non-restoration",
-                "effective_settings": settings}
+        return {"recipe": "custom", "restoration": False, "original_semantics": False,
+                "label": "custom / non-restoration", "effective_settings": settings}
+    if rid == VARIANT:
+        return validate_variant(config, settings, plan)
     voices = config.get("voices", {})
     if set(voices) != set(recipe["voices"]):
         raise ValueError("original recipe speaker/actor choice mismatch")
@@ -193,10 +234,51 @@ def validate_runtime(config, plan=None):
     engine = engine_snapshot(config)
     if engine != snapshot.get("engine"):
         raise ValueError("original binding engine lock changed; bind current environment anew")
-    return {"recipe": rid, "restoration": True, "label": "reference-input/settings restoration",
+    return {"recipe": rid, "restoration": True, "original_semantics": True,
+            "label": "reference-input/settings restoration",
             "effective_settings": settings, "public_recipe": recipe,
             "binding": copy.deepcopy(snapshot), "lock_sha256": lock["sha256"],
             "listening_verified": False, "historical_bits_verified": False}
+
+
+def validate_variant(config, settings, plan=None):
+    base = variant_base(config)
+    base_evidence = validate_runtime(base)
+    voices = config.get("voices", {})
+    if not voices:
+        raise ValueError("variant needs its own voices")
+    if plan and plan.get("lead") and plan["lead"] not in voices:
+        raise ValueError(f"variant has no voice for lead {plan['lead']}")
+    deliveries = sorted({(r["speaker"], r["delivery"]) for r in plan["lines"]}) if plan else sorted(
+        (name, delivery) for name, profile in voices.items() for delivery in profile.get("emotion_audio", {}))
+    identities, hashed = {}, {}
+
+    def identity(path):
+        if path not in hashed:
+            hashed[path] = {"path": str(path), **content_identity(path)}
+        return hashed[path]
+
+    for name, delivery in deliveries:
+        profile = voices.get(name)
+        if not profile:
+            raise ValueError(f"variant has no voice for {name}")
+        mood = profile.get("emotion_audio", {}).get(delivery)
+        if not profile.get("reference_audio") or not mood:
+            raise ValueError(f"{name}/{delivery}: variant requires reference_audio and independent "
+                             "emotion_audio; empty moods force native alpha=1 instead of .5")
+        voice, mood = (resolve_path(v, config["_base"]) for v in (profile["reference_audio"], mood))
+        for path in (voice, mood):
+            if not path.is_file():
+                raise FileNotFoundError(f"missing variant audio for {name}/{delivery}: {path}")
+        if voice == mood:
+            raise ValueError(f"{name}/{delivery}: emotion_audio must differ from reference_audio")
+        identities[f"{name}/{delivery}"] = {"reference_audio": identity(voice), "emotion_audio": identity(mood)}
+    if engine_snapshot(config) != base_evidence["binding"]["engine"]:
+        raise ValueError("variant engine differs from its base binding; bind the original anew")
+    return {"recipe": VARIANT, "inherits": ORIGINAL, "restoration": False, "original_semantics": True,
+            "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+            "effective_settings": settings, "base_lock_sha256": base["original_lock"]["sha256"],
+            "voice_identities": identities, "listening_verified": False}
 
 
 def turn_seed(line, settings, stage="preview"):

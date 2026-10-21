@@ -6,17 +6,19 @@ import re
 from pathlib import Path
 
 from . import audio
-from .core import (chapter_ranges, file_state, lead_speech_share, load_json,
+from .core import (chapter_ranges, file_state, language_warnings, lead_speech_share, load_json,
                    natural_chunks, resolve_path, save_json, shifted_opening_rows,
                    validate_plan, write_documents)
-from .recipe import (effective_settings, engine_snapshot, recipe_id, turn_chunks,
-                     turn_seed, validate_runtime, ORIGINAL)
+from .recipe import (effective_settings, engine_snapshot, original_semantics, recipe_id,
+                     turn_chunks, turn_seed, validate_runtime, variant_base, VARIANT)
 
 
 def load_config(path):
     path = Path(path).resolve()
     config = load_json(path)
     config["_base"] = str(path.parent)
+    if config.get("recipe") == VARIANT:
+        variant_base(config)  # Inherit the bound engine location before any backend use.
     return config
 
 
@@ -28,9 +30,9 @@ def resolve_voice(config, speaker, delivery):
     if not voice.is_file():
         raise FileNotFoundError(f"missing reference audio for {speaker}: {voice}")
     moods = profile.get("emotion_audio", {})
-    restored = recipe_id(config) == ORIGINAL
-    emotion_value = moods.get(delivery) if restored else moods.get(delivery) or moods.get("default")
-    if restored and not emotion_value:
+    strict = original_semantics(config)
+    emotion_value = moods.get(delivery) if strict else moods.get(delivery) or moods.get("default")
+    if strict and not emotion_value:
         raise ValueError(f"{speaker}/{delivery}: original recipe requires independent emotion_audio")
     emotion = resolve_path(emotion_value, config["_base"]) if emotion_value else None
     if emotion and not emotion.is_file():
@@ -53,7 +55,7 @@ def line_signature(line, config, plan_base, limit, stage="preview", evidence=Non
     return {
         **common, "text": line["text"], "tts_text": line.get("tts_text", line["text"]),
         "delivery": line["delivery"],
-        "chunks": turn_chunks(line, settings, evidence["restoration"], stage) if "id" in line else [],
+        "chunks": turn_chunks(line, settings, evidence["original_semantics"], stage) if "id" in line else [],
         "speaker": line["speaker"], "voice": file_state(voice),
         "emotion": file_state(emotion) if emotion else None,
         "engine_home": str(resolve_path(home, config["_base"])) if home else "",
@@ -82,11 +84,12 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
     config["_stage"] = stage
     evidence = validate_runtime(config, plan)
     settings = evidence["effective_settings"]
+    semantics = evidence["original_semantics"]
     # Validate ALL used deliveries before output/cache creation or backend loading.
     for line in plan["lines"]:
-        if not line.get("reuse_audio") or evidence["restoration"]:
+        if not line.get("reuse_audio") or semantics:
             resolve_voice(config, line["speaker"], line["delivery"])
-    if not evidence["restoration"]:
+    if evidence["recipe"] == "custom":
         home = os.environ.get("INDEXTTS_HOME") or config.get("index_home")
         if home:
             evidence["engine"] = engine_snapshot(config)
@@ -126,8 +129,8 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
                         from .engine import IndexBackend
                         backend = IndexBackend(config)
                     last_error = None
-                    initial_chunks = turn_chunks(line, settings, evidence["restoration"], stage)
-                    attempts = [initial_chunks] if evidence["restoration"] else [initial_chunks,
+                    initial_chunks = turn_chunks(line, settings, semantics, stage)
+                    attempts = [initial_chunks] if semantics else [initial_chunks,
                                 natural_chunks(line.get("tts_text", line["text"]), min(limit, 30))]
                     used_chunks = None
                     for attempt, chunks in enumerate(attempts):
@@ -137,9 +140,9 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
                                 raw = work / f"{name}_part{part:02d}_raw.wav"
                                 pcm = work / f"{name}_part{part:02d}.wav"
                                 seed = turn_seed(line, settings, stage)
-                                if evidence["restoration"] and part > 1:
+                                if semantics and part > 1:
                                     seed = None  # Continue native RNG: historical code seeded once per turn.
-                                elif not evidence["restoration"]:
+                                elif not semantics:
                                     seed += part
                                 raw.unlink(missing_ok=True)
                                 backend.synthesize(chunk, raw, voice, emotion, seed)
@@ -177,6 +180,8 @@ def render(plan_path, config_path, out, stage="preview", approved=False, backend
         if owns_backend and backend is not None:
             backend.close()
     mixed, rows = audio.mix_turns(plan["lines"], clips, rate, settings["postprocess"])
+    for row, clip in zip(rows, clips):
+        row["pauses"] = audio.pauses(clip, rate)
     for row in rows:
         row["inference_evidence"] = signatures[row["id"]]
         row["effective_chunks"] = cache[row["id"]].get("effective_chunks")
@@ -214,8 +219,9 @@ def patch_opening(opening_plan, base, config_path, out, cut=0, backend=None):
     config = load_config(config_path)
     plan = validate_plan(load_json(opening_plan), "opening")
     validate_runtime(config, plan)
-    if recipe_id(config) == ORIGINAL and old.get("recipe") != ORIGINAL:
-        raise ValueError("original opening cannot label a custom/unbound body as restored")
+    if recipe_id(config) != "custom" and old.get("recipe") != recipe_id(config):
+        raise ValueError("opening and body must share the original/variant recipe; "
+                         "a custom/unbound body cannot be labelled restored")
     out.mkdir(parents=True, exist_ok=True)
     prefix_dir = out / "work" / "new-opening"
     prefix = render(opening_plan, config_path, prefix_dir, stage="opening", approved=True, backend=backend)
@@ -251,6 +257,56 @@ def patch_opening(opening_plan, base, config_path, out, cut=0, backend=None):
                           "-c:a", "pcm_s16le", out / "opening-preview.wav"])
     write_documents(out, manifest)
     return manifest
+
+
+def safe_name(text):
+    return re.sub(r'[\\/:*?"<>|\s]+', "_", text).strip("_") or "chapter"
+
+
+def package_chapters(base, binary="ffmpeg"):
+    """Cut the mastered WAV at manifest chapter times; the full episode stays the master."""
+    base = Path(base).resolve()
+    manifest = load_json(base / "manifest.json")
+    wav = resolve_path(manifest["wav"], base)
+    target = base / "chapters"
+    target.mkdir(exist_ok=True)
+    files = []
+    for number, chapter in enumerate(manifest["chapters"], 1):
+        path = target / f"{number:02d}-{safe_name(chapter['title'])}.mp3"
+        audio.ffmpeg(binary, ["-ss", f"{chapter['start']:.3f}", "-to", f"{chapter['end']:.3f}", "-i", wav,
+                              "-metadata", "title=" + chapter["title"], "-metadata", f"track={number}",
+                              "-c:a", "libmp3lame", "-b:a", "160k", path], timeout=600)
+        files.append({"title": chapter["title"], "file": str(path), "start": chapter["start"],
+                      "end": chapter["end"], "seconds": round(audio.duration_any(path, binary), 3)})
+    save_json(target / "chapters.json", files)
+    return files
+
+
+def qa_report(base, slow=2.5, fast=8.0):
+    """Measurable leads for listening: speaking-rate outliers, clipping, lead share, language."""
+    import numpy as np
+    base = Path(base).resolve()
+    manifest = load_json(base / "manifest.json")
+    rate = int(manifest["sample_rate"])
+    samples = audio.read_pcm(resolve_path(manifest["wav"], base), rate)
+    peak = float(np.max(np.abs(samples))) if len(samples) else 0.
+    flags = []
+    for row in manifest["turns"]:
+        # A Latin word is spoken as about two syllables, not one per letter.
+        words = re.findall(r"[A-Za-z]+", row["text"])
+        spoken = len(re.sub(r"[\W_A-Za-z]", "", row["text"])) + 2 * len(words)
+        cps = spoken / row["duration"] if row["duration"] else 0
+        if spoken >= 6 and not slow <= cps <= fast:
+            flags.append({"id": row["id"], "issue": "speaking_rate", "units_per_second": round(cps, 2),
+                          "hint": "possible repeat/long pause" if cps < slow else "possible omission"})
+    flags += language_warnings({"lines": manifest["turns"]})
+    share, _ = lead_speech_share(manifest["turns"], manifest["lead"])
+    return {"output": str(base), "stage": manifest.get("stage"), "duration_seconds": manifest["duration_seconds"],
+            "duration_ok": manifest.get("duration_ok", True), "turns": len(manifest["turns"]),
+            "chapters": len(manifest["chapters"]), "lead_speech_fraction": round(share, 4),
+            "peak_dbfs": round(20 * np.log10(peak / 32768), 2) if peak else None,
+            "clipped_samples": int(np.sum(np.abs(samples) >= 32767)), "flags": flags,
+            "listening_verified": False}
 
 
 def extract_source(path, out):

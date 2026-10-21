@@ -1,4 +1,5 @@
 import copy
+import shutil
 import sys
 import tempfile
 import types
@@ -6,8 +7,8 @@ import unittest
 from pathlib import Path
 from unittest.mock import Mock, patch
 
-from kurumi_podcast.core import save_json
-from kurumi_podcast.pipeline import render
+from kurumi_podcast.core import load_json, save_json
+from kurumi_podcast.pipeline import load_config, render
 from kurumi_podcast import audio
 from kurumi_podcast.engine import IndexBackend
 from kurumi_podcast.recipe import (ORIGINAL, bind_original, content_identity,
@@ -141,6 +142,81 @@ class RecipeTests(unittest.TestCase):
         opening = native_inference_settings(self.config, "opening")
         self.assertEqual(opening["max_text_tokens_per_segment"], 120)
         self.assertEqual(opening["max_mel_tokens"], 1000)
+
+
+class VariantTests(unittest.TestCase):
+    """A new cast inherits the bound original's settings and per-turn execution."""
+
+    setUp = RecipeTests.setUp
+
+    def write_variant(self, **extra):
+        partner = self.root / "partner_ja.wav"
+        partner.write_bytes(b"partner reference fixture")
+        bound = load_json(self.root / "bound.local.json")
+        variant = {"recipe": "variant", "base_config": "bound.local.json", "voices": {
+            "久留美": bound["voices"]["久留美"],
+            "山师芽吹": {"actor": "伊藤彩沙", "reference_audio": "partner_ja.wav",
+                     "emotion_audio": bound["voices"]["萌智子"]["emotion_audio"]}}, **extra}
+        save_json(self.root / "variant.local.json", variant)
+        return load_config(self.root / "variant.local.json")
+
+    def test_variant_inherits_settings_engine_and_strict_moods(self):
+        config = self.write_variant()
+        evidence = validate_runtime(config)
+        self.assertEqual(evidence["recipe"], "variant")
+        self.assertFalse(evidence["restoration"])
+        self.assertTrue(evidence["original_semantics"])
+        self.assertEqual(evidence["effective_settings"], effective_settings(self.config))
+        self.assertEqual(native_inference_settings(config), native_inference_settings(self.config))
+        self.assertEqual(Path(config["index_home"]), self.home.resolve())
+        with self.assertRaisesRegex(ValueError, "drift: emo_alpha"):
+            validate_runtime(self.write_variant(emo_alpha=1.))
+        with self.assertRaisesRegex(ValueError, "drift: do_sample"):
+            validate_runtime(self.write_variant(do_sample=False))
+        config = self.write_variant()
+        del config["voices"]["山师芽吹"]["emotion_audio"]["question"]
+        with self.assertRaisesRegex(ValueError, "independent"):
+            validate_runtime(config, {"lead": "久留美", "lines": [{"speaker": "山师芽吹", "delivery": "question"}]})
+
+    def test_variant_rejects_broken_base_lock(self):
+        (self.assets / "kurumi_explain.wav").write_bytes(b"replacement")
+        with self.assertRaisesRegex(ValueError, "identity mismatch"):
+            validate_runtime(self.write_variant())
+
+    @unittest.skipUnless(shutil.which("ffmpeg"), "FFmpeg is needed for audio integration tests")
+    def test_variant_render_uses_original_seed_pronunciation_and_no_retry(self):
+        self.write_variant()
+        plan = {"title": "变体", "lead": "久留美", "lines": [
+            {"speaker": "久留美", "opening": True, "text": "大家好，我是久留美。今天聊做市商为什么要买卖股票，这件事很有意思。"},
+            {"speaker": "山师芽吹", "delivery": "question", "text": "他们卖了期权以后，还得再买吗？"},
+            {"speaker": "久留美", "text": "对，价格一动就要调整，跌了再卖，涨了买回，所以这股力量能算出来。"}]}
+        save_json(self.root / "plan.json", plan)
+        calls = []
+
+        class Backend:
+            def synthesize(self, text, target, voice, emotion, seed):
+                calls.append((text, seed, Path(voice).name, Path(emotion).name))
+                audio.write_pcm(target, [3000, -3000] * round(len(text) * .19 * 12000), 24000)
+
+        manifest = render(self.root / "plan.json", self.root / "variant.local.json",
+                          self.root / "out", backend=Backend())
+        settings = effective_settings(self.config)
+        self.assertEqual([c[1] for c in calls], [turn_seed({"id": f"{i:03d}"}, settings) for i in (1, 2, 3)])
+        self.assertIn("<买|MAI3>", calls[0][0])
+        self.assertEqual(calls[1][2:], ("partner_ja.wav", "mochiko_question.wav"))
+        self.assertEqual(manifest["recipe"], "variant")
+
+        class Repeating(Backend):
+            def synthesize(self, text, target, voice, emotion, seed):
+                calls.append((text, seed))
+                audio.write_pcm(target, [3000, -3000] * 24000 * 20, 24000)
+
+        calls.clear()
+        plan["lines"][1]["text"] += "真的？"
+        save_json(self.root / "plan.json", plan)
+        with self.assertRaisesRegex(RuntimeError, "bounded repair failed"):
+            render(self.root / "plan.json", self.root / "variant.local.json", self.root / "out", backend=Repeating())
+        self.assertEqual(len(calls), 1)
 
 
 if __name__ == "__main__":

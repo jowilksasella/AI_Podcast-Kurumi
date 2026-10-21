@@ -26,6 +26,17 @@
 - 沿用已绑定的本地 IndexTTS 2.5、演员音色、中文情绪库和采样参数。**不清空 emotion_audio、不自动换演员/搭档/版本、不切 Edge。** 用户明确变更时另做短样，不覆盖原始配置。
 - 原始素材缺失或身份不符时，列出具体槽位与错误；不生成替代情绪、重剪新演员样本或拿普通女声降级冒充。
 - 修改一两句只重做受影响段落；补开场保留正常正文母带，字幕和章节随之调整。
+- 全部台词用标准普通话简体；研究在讨论中自然带出作者、平台/期刊与日期，口播不念页码或 DOI。完整版不设时长上限，按资料讲透。
+- 逐句好/坏反馈用来选定整集配置，不逐句重录。
+
+## 换搭档（variant 配置）
+
+想让久留美配其他搭档（例如山师芽吹），或整集统一情绪映射，不要改原始配置，另写一个 `recipe: "variant"` 的本地配置，`base_config` 指向已绑定的原始配置：
+
+    .\scripts\run.ps1 doctor --config config.mebuki.local.json --plan preview.json
+    .\scripts\run.ps1 render preview.json --config config.mebuki.local.json --out outputs/mebuki-preview --stage preview
+
+variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不同值会报错），执行方式与原始配方一致：每轮固定 seed、原始发音转换、不做分段重试、每种 delivery 必须有独立情绪参考。成品标为 `variant`，不是原始恢复。结构见 [variant.example.json](examples/variant.example.json) 与[运行文档](skills/research-podcast-kurumi/references/runtime.md#换搭档或换情绪映射variant-配置)。
 
 ## 仓库里有什么
 
@@ -37,6 +48,7 @@
 | [修订与检查](skills/research-podcast-kurumi/references/revisions.md) | 局部返工、实际试听与最小检查 |
 | [原始配方](recipes/original-chat-20261002.json) | 公开配方及原始资产身份，无原始声音 |
 | [配置结构示例](examples/config.example.json) | 非运行配置；不替代 bind-original |
+| [换搭档示例](examples/variant.example.json) | variant 配置结构；继承已绑定原始配置 |
 | [短试听示例](examples/preview.json) | 从原始 GEX 开场保留的写作示例；新渲染待认可 |
 | [恢复与迁移](docs/original-chat-restoration.md) | 空情绪映射根因、历史产物区别和迁移 |
 | [GEX 经验](docs/case-study.md) | 原制作实践中保留的方法 |
@@ -68,9 +80,16 @@
 
 - `episode.wav`、`episode.mp3`
 - `transcript.txt`：角色、章节、来源和身份说明
-- `subtitles.srt`：按发言区间分配的字幕初稿，非精确字级对齐
-- `manifest.json`：时间轴、主讲比例及制作信息
+- `subtitles.srt`：按文字长度分配并对齐到实际停顿的字幕，非字级对齐
+- `manifest.json`：时间轴、每轮停顿、主讲比例、`duration_ok` 及制作信息
 - `work/cache.json`：恢复与局部重做使用的缓存
+
+试听超出 30–60 秒时仍会输出全部文件，但命令以退出码 3 结束并提示修改台词。生成后可以：
+
+    python -m kurumi_podcast qa outputs/episode
+    python -m kurumi_podcast package-chapters outputs/episode
+
+`qa` 列出语速异常（疑似重复或漏读）、削波、主讲占比和粤语/繁体/口播定位符等该去听的轮次；`package-chapters` 切出 `chapters/` 分章 MP3。
 
 只改开头：
 

@@ -6,8 +6,9 @@ from pathlib import Path
 import numpy as np
 
 from kurumi_podcast import audio
-from kurumi_podcast.core import (chapter_ranges, lead_speech_share, load_json,
-                                 natural_chunks, shifted_opening_rows, validate_plan)
+from kurumi_podcast.core import (caption_spans, chapter_ranges, language_warnings,
+                                 lead_speech_share, load_json, natural_chunks,
+                                 shifted_opening_rows, validate_plan)
 
 EXAMPLE = Path(__file__).resolve().parents[1] / "examples" / "preview.json"
 
@@ -64,7 +65,30 @@ class PlanTests(unittest.TestCase):
             validate_plan(self.plan)
 
 
+class LanguageTests(unittest.TestCase):
+    def test_example_is_clean_mandarin_without_spoken_locators(self):
+        self.assertEqual(language_warnings(validate_plan(load_json(EXAMPLE))), [])
+
+    def test_cantonese_traditional_and_locators_are_flagged(self):
+        lines = [{"id": "001", "text": "佢哋係咁講嘅"}, {"id": "002", "text": "這個價錢會變"},
+                 {"id": "003", "text": "见第4页的表2，DOI也在。"}, {"id": "004", "text": "这个价格会变。"}]
+        issues = {(w["id"], w["issue"]) for w in language_warnings({"lines": lines})}
+        self.assertEqual(issues, {("001", "cantonese"), ("002", "traditional"), ("003", "spoken_locator")})
+
+
 class TimingTests(unittest.TestCase):
+    def test_caption_boundaries_snap_to_nearby_pauses(self):
+        chunks = ["前半句话，", "后半句话。"]
+        self.assertEqual(caption_spans(chunks, 4.), [(0., 2.), (2., 4.)])
+        self.assertEqual(caption_spans(chunks, 4., [2.4]), [(0., 2.4), (2.4, 4.)])
+        self.assertEqual(caption_spans(chunks, 4., [3.5]), [(0., 2.), (2., 4.)])
+
+    def test_pauses_ignore_edges_and_find_internal_silence(self):
+        tone, silence = np.ones(2400) * 8000, np.zeros(4800)
+        found = audio.pauses(np.concatenate([silence, tone, silence, tone, silence]), 24000)
+        self.assertEqual(len(found), 1)
+        self.assertAlmostEqual(found[0], .4, delta=.02)
+
     def test_natural_chunks_keep_every_character(self):
         texts = ["等等？！为什么会这样！！然后呢……",
                  "，先有铺垫，；再讲机制。最后总结！",

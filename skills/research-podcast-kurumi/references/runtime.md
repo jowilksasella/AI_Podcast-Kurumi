@@ -72,6 +72,33 @@ Linux/macOS 已有模型环境的占位调用：
 
 当前可用 native 已在 10 月 3 日变化，未确立 10 月 2 日 native 备份；锁的是选定原始资产和配方参数在当前环境的绑定，不是历史波形认证。约 41 秒试听、修订 60 秒开场与正文库的区别见[恢复说明](../../../docs/original-chat-restoration.md)。
 
+## 换搭档或换情绪映射：variant 配置
+
+用户明确换搭档（如山师芽吹）或要求整集统一情绪映射时，不改原始配置，另写一个 `recipe: "variant"` 的 `*.local.json`：
+
+    {
+      "recipe": "variant",
+      "base_config": "config.original.local.json",
+      "voices": {
+        "久留美": { "...": "照抄原始配置的久留美条目" },
+        "山师芽吹": {
+          "actor": "伊藤彩沙", "identity_label": "…", "source_kind": "seiyuu_sample",
+          "source_url": "…", "reference_language": "ja",
+          "reference_audio": "local-assets/mebuki/mebuki_ja.wav",
+          "emotion_audio": {"explain": "…", "comment": "…", "question": "…", "joke": "…"}
+        }
+      }
+    }
+
+结构示例见 [variant.example.json](../../../examples/variant.example.json)。variant 的行为：
+
+- 采样、情绪 alpha、token、后处理等全部设置、IndexTTS 位置都继承 `base_config`；variant 里写了不同的值即报错（drift），不能借 variant 偷改参数。
+- 执行方式与原始配方相同：每轮固定 seed（不加分段偏移）、原始发音转换、不做短分段重试；每个用到的 delivery 都要有独立且不同于音色参考的 emotion_audio。
+- 每次运行都先验证 base 的原始锁（资产身份、引擎文件、软件版本）；base 失效时 variant 也不能运行。
+- manifest 标为 `variant`、`restoration: false`，并记录每个用到的音色/情绪文件身份；它不是原始恢复，也不能用于给原始正文补开场。
+
+用 doctor/render 时把 `--config` 指向 variant 文件即可；计划里如写了 `recipe`，需为 `variant`。
+
 ## 计划结构
 
 必需 title、lead 和非空 lines；每轮包含 speaker、text、chapter。
@@ -84,12 +111,19 @@ Linux/macOS 已有模型环境的占位调用：
 - after_ms：接话间隔；不为追求连续性把每轮统一静音或全部拼成超长段。
 - reuse_audio：已有确认音频的路径，相对计划解析；不重新推理。历史认可不能自动传给新增片段。
 
-声音路径相对配置文件解析，角色名映射到 reference_audio / emotion_audio。原始模式固定两位角色，不能把新搭档塞进配置还称恢复。默认预览约 220–270 字、每轮约 50 字以内；360 字上限不是写到 360 字的目标。
+声音路径相对配置文件解析，角色名映射到 reference_audio / emotion_audio。原始模式固定两位角色，不能把新搭档塞进配置还称恢复；换搭档用上面的 variant 配置。默认预览约 220–270 字、每轮约 50 字以内；360 字上限不是写到 360 字的目标。
 
 ## 缓存与输出
 
 只重做文本、参考输入或参数确实变化的段落。原始资产身份检查属于配方绑定，不额外做普通保存的整树哈希；配方变化与本机路径状态需要纳入缓存，不能拿不匹配缓存当有效声音。
 
-主文件 episode.mp3 / episode.wav，配套 transcript.txt、subtitles.srt、manifest.json。字幕是发言区间内分配的初稿，不冒充字级对齐。缓存、配置和生成产物留在本地。
+主文件 episode.mp3 / episode.wav，配套 transcript.txt、subtitles.srt、manifest.json。字幕在每轮发言内按文字长度分配，再就近对齐到该轮实际测得的停顿（manifest 每轮 `pauses`）；仍不冒充字级对齐。缓存、配置和生成产物留在本地。
+
+生成后的两个辅助命令（不需要模型环境）：
+
+    python -m kurumi_podcast qa outputs/episode
+    python -m kurumi_podcast package-chapters outputs/episode
+
+`qa` 报告语速异常的轮次（疑似重复/长停顿或漏读）、削波、峰值、主讲有效发言占比和粤语/繁体/口播定位符；标记是该去听的线索，`listening_verified` 始终为 false。`package-chapters` 按 manifest 章节时间从 episode.wav 切出 `chapters/NN-章节名.mp3` 与 `chapters.json`，整集母带不变。
 
 预览实际时长不在 30–60 秒时仍写出全部文件，manifest 记 `duration_ok: false`，CLI 在 stderr 警告并以退出码 3 结束：先试听，再用缓存精简或补充台词，不当成已合格短样。

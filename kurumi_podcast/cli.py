@@ -7,8 +7,9 @@ import shutil
 import sys
 from pathlib import Path
 
-from .core import load_json, resolve_path, validate_plan
-from .pipeline import extract_source, load_config, patch_opening, render, resolve_voice
+from .core import language_warnings, load_json, resolve_path, validate_plan
+from .pipeline import (extract_source, load_config, package_chapters, patch_opening, qa_report,
+                       render, resolve_voice)
 from .recipe import bind_original, validate_runtime
 
 
@@ -46,6 +47,11 @@ def parser():
     patch.add_argument("--config", required=True)
     patch.add_argument("--out", required=True)
     patch.add_argument("--replace-until", type=float, default=0)
+    qa = subs.add_parser("qa", help="measurable checks on a rendered output (not a listening verdict)")
+    qa.add_argument("output")
+    chapters = subs.add_parser("package-chapters", help="cut per-chapter MP3s from a rendered episode")
+    chapters.add_argument("output")
+    chapters.add_argument("--ffmpeg", default="ffmpeg")
     return root
 
 
@@ -106,7 +112,8 @@ def main(argv=None):
             data = validate_plan(load_json(caller_path(args.plan)), args.stage)
             result = {"valid": True, "lead": data["lead"],
                       "lead_text_fraction": data["lead_text_fraction"],
-                      "speakers": data["speaker_characters"], "turns": len(data["lines"])}
+                      "speakers": data["speaker_characters"], "turns": len(data["lines"]),
+                      "warnings": language_warnings(data)}
         elif args.command == "doctor":
             result = doctor(caller_path(args.config),
                             caller_path(args.plan) if args.plan else None, args.import_engine)
@@ -119,6 +126,10 @@ def main(argv=None):
             if not data["duration_ok"]:
                 print(f"WARNING: preview is {data['duration_seconds']:.1f}s, outside 30–60s; "
                       "listen, then revise the short script using its cache", file=sys.stderr)
+        elif args.command == "qa":
+            result = qa_report(caller_path(args.output))
+        elif args.command == "package-chapters":
+            result = {"chapters": package_chapters(caller_path(args.output), args.ffmpeg)}
         else:
             data = patch_opening(caller_path(args.plan), caller_path(args.base),
                                  caller_path(args.config), caller_path(args.out), args.replace_until)

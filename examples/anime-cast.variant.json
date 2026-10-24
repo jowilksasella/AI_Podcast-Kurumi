@@ -1,0 +1,35 @@
+{
+  "_template_note": "动画对白音色（GEX 定稿，2026-10-22 用户认可）。复制到仓库根目录为 config.anime.local.json；base_config 指向已用 bind-original 绑定的原始配置。音色参考已随仓库提交在 voices/anime-20261022/；中文情绪参考沿用原始库槽位（local-assets/original-20261002/，不随仓库提交）。设置与引擎从 base 继承。",
+  "recipe": "variant",
+  "base_config": "config.original.local.json",
+  "voices": {
+    "久留美": {
+      "actor": "铃木爱奈",
+      "identity_label": "久留美角色分工；铃木爱奈配音的动画对白作音色参考（GEX 定稿；动画对白，非公开演员样本）",
+      "source_kind": "anime_dialogue",
+      "source_url": "动画第2集对白，用户确认的久留美片段 2b 05:58.95–06:13.21 与 08:21.92–08:27.20 拼接（去BGM，长停顿压到≤0.4秒，共14.9秒）",
+      "reference_language": "ja",
+      "reference_audio": "voices/anime-20261022/kurumi_anime_dense_ja.wav",
+      "emotion_audio": {
+        "explain": "local-assets/original-20261002/kurumi_explain.wav",
+        "comment": "local-assets/original-20261002/kurumi_explain.wav",
+        "question": "local-assets/original-20261002/kurumi_question.wav",
+        "joke": "local-assets/original-20261002/kurumi_joke.wav"
+      }
+    },
+    "萌智子": {
+      "actor": "濑户麻沙美",
+      "identity_label": "萌智子角色分工；濑户麻沙美配音的动画对白作音色参考（GEX 定稿；动画对白，非公开演员样本）",
+      "source_kind": "anime_dialogue",
+      "source_url": "动画第2集对白 2b 09:25.82–09:39.92（去BGM，用户确认萌智子片段；停顿压到≤0.4秒，约11.6秒）",
+      "reference_language": "ja",
+      "reference_audio": "voices/anime-20261022/mochiko_anime_dense_ja.wav",
+      "emotion_audio": {
+        "explain": "local-assets/original-20261002/mochiko_explain.wav",
+        "comment": "local-assets/original-20261002/mochiko_comment.wav",
+        "question": "local-assets/original-20261002/mochiko_question.wav",
+        "joke": "local-assets/original-20261002/kurumi_joke.wav"
+      }
+    }
+  }
+}

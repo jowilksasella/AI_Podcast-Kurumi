@@ -6,7 +6,7 @@
 
 配方恢复不表示新文本的听感已通过。原来获认可的约 41 秒试听、后来修订的 60 秒开场和正文情绪库是不同产物；新预览仍须实际生成、试听和用户确认。详见[恢复与迁移](docs/original-chat-restoration.md)。
 
-这是音频制作仓库，与 [AI_Animation-Kurumi](https://github.com/jowilksasella/AI_Animation-Kurumi) 分工：这里负责资料、剧本、音频、字幕和章节，默认不制作动漫小人或视频。
+这是音频制作仓库，与 [AI_Animation-Kurumi](https://github.com/jowilksasella/AI_Animation-Kurumi) 分工：这里负责资料、剧本、音频、字幕、章节，以及给短视频用的一分钟系列和逐句来源对照；动漫小人与视频由 AI_Animation-Kurumi 的 `kurumi-shorts` 制作。
 
 ## 以后怎么用
 
@@ -17,6 +17,10 @@
 **助手先读 [SKILL.md](skills/research-podcast-kurumi/SKILL.md)。** 根 URL 指定做法，不指定旧论文；只有复核历史示例才沿用 GEX。Skill 可以单独安装，但执行 CLI 需要完整仓库。
 
     npx skills add https://github.com/jowilksasella/AI_Podcast-Kurumi/tree/main/skills/research-podcast-kurumi
+
+想直接做成 Shorts（每集一分钟以内、一集一条竖屏短片）：
+
+> 按 https://github.com/jowilksasella/AI_Podcast-Kurumi 当前 main，用动画音色把这份 PDF 拆成一分钟系列：先给 ep01 样片，确认后批量生成，再出逐句来源对照交给 AI_Animation-Kurumi 做 short。
 
 ## 固定制作约定
 
@@ -49,7 +53,26 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 | `review-video` | 从原片剪出带编号、时间戳和日文转写的核对视频 |
 | `confirm-review` | 记录用户结论：认错的转成该角色反例，其余进入已确认集 |
 
-自动排名只是候选，必须由人看过确认。素材只在本机使用，不上传、不提交。细节见[运行文档](skills/research-podcast-kurumi/references/runtime.md#动画对白声线素材本地可选)。
+自动排名只是候选，必须由人看过确认。做参考前用 `compress-pauses` 把片段里的长停顿压到 ≤0.4 秒（停顿多的参考会让生成出现长静音和漏读）。细节见[运行文档](skills/research-podcast-kurumi/references/runtime.md#动画对白声线素材本地可选)。
+
+## 动画音色定稿（GEX）
+
+2026-10-22 用户听过短样后认可：**久留美与萌智子都用动画对白音色**，中文情绪、seed 规则与采样设置继承原始配置。参考已提交在 [voices/anime-20261022/](voices/anime-20261022/)（含用户确认的对白片段集），配置模板是 [anime-cast.variant.json](examples/anime-cast.variant.json)：复制到根目录为 `config.anime.local.json` 即可，中文情绪参考仍用本机原始库。
+
+    .\scripts\run.ps1 render preview.json --config config.anime.local.json --out outputs/anime-preview --stage preview
+
+## 一分钟系列（给 Shorts / Reels）
+
+把一份资料拆成多集各自独立、每集一分钟以内的对话：第一句就是 3–5 秒钩子、不自我介绍，目标约 55 秒（动画音色约 5.9 字/秒）。流程见 [shorts.md](skills/research-podcast-kurumi/references/shorts.md)：
+
+| 命令 | 做什么 |
+|---|---|
+| `split-series` | 一个系列 JSON → 每集 `epNN/plan.json` 与 `series.md`；报告字数、主讲占比、钩子长度、估计秒数 |
+| `render-series` | 每集按试听阶段渲染（30–60 秒），共用一个引擎；`--only 1` 先做样片 |
+| `qa` / `asr-check` | 句内长静音、语速、削波；逐句 Whisper 对稿，列出待听的买卖等动作词 |
+| `source-map` | 每句台词 → 主资料的页、段、图（附截图）/ 外部论文 / 我们的比喻与解读，带时间码，交给视频 Agent |
+
+完整例子：输入 [examples/gex/](examples/gex/)（系列稿、来源目录、逐句来源），成品 [gallery/gex-20261022/](gallery/gex-20261022/)（16 集一分钟系列、完整版、认可短样、片尾句与来源对照）。
 
 ## 仓库里有什么
 
@@ -65,6 +88,11 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 | [短试听示例](examples/preview.json) | 从原始 GEX 开场保留的写作示例；新渲染待认可 |
 | [恢复与迁移](docs/original-chat-restoration.md) | 空情绪映射根因、历史产物区别和迁移 |
 | [GEX 经验](docs/case-study.md) | 原制作实践中保留的方法 |
+| [一分钟系列](skills/research-podcast-kurumi/references/shorts.md) | Shorts 用的拆集、钩子、批量渲染、检查与来源对照 |
+| [动画音色参考](voices/anime-20261022/) | 定稿音色参考、用户确认的对白片段集与来历 |
+| [动画音色配置](examples/anime-cast.variant.json) | 定稿 variant 配置模板 |
+| [GEX 系列输入](examples/gex/) | 系列稿、主资料来源目录、逐句来源 ID |
+| [GEX 成品](gallery/gex-20261022/) | 一分钟系列 16 集、完整版、认可短样、片尾句、来源对照 |
 
 ## 快速运行
 
@@ -102,7 +130,7 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
     python -m kurumi_podcast qa outputs/episode
     python -m kurumi_podcast package-chapters outputs/episode
 
-`qa` 列出语速异常（疑似重复或漏读）、削波、主讲占比和粤语/繁体/口播定位符等该去听的轮次；`package-chapters` 切出 `chapters/` 分章 MP3。
+`qa` 列出语速异常（疑似重复或漏读）、句内长静音（≥1.3 秒）、削波、主讲占比和粤语/繁体/口播定位符等该去听的轮次；`package-chapters` 切出 `chapters/` 分章 MP3；`.\scripts\run.ps1 asr-check outputs/episode --config …` 逐句转写对稿。长静音或重复循环的句子原地改写后只重做那一句，见[修订与检查](skills/research-podcast-kurumi/references/revisions.md#长静音与重复循环技术缺陷)。
 
 只改开头：
 
@@ -112,7 +140,7 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 
 ## 材料与检查
 
-仓库只发布流程、代码、配方元数据和写作示例；不发布 PDF、原声音、模型、密钥、本机路径或成片。演员日语样本是音色参考，中文聊天片段是表演参考，不是演员本人的普通话录音或角色专用模型。
+仓库发布流程、代码、配方元数据和写作示例；按用户决定（2026-10-24）另外发布动画音色参考（`voices/`）与 GEX 展示成品（`gallery/`）。不发布原始演员样本与中文情绪库、PDF 原文、模型、密钥或本机路径（成品 manifest 里的本机路径已替换为 `<repo>` 等占位符）。演员日语样本是音色参考，中文聊天片段是表演参考，不是演员本人的普通话录音或角色专用模型；成品是 AI 生成普通话。
 
 结构检查：
 
@@ -127,4 +155,4 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 - [FX 战士久留美角色资料](https://fxkurumi-info.com/)
 - [历史标签](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags)：v0.1.0 是历史模板，v0.2.0 是独立实验，v0.3.0 恢复原始配方，v0.4.0 加入 variant 换搭档、qa/分章工具与本地动画声线素材流程；默认使用当前 main 恢复工作流
 
-本仓库自有代码与文档采用 MIT；不分发上游模型或第三方素材。
+本仓库自有代码与文档采用 MIT；不分发上游模型。`voices/` 里的动画对白片段与 `gallery/` 里的白皮书页面/截图属第三方素材，版权归原权利人（《FX战士久留美》、SqueezeMetrics / Prior Analytics LLC），不适用 MIT，按仓库所有者的决定放在这里供本工作流复用。

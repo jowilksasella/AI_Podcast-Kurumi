@@ -74,13 +74,13 @@ def trim_edges(samples, rate, settings=None):
     return trimmed
 
 
-def pauses(samples, rate, threshold_db=-40, min_ms=150, hop_ms=10):
-    """Midpoints (seconds) of internal silent runs; edges are not pauses."""
+def _quiet_hops(samples, rate, threshold_db, min_ms, hop_ms):
+    """(first, end) hop indices of internal silent runs, and the hop size in samples."""
     import numpy as np
     hop = max(1, round(rate * hop_ms / 1000))
     count = len(samples) // hop
     if not count:
-        return []
+        return [], hop
     rms = np.sqrt(np.mean(samples[:count * hop].reshape(count, hop) ** 2, axis=1))
     quiet = rms < 32768 * 10 ** (threshold_db / 20)
     found, start = [], None
@@ -89,9 +89,21 @@ def pauses(samples, rate, threshold_db=-40, min_ms=150, hop_ms=10):
             start = i
         elif not value and start is not None:
             if start > 0 and i < count and (i - start) * hop_ms >= min_ms:
-                found.append(round((start + i) / 2 * hop / rate, 3))
+                found.append((start, i))
             start = None
-    return found
+    return found, hop
+
+
+def silent_runs(samples, rate, threshold_db=-40, min_ms=150, hop_ms=10):
+    """(start, length) in seconds of internal silent runs; leading/trailing silence is not a pause."""
+    runs, hop = _quiet_hops(samples, rate, threshold_db, min_ms, hop_ms)
+    return [(round(a * hop / rate, 3), round((b - a) * hop / rate, 3)) for a, b in runs]
+
+
+def pauses(samples, rate, threshold_db=-40, min_ms=150, hop_ms=10):
+    """Midpoints (seconds) of internal silent runs; edges are not pauses."""
+    runs, hop = _quiet_hops(samples, rate, threshold_db, min_ms, hop_ms)
+    return [round((a + b) / 2 * hop / rate, 3) for a, b in runs]
 
 
 def mix_turns(lines, clips, rate, settings=None):

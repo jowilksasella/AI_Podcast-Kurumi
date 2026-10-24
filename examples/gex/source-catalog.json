@@ -1,0 +1,618 @@
+{
+ "paper": {
+  "title": "Gamma Exposure (GEX)™: Quantifying hedge rebalancing in SPX options",
+  "publisher": "SqueezeMetrics Research（PDF 页脚 sqzme.co；免责声明署 Prior Analytics LLC）",
+  "dates": "2016-03 首发，2017-12 修订",
+  "pages": 8,
+  "file": "white_paper.pdf",
+  "coordinates": "rect 为 PDF 点坐标（612×792.5，左上为原点）；pages/ 与 crops/ 为 150 dpi 渲染"
+ },
+ "notes": [
+  "研究提醒：`EXT-` 来源多为摘要层级或特定章节阅读（见依据栏），画面文字不要写出比依据更强的结论。",
+  "用户已同意（2026-10-22）论文页面与图表、动画角色画面可以出现在视频中；公开发布与否仍由用户决定。"
+ ],
+ "white_paper": {
+  "WP-P1-DISCLAIMER": {
+   "page": 1,
+   "rects": [
+    [
+     57,
+     112,
+     547,
+     265
+    ],
+    [
+     57,
+     712,
+     555,
+     736
+    ]
+   ],
+   "section": "第1页 Disclaimer 整段 + 页脚 sales@sqzme.co",
+   "quote": "The information contained in these documents is confidential... Prior Analytics LLC makes no representations and gives no warranties...",
+   "zh": "免责声明：文件属 Prior Analytics LLC，未经书面同意不得使用、发布或再分发；不保证信息准确或完整。页脚有销售邮箱 sales@sqzme.co。"
+  },
+  "WP-P2-TITLE": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     84,
+     527,
+     182
+    ],
+    [
+     65,
+     143,
+     142,
+     168
+    ]
+   ],
+   "section": "第2页 标题区：标题、副标题、日期；左栏 SqueezeMetrics Research",
+   "quote": "Gamma Exposure (GEX)™ Quantifying hedge rebalancing in SPX options / March 2016 / Revised December 2017",
+   "zh": "白皮书标题《Gamma Exposure (GEX)》，副标题“量化 SPX 期权的对冲再平衡”，2016年3月首发，2017年12月修订，署名 SqueezeMetrics Research。"
+  },
+  "WP-P2-INTRO-POORLY": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     201,
+     533,
+     239
+    ]
+   ],
+   "section": "第2页 正文第1段",
+   "quote": "A survey of academic literature and the methods of market practitioners suggests that the relationship ... is still very poorly understood.",
+   "zh": "期权市场与标的股票的关系仍很少被理解。"
+  },
+  "WP-P2-INTRO-LIT": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     253,
+     555,
+     316
+    ]
+   ],
+   "section": "第2页 正文第2段",
+   "quote": "Historically, the published research on the effect of equity options on underlying prices has been limited to theorizing about the effects of option introduction and expiration. Meanwhile, practitioners refer almost exclusively to ... a small strip of strike prices, interpolated across two near-term contracts.",
+   "zh": "以往研究只限于期权上市与到期的影响；业界几乎只看一小段行权价、两个近月合约插值得出的隐含波动率/方差。"
+  },
+  "WP-P2-INTRO-FIRST": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     330,
+     550,
+     380
+    ]
+   ],
+   "section": "第2页 正文第3段",
+   "quote": "Since few have even acknowledged the pervasive impact of existing options on their underlying stocks, none have put forward a pragmatic model ... GEX is the first attempt at such a model.",
+   "zh": "几乎没人承认现有期权对标的的普遍影响，也没人提出预测其日常影响的实用模型；GEX 自称第一个尝试。"
+  },
+  "WP-P2-VIX-DEF": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     394,
+     553,
+     470
+    ]
+   ],
+   "section": "第2页 “An Illustration” 第1段",
+   "quote": "The S&P 500 Index (SPX) has a large and deeply liquid market for cash-settled options. ... VIX ... a calculation of 30-day option-implied variance ...",
+   "zh": "SPX 期权市场大且流动性好、现金结算；VIX 由这些期权报价算出，是30天期权隐含方差，可理解为对标普未来波动幅度的估计。"
+  },
+  "WP-P2-VIX-CORR": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     483,
+     538,
+     534
+    ],
+    [
+     73,
+     503,
+     142,
+     526
+    ]
+   ],
+   "section": "第2页 “An Illustration” 第2段（含 “This calls into question...” 一句）+ 左栏旁注 “* CBOE (see References)”",
+   "quote": "the CBOE places the correlation at 0.75. But the VIX is more strongly correlated (0.85) to the realized volatility of the previous month. This calls into question whether VIX can be used to forecast SPX variance.",
+   "zh": "据 CBOE，VIX 与未来30天实际波动相关系数0.75，与过去一个月实际波动相关0.85；作者据此质疑 VIX 能否预测方差。"
+  },
+  "WP-P2-VIX-QUART": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     547,
+     552,
+     610
+    ]
+   ],
+   "section": "第2页 “An Illustration” 第3段",
+   "quote": "The 1-day standard deviation of SPX returns following the lowest quartile of spot VIX closes (0.51%) is not a great deal different from that of the second-lowest quartile (0.66%). A VIX of 12 means about the same as 15 when it comes to predicting variance.",
+   "zh": "VIX 收盘最低四分位之后 SPX 一日收益标准差0.51%，次低四分位0.66%，差别不大；“VIX 12 和 15 在预测方差上差不多”。"
+  },
+  "WP-P2-GEX-QUART": {
+   "page": 2,
+   "rects": [
+    [
+     178,
+     623,
+     555,
+     673
+    ]
+   ],
+   "section": "第2页 “An Illustration” 第4段",
+   "quote": "When instead we compare the highest and second-highest** quartiles of GEX to subsequent SPX variance, the 1-day standard deviations are 0.55% and 0.85% ... On an index trading at 2000, the difference between 0.66% and 0.85% is a 4-point difference in range every day.",
+   "zh": "GEX 最高与次高四分位之后的一日标准差分别为0.55%与0.85%；指数2000点时，0.66%与0.85%之差约为每天4点波动区间。"
+  },
+  "WP-P2-NOTE-HIGHGEX": {
+   "page": 2,
+   "rects": [
+    [
+     67,
+     629,
+     141,
+     664
+    ]
+   ],
+   "section": "第2页 左栏旁注 “**”",
+   "quote": "** Like low VIX, high GEX predicts low volatility.",
+   "zh": "旁注：和低 VIX 一样，高 GEX 预示低波动（所以 GEX 看最高两档、VIX 看最低两档）。"
+  },
+  "WP-P3-FIG-VIX": {
+   "page": 3,
+   "rects": [
+    [
+     126,
+     106,
+     492,
+     388
+    ]
+   ],
+   "section": "第3页 上图 “SPX Distributions On Lowest Quartiles of VIX (2004-Present)”（全页只有两张图，无正文）",
+   "quote": "[图] x轴 1-day SPX Return（-3%到3%），y轴 频数（-20到140）；深青色线 VIX Q1-Q2，浅绿色线 VIX <Q1",
+   "zh": "VIX 最低两档之后的标普次日收益分布。浅绿（最低档）峰值约134，深青（次低档）峰值约92；两条线左右宽度相近，大多在约 -1.5% 到 +1.5% 之间。"
+  },
+  "WP-P3-FIG-GEX": {
+   "page": 3,
+   "rects": [
+    [
+     126,
+     407,
+     492,
+     690
+    ]
+   ],
+   "section": "第3页 下图 “SPX Distributions On Highest Quartiles of GEX (2004-Present)”",
+   "quote": "[图] x轴 1-day SPX Return（-3%到3%），y轴 频数（-20到120）；深青色线 GEX Q2-Q3，浅绿色线 GEX >Q3",
+   "zh": "GEX 最高两档之后的标普次日收益分布。浅绿（最高档 >Q3）又高又窄，峰值约113；深青（Q2-Q3）峰值约74、两侧尾巴更宽，延伸到约 ±2% 以外。"
+  },
+  "WP-P4-BELIEF": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     84,
+     552,
+     159
+    ]
+   ],
+   "section": "第4页 第1段",
+   "quote": "We believe that the greater granularity of the GEX distributions suggests that there is some element of market volatility that is simply not able to be captured by the VIX model ... GEX concerns itself with the quantity and characteristics of all existing option contracts at all strikes, and at all expirations―and the market participants who trade them.",
+   "zh": "作者“相信”GEX 分布更细，说明有一部分波动是 VIX 或任何基于报价的指标抓不到的；GEX 看的是所有行权价、所有到期日的现存合约数量与特征，以及交易它们的参与者。"
+  },
+  "WP-P4-DH-INTRO": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     173,
+     548,
+     224
+    ]
+   ],
+   "section": "第4页 “Dynamic Hedging” 第1段",
+   "quote": "The predictive power of GEX is essentially driven by the necessity of option dealers' (market makers') re-hedging activities. In order to limit risk and realize profit, an option market-maker must limit his exposure to deltas.",
+   "zh": "GEX 的预测力来自做市商必须再对冲；为控制风险、实现利润，做市商要限制德尔塔敞口。"
+  },
+  "WP-P4-DH-20PUT": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     238,
+     553,
+     314
+    ]
+   ],
+   "section": "第4页 “Dynamic Hedging” 第2段",
+   "quote": "If, e.g., a market-maker sells a single, 20-delta put contract to an investor, he must then short-sell approximately 20 shares ... Since the convexity itself cannot be hedged away, the market-maker must commit to re-hedging ...",
+   "zh": "做市商卖给投资者一张20德尔塔看跌期权后，要卖空约20股暂时中和；凸性对冲不掉，所以价格变动够大时必须重新对冲。"
+  },
+  "WP-P4-DH-FOOT": {
+   "page": 4,
+   "rects": [
+    [
+     62,
+     235,
+     144,
+     327
+    ]
+   ],
+   "section": "第4页 左栏脚注 “*”",
+   "quote": "* It is easier to speak of dynamic hedging in terms of shares, but SPX options have no underlying shares, and can be hedged with futures.",
+   "zh": "脚注：用股数讲比较方便，但 SPX 期权没有股票可买卖，可用期货对冲。"
+  },
+  "WP-P4-DH-REHEDGE": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     328,
+     554,
+     404
+    ]
+   ],
+   "section": "第4页 “Dynamic Hedging” 第3段",
+   "quote": "If in one case the price of the underlying falls and the put delta rises from 20 to 50, the market-maker will be compelled to short-sell an additional 30 shares ... If instead the underlying rises and the put delta falls to 0, the market-maker would buy back ... a predictable and quantifiable regimen of buying and selling stock.",
+   "zh": "标的下跌、看跌德尔塔从20升到50，要再卖空30股；标的上涨、德尔塔降到0，就买回之前卖空的股票。做市商因此被绑在一套可预测、可量化的买卖程序上。"
+  },
+  "WP-P4-A-INTRO": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     418,
+     545,
+     481
+    ]
+   ],
+   "section": "第4页 “Four Assumptions” 引言段",
+   "quote": "The size and liquidity of the equity option market is what makes it possible to glean predictive information ... With a few assumptions, we attempt to overcome those challenges:",
+   "zh": "期权市场的规模与流动性既让预测成为可能，也带来难题；作者用几个假设来克服。"
+  },
+  "WP-P4-A1": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     494,
+     544,
+     532
+    ]
+   ],
+   "section": "第4页 假设1",
+   "quote": "1. All traded options are facilitated by delta-hedgers. ... every option contract is either bought by, or sold by, a market participant whose business is to profitably manage a book of options.",
+   "zh": "假设1：所有期权交易都由德尔塔对冲者促成——每张合约的买方或卖方之一，是以管理期权账簿盈利为业的参与者。"
+  },
+  "WP-P4-A2": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     545,
+     551,
+     620
+    ]
+   ],
+   "section": "第4页 假设2",
+   "quote": "2. Call options are sold by investors; bought by market-makers. It is difficult to determine the “direction” of a trade ... A vast majority will trade at the midpoint ... an analysis of skew, open interest at strike, and (circularly) the effects of GEX ... call overwriting (and stock collaring) drives the market for calls.",
+   "zh": "假设2：看涨由投资者卖出、做市商买入。SPX 期权大多在买卖价中点成交，难判方向；作者依据偏斜、各行权价未平仓量以及（循环地）GEX 的效果，认为备兑看涨与领口策略主导看涨市场。"
+  },
+  "WP-P4-A3": {
+   "page": 4,
+   "rects": [
+    [
+     181,
+     633,
+     554,
+     684
+    ]
+   ],
+   "section": "第4页 假设3（延续到第5页第1行 “this reason, thus influencing the apparent vertical skew of index options.”）",
+   "quote": "3. Put options are bought by investors; sold by market-makers. ... The “protective put” commands a premium for this reason, thus influencing the apparent vertical skew of index options.",
+   "zh": "假设3：看跌由投资者买入、做市商卖出。投资者多已持有标的，用保护性看跌改变组合收益，因此看跌有溢价，影响指数期权的偏斜。",
+   "extra": [
+    [
+     5,
+     [
+      180,
+      84,
+      534,
+      96
+     ]
+    ]
+   ]
+  },
+  "WP-P5-A4": {
+   "page": 5,
+   "rects": [
+    [
+     180,
+     109,
+     554,
+     185
+    ]
+   ],
+   "section": "第5页 假设4",
+   "quote": "4. Market-makers hedge precisely to the option delta. ... In reality, market-makers utilize “hedging bands” ... Since it is not feasible to gauge the breadth of every market-maker's hedging band, we simply use the delta of the option.",
+   "zh": "假设4：做市商精确按德尔塔对冲。现实里用“对冲区间”平衡成本与风险；因无法知道各家区间宽度，作者直接用期权德尔塔。"
+  },
+  "WP-P5-GAMMA-DEF": {
+   "page": 5,
+   "rects": [
+    [
+     180,
+     225,
+     548,
+     289
+    ]
+   ],
+   "section": "第5页 “Computation” 第1段",
+   "quote": "The gamma of an option is the first derivative of its delta, expressed as the rate of change of delta per 1-point move in the underlying.",
+   "zh": "伽马是德尔塔的一阶导数，即标的每动1点德尔塔的变化；GEX 要算这变化对做市商账簿的股数影响。"
+  },
+  "WP-P5-50D": {
+   "page": 5,
+   "rects": [
+    [
+     180,
+     303,
+     551,
+     391
+    ]
+   ],
+   "section": "第5页 “Computation” 第2段",
+   "quote": "Thus, if the gamma of a single 50-delta call option is 10 ... re-hedge that option to either 40 or 60 delta ... if the underlying moves up 1 point and the new delta is 60, the market-maker will short-sell 10 shares. If the underlying moves down 1 point and the new delta is 40, the market-maker will buy back 10 shares.",
+   "zh": "50德尔塔、伽马10的看涨期权：标的±1点，德尔塔变60或40；涨1点做市商卖空10股，跌1点买回10股。"
+  },
+  "WP-P5-PUT": {
+   "page": 5,
+   "rects": [
+    [
+     180,
+     405,
+     555,
+     443
+    ]
+   ],
+   "section": "第5页 “Computation” 第3段",
+   "quote": "In the case of a put option (assumed to be held short by a market-maker), the mechanism is the same, whereby re-hedging involves selling shares as delta rises and buying as delta falls.",
+   "zh": "看跌期权（假设做市商持有空头）机制相同：德尔塔上升时卖股，下降时买回。"
+  },
+  "WP-P5-FORMULA": {
+   "page": 5,
+   "rects": [
+    [
+     180,
+     457,
+     555,
+     668
+    ]
+   ],
+   "section": "第5页 公式部分：call 公式 GEX = Γ·OI·100、符号说明、put 公式 GEX = Γ·OI·(-100)、负号原因、全部加总",
+   "quote": "GEX = Γ · OI · 100 ... In the case of put options: GEX = Γ · OI · (-100) ... for market-makers, where calls represent long gamma, puts represent short gamma. The GEX of a stock (or index) is the summation of GEX at every strike price in every available contract.",
+   "zh": "某行权价看涨 GEX = 伽马 × 未平仓量 × 100（100为合约转股数）；看跌乘以 -100，因为对做市商看涨是多头伽马、看跌是空头伽马；股票或指数的 GEX 是所有行权价、所有合约的加总。"
+  },
+  "WP-P5-FOOT-USD": {
+   "page": 5,
+   "rects": [
+    [
+     63,
+     475,
+     143,
+     520
+    ]
+   ],
+   "section": "第5页 左栏脚注 “*”",
+   "quote": "* When computing for SPX, we denominate GEX in dollars.",
+   "zh": "脚注：计算 SPX 时，GEX 以美元计价。"
+  },
+  "WP-P6-IMPACT": {
+   "page": 6,
+   "rects": [
+    [
+     180,
+     84,
+     543,
+     160
+    ]
+   ],
+   "section": "第6页 “Market Impact” 第1段",
+   "quote": "a GEX figure that is positive implies that option market-makers will hedge their positions in a fashion that stifles volatility (buying into lows, selling into highs). A GEX figure that is negative implies the opposite (selling into lows, buying into highs), thus magnifying market volatility.",
+   "zh": "GEX 为正：做市商对冲压低波动（低处买、高处卖）；为负：相反（低处卖、高处买），放大波动。"
+  },
+  "WP-P6-ZERO": {
+   "page": 6,
+   "rects": [
+    [
+     180,
+     173,
+     554,
+     210
+    ]
+   ],
+   "section": "第6页 “Market Impact” 第2段",
+   "quote": "A corollary is that a GEX figure approaching zero will allow the market to move naturally and without any particular interference from market-makers' re-hedging activities.",
+   "zh": "推论：GEX 接近零时，市场自然波动，几乎不受做市商再对冲干扰。"
+  },
+  "WP-P6-FIG": {
+   "page": 6,
+   "rects": [
+    [
+     180,
+     223,
+     554,
+     248
+    ],
+    [
+     96,
+     279,
+     520,
+     558
+    ]
+   ],
+   "section": "第6页 引图句 “The figure below, plotting SPX returns against SPX options' prior day Gamma Exposure, bears this out.” + 散点图 “SPX Returns to Prior Day GEX Close (2004 - Present)”",
+   "quote": "[图] x轴 Gamma Exposure (GEX)，刻度 -3 到 4，单位 1e9（美元）；y轴 1-day Close-to-close Return，-15% 到 15%",
+   "zh": "散点图：每点一个交易日，横轴前一日收盘 GEX（数据约 -20亿 到 +29亿美元），纵轴标普次日收盘对收盘收益。GEX 小于0时点散得很开（极端点约 +11.5%、-9%），GEX 越大点越集中在0%附近的细带。"
+  },
+  "WP-P6-NOTE": {
+   "page": 6,
+   "rects": [
+    [
+     180,
+     603,
+     554,
+     666
+    ]
+   ],
+   "section": "第6页 图下两段",
+   "quote": "Note the exponential increase in volatility as GEX trends below zero, and the gradual tightening of the distribution as GEX rises. It would be difficult to come up with an alternate explanation for this behavior.",
+   "zh": "作者解读：GEX 跌破零后波动呈指数式上升，GEX 升高分布逐渐收紧；“很难想出别的解释”。"
+  },
+  "WP-P7-BEYOND": {
+   "page": 7,
+   "rects": [
+    [
+     180,
+     84,
+     555,
+     160
+    ]
+   ],
+   "section": "第7页 “Beyond SPX” 第1段",
+   "quote": "GEX can be used to forecast return distributions in any optionable equity with enough open interest to influence prices. Aggregating GEX data across a basket of stocks or sectors ... is another plausible use-case.",
+   "zh": "GEX 可用于任何未平仓量足以影响价格的可期权股票；也可在一篮子股票或板块层面加总。"
+  },
+  "WP-P7-SCREEN": {
+   "page": 7,
+   "rects": [
+    [
+     180,
+     173,
+     552,
+     236
+    ]
+   ],
+   "section": "第7页 “Beyond SPX” 第2段 + 第3段（一句）",
+   "quote": "An investment process that selected potential investments from the components of the S&P 500 by screening for a GEX near zero yielded excess returns. All of the above are subjects for further investigation.",
+   "zh": "在标普500成分股中筛选 GEX 接近零的股票“得到超额收益”（无数字、样本、成本）；“以上都有待进一步研究”。"
+  },
+  "WP-P7-CONC1": {
+   "page": 7,
+   "rects": [
+    [
+     180,
+     249,
+     550,
+     300
+    ]
+   ],
+   "section": "第7页 “Conclusion” 第1段",
+   "quote": "they would do well to consider Gamma Exposure as a smarter alternative to price-derived volatility and variance estimates.",
+   "zh": "结论：寻找期权信号的投资者应把 GEX 当作比报价推导的波动/方差更聪明的替代。"
+  },
+  "WP-P7-CONC2": {
+   "page": 7,
+   "rects": [
+    [
+     180,
+     313,
+     550,
+     388
+    ]
+   ],
+   "section": "第7页 “Conclusion” 第2段",
+   "quote": "no two market-makers' books are the same, and a tight spread from any one market-maker completely obscures the risk appetite of every other ... computing the GEX of options known to be in circulation and deriving projected return distributions from the historical market impact of those contracts.",
+   "zh": "用报价判断波动的缺陷：各做市商账簿不同，一家的窄价差会遮住其他人的风险偏好；应计算流通中期权的 GEX，并依历史影响推算收益分布。"
+  },
+  "WP-P7-CONC3": {
+   "page": 7,
+   "rects": [
+    [
+     180,
+     402,
+     553,
+     453
+    ]
+   ],
+   "section": "第7页 “Conclusion” 第3段",
+   "quote": "we think that it is a natural next step to consider GEX an essential addition to the equity investment process.",
+   "zh": "当投资者承认期权对股价有普遍日常影响时，GEX 应成为股票投资流程的必备工具。"
+  },
+  "WP-P8-REFS": {
+   "page": 8,
+   "rects": [
+    [
+     50,
+     80,
+     562,
+     365
+    ]
+   ],
+   "section": "第8页 References（参考文献列表）",
+   "quote": "Avellaneda & Lipkin 2003; CBOE 1976; CBOE VIX primer/white paper; Frey & Stremme 1997; Pearson, Poteshman & White 2007 (SSRN 970592, AFA 2008); Sorescu 2000",
+   "zh": "白皮书参考文献：含 Avellaneda/Lipkin 2003、Frey/Stremme 1997、Pearson/Poteshman/White 2007 工作论文等。"
+  }
+ },
+ "external": {
+  "EXT-NPP2005": {
+   "cite": "Sophie Xiaoyan Ni, Neil D. Pearson, Allen M. Poteshman. “Stock price clustering on option expiration dates.” Journal of Financial Economics 78(1):49–87, 2005-10. DOI 10.1016/j.jfineco.2004.08.005",
+   "where": "摘要（及出版社引言摘录）。不在白皮书参考文献中。",
+   "zh": "有期权的个股，到期日收盘价聚集在行权价附近。"
+  },
+  "EXT-AL2003": {
+   "cite": "Marco Avellaneda, Michael D. Lipkin. “A market-induced mechanism for stock pinning.” Quantitative Finance 3(6):417–425, 2003. DOI 10.1088/1469-7688/3/6/301",
+   "where": "摘要。白皮书第8页参考文献列出此文。",
+   "zh": "理论模型：做市商的德尔塔对冲交易可能把股价拉向行权价（钉价）。"
+  },
+  "EXT-BW2004": {
+   "cite": "Nicolas P. B. Bollen, Robert E. Whaley. “Does Net Buying Pressure Affect the Shape of Implied Volatility Functions?” The Journal of Finance 59(2):711–753, 2004-04（2004-03-25在线）。DOI 10.1111/j.1540-6261.2004.00647.x",
+   "where": "摘要：“changes in implied volatility of S&P 500 options are most strongly affected by buying pressure for index puts”。",
+   "zh": "标普500期权隐含波动率变化，受指数看跌期权买入压力影响最大。"
+  },
+  "EXT-BDLM2021": {
+   "cite": "Guido Baltussen, Zhi Da, Sten Lammers, Martin Martens. “Hedging demand and market intraday momentum.” Journal of Financial Economics 142(1):377–403, 2021-10（2021-05-04在线）。DOI 10.1016/j.jfineco.2021.04.029",
+   "where": "正文重点阅读。§4.1 印刷页 p388：做市商净伽马敞口（NGE）的四条假设、式(13)–(15)（OI×±100×指数水平，除以标普市值）；脚注7：OptionMetrics 1996–2017 + SqueezeMetrics 延至2020-05；脚注8：无场外期权与终端投资者精确持仓。表7 印刷页 p389：前一日 NGE≥0 斜率0.82（t=1.03）、NGE<0 斜率6.63（t=4.78）（系数×100）。§4.1 原句 “On days with positive NGE, however, there is no significant intraday momentum.” §4.3 印刷页 p390–391：交易成本下日内只间断对冲、收盘前再调整。",
+   "zh": "沿用白皮书四条假设构建 NGE；负 NGE 日尾盘半小时与之前走势同向的动量显著，正 NGE 日无显著动量。"
+  },
+  "EXT-BB2021": {
+   "cite": "Andrea Barbon, Andrea Buraschi. “Gamma Fragility.” 作者工作论文，2021-03-18 版（SSRN 3725454，2020）。未确认期刊发表。",
+   "where": "正文重点阅读。§II.A（PDF第11–12页）：Nasdaq ISE/GEMX/PHLX 按参与者分类的开平仓成交，约占美国个股期权全球美元成交量10%–20%；§II.B 式(1)–(2)（PDF第13–14页）：假设只有经纪交易商与做市商对冲，由成交量构建库存；表I（PDF第35页）：分析样本 2010-12 至 2020-05；§III.A（PDF第16页）：“the underlying asset market could be sufficiently liquid and frictionless so that dealers' delta hedging strategies have no price or volatility impact”；§III.A（PDF第18页）式(4)：Nasdaq 数据不含指数期权，指数改用“投资者卖看涨、买看跌”假设；§III.B + 表V（PDF第19–20、39页）：低流动性交互项 -8.882（t=-7.614），伽马与绝对收益的关系在低流动性股票更强。",
+   "zh": "分类数据改善个股库存估计但仍有假设；指数回到白皮书式假设；伽马影响在低流动性股票更强。"
+  },
+  "EXT-NPPW2021": {
+   "cite": "Sophie X. Ni, Neil D. Pearson, Allen M. Poteshman, Joshua White. “Does Option Trading Have a Pervasive Impact on Underlying Stock Prices?” The Review of Financial Studies 34(4):1952–1986, 2021（2020-07-19在线）。DOI 10.1093/rfs/hhaa082",
+   "where": "出版社存于 Crossref 的摘要末句：“a noninformational channel through which option market maker hedge rebalancing affects stock return volatility and the probability of large stock price moves”。正文未读。白皮书第8页引用的是其2007年同名工作论文（Pearson, Poteshman, White，SSRN 970592）。",
+   "zh": "做市商对冲再平衡通过与信息无关的渠道影响个股波动与大幅涨跌概率。"
+  },
+  "EXT-FS1997": {
+   "cite": "Rüdiger Frey, Alexander Stremme. “Market Volatility and Feedback Effects from Dynamic Hedging.” Mathematical Finance 7(4):351–374, 1997-10. DOI 10.1111/1467-9965.00036",
+   "where": "摘要：动态对冲需求使波动上升并随时间与价格变化；强度取决于对冲占总需求的比例，以及被对冲收益结构的异质性。白皮书第8页参考文献列出此文。",
+   "zh": "理论：动态对冲放大波动，强度看对冲占比与仓位差异。"
+  },
+  "EXT-ADEFOV2025": {
+   "cite": "Greg Adams, Chukwuma Dim, Bjorn Eraker, Jean-Sebastien Fontaine, Chayawat Ornthanalai, Grigory Vilkov. “Do S&P500 Options Increase Market Volatility? Evidence from 0DTEs.” SSRN 5641974，2025 工作论文（未正式发表）。",
+   "where": "作者 Chukwuma Dim 研究页摘要：“the presence of 0DTEs dampens market volatility through a shift in market makers' hedging needs ... not due to trading 0DTEs on their expiration day but due to positions in longer-dated options accumulated earlier and becoming 0DTEs”；Vilkov 主页：“merged and resubmitted to RFS”。正文与图表未读。",
+   "zh": "0DTE 存在通过改变做市商对冲需求降低标普波动；来源是早先累积的长期期权到期，而非当日新交易。"
+  }
+ },
+ "tags": {
+  "OURS-SERIES": "系列编排/串场，非论文内容。",
+  "OURS-BRIDGE": "对话衔接（提问、反应），无独立事实内容。",
+  "OURS-DEF": "一般金融常识定义（非白皮书原文），如德尔塔含义、行权价、未平仓量、备兑看涨。",
+  "OURS-ANALOGY": "我们自己的比喻（温度计、雨伞、浴缸与大海、斤与公斤等），不是论文内容。",
+  "OURS-ANALYSIS": "我们的解读、批评或提醒（如反向因果、分组比较口径、证据层级），不是论文原文主张。"
+ }
+}

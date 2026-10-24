@@ -49,6 +49,7 @@ def parser():
     patch.add_argument("--replace-until", type=float, default=0)
     qa = subs.add_parser("qa", help="measurable checks on a rendered output (not a listening verdict)")
     qa.add_argument("output")
+    qa.add_argument("--long-pause", type=float, default=1.3, help="flag internal silences at least this long (s)")
     chapters = subs.add_parser("package-chapters", help="cut per-chapter MP3s from a rendered episode")
     chapters.add_argument("output")
     chapters.add_argument("--ffmpeg", default="ffmpeg")
@@ -82,6 +83,30 @@ def parser():
     confirm.add_argument("--reject", nargs="*", default=[], help="numbers (92-94) or video times (7:37-)")
     confirm.add_argument("--reject-as", help="who the rejected clips actually are")
     confirm.add_argument("--anchors", help="folder holding other characters' anchor clips")
+    pauses = subs.add_parser("compress-pauses", help="join timbre reference clips with internal pauses shortened")
+    pauses.add_argument("inputs", nargs="+")
+    pauses.add_argument("--out", required=True)
+    pauses.add_argument("--max-pause", type=float, default=.4)
+    pauses.add_argument("--limit", type=float, default=15., help="IndexTTS reads only the first 15 s")
+    split = subs.add_parser("split-series", help="write standalone one-minute episode plans from a series file")
+    split.add_argument("series")
+    split.add_argument("--out", required=True)
+    series = subs.add_parser("render-series", help="render every epNN/plan.json of a series as a preview")
+    series.add_argument("folder")
+    series.add_argument("--config", required=True)
+    series.add_argument("--only", nargs="*", help="episode numbers to render")
+    asr = subs.add_parser("asr-check", help="transcribe every rendered turn with local Whisper and compare")
+    asr.add_argument("output")
+    asr.add_argument("--config", help="bound config whose IndexTTS home has the cached Whisper")
+    asr.add_argument("--index-home")
+    asr.add_argument("--whisper", default="large-v3")
+    asr.add_argument("--lowest", type=int, default=10)
+    smap = subs.add_parser("source-map", help="line-by-line source map of a series for the video agent")
+    smap.add_argument("series_dir")
+    smap.add_argument("--catalog", required=True, help="JSON of paper sections, external papers and tags")
+    smap.add_argument("--lines", required=True, help="JSON of source ids per episode line")
+    smap.add_argument("--out", required=True)
+    smap.add_argument("--pdf", help="render pages and crops from this PDF (needs PyMuPDF)")
     return root
 
 
@@ -92,7 +117,7 @@ def engine_home(args):
     elif args.index_home:
         config = {"index_home": str(caller_path(args.index_home)), "_base": os.getcwd()}
     else:
-        raise ValueError("find-speaker needs --config or --index-home for CAM++ and Whisper")
+        raise ValueError(f"{args.command} needs --config or --index-home for the local models")
     return index_home(config), config.get("model_dir", "checkpoints")
 
 
@@ -175,7 +200,25 @@ def main(argv=None):
                 print(f"WARNING: preview is {data['duration_seconds']:.1f}s, outside 30–60s; "
                       "listen, then revise the short script using its cache", file=sys.stderr)
         elif args.command == "qa":
-            result = qa_report(caller_path(args.output))
+            result = qa_report(caller_path(args.output), long_pause=args.long_pause)
+        elif args.command == "compress-pauses":
+            from .shorts import compress_pauses
+            result = compress_pauses([caller_path(p) for p in args.inputs], caller_path(args.out),
+                                     args.max_pause, args.limit)
+        elif args.command == "split-series":
+            from .shorts import split_series
+            result = split_series(caller_path(args.series), caller_path(args.out))
+        elif args.command == "render-series":
+            from .shorts import render_series
+            result = render_series(caller_path(args.folder), caller_path(args.config), args.only)
+        elif args.command == "asr-check":
+            from .shorts import asr_check
+            home, model_dir = engine_home(args)
+            result = asr_check(caller_path(args.output), home, model_dir, args.whisper, args.lowest)
+        elif args.command == "source-map":
+            from .shorts import source_map
+            result = source_map(caller_path(args.series_dir), caller_path(args.catalog), caller_path(args.lines),
+                                caller_path(args.out), caller_path(args.pdf) if args.pdf else None)
         elif args.command == "package-chapters":
             result = {"chapters": package_chapters(caller_path(args.output), args.ffmpeg)}
         elif args.command == "separate-vocals":

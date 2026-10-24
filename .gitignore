@@ -26,3 +26,9 @@ checkpoints/
 .identity
 .DS_Store
 
+
+# Tracked by the user's decision (2026-10-24): the anime-dialogue timbre references and the
+# GEX showcase outputs. Other audio, local configs and caches stay ignored.
+!voices/**/*.wav
+!gallery/**/*.wav
+!gallery/**/*.mp3

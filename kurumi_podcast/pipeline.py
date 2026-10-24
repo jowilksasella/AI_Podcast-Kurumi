@@ -282,8 +282,9 @@ def package_chapters(base, binary="ffmpeg"):
     return files
 
 
-def qa_report(base, slow=2.5, fast=8.0):
-    """Measurable leads for listening: speaking-rate outliers, clipping, lead share, language."""
+def qa_report(base, slow=2.5, fast=8.0, long_pause=1.3):
+    """Measurable leads for listening: speaking-rate outliers, long internal silences (the
+    anime-reference failure mode), clipping, lead share, language."""
     import numpy as np
     base = Path(base).resolve()
     manifest = load_json(base / "manifest.json")
@@ -299,6 +300,13 @@ def qa_report(base, slow=2.5, fast=8.0):
         if spoken >= 6 and not slow <= cps <= fast:
             flags.append({"id": row["id"], "issue": "speaking_rate", "units_per_second": round(cps, 2),
                           "hint": "possible repeat/long pause" if cps < slow else "possible omission"})
+        clip = samples[round(row["start"] * rate):round(row["end"] * rate)]
+        gaps = audio.silent_runs(clip, rate, min_ms=round(long_pause * 1000))
+        if gaps:
+            at, seconds = max(gaps, key=lambda gap: gap[1])
+            flags.append({"id": row["id"], "issue": "long_internal_pause", "seconds": seconds,
+                          "at": round(row["start"] + at, 2),
+                          "hint": "reword this line in place (shorter clauses, no colon) and re-render it"})
     flags += language_warnings({"lines": manifest["turns"]})
     share, _ = lead_speech_share(manifest["turns"], manifest["lead"])
     return {"output": str(base), "stage": manifest.get("stage"), "duration_seconds": manifest["duration_seconds"],

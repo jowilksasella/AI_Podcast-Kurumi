@@ -1,0 +1,3325 @@
+{
+  "title": "GEX一分钟 09｜看不清的账本",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：Barbon/Buraschi《Gamma Fragility》2021-03 工作论文。音色 config.anime-both-dense.local.json。",
+  "lead_text_fraction": 0.7058823529411765,
+  "speaker_characters": {
+    "久留美": 228,
+    "萌智子": 95
+  },
+  "stage": "preview",
+  "audio": "episode.mp3",
+  "wav": "episode.wav",
+  "recipe": "variant",
+  "runtime": {
+    "recipe": "variant",
+    "inherits": "original-chat-20261002",
+    "restoration": false,
+    "original_semantics": true,
+    "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+    "effective_settings": {
+      "seed": 20261002,
+      "seed_offset": 900,
+      "opening_seed": 2026100200,
+      "lang": "ZH",
+      "emo_alpha": 0.5,
+      "use_random": false,
+      "duration_factor": 1.0,
+      "interval_silence": 110,
+      "max_text_tokens_per_segment": 180,
+      "max_mel_tokens": 1500,
+      "opening_max_text_tokens_per_segment": 120,
+      "opening_max_mel_tokens": 1000,
+      "diffusion_steps": 25,
+      "decoder": {
+        "do_sample": true,
+        "top_p": 0.8,
+        "top_k": 30,
+        "temperature": 0.8,
+        "num_beams": 3,
+        "repetition_penalty": 10.0,
+        "length_penalty": 0.0
+      },
+      "sample_rate": 24000,
+      "segment_chars": 50,
+      "chunk_policy": "natural-short-turns",
+      "device": "cuda:0",
+      "use_bf16": true,
+      "use_cuda_kernel": false,
+      "use_deepspeed": false,
+      "use_accel": false,
+      "use_torch_compile": false,
+      "use_qwen_emo": false,
+      "vram_offload": true,
+      "offline": true,
+      "cpu_threads": 4,
+      "postprocess": {
+        "trim_threshold_db": -42,
+        "trim_hop_ms": 10,
+        "head_keep_ms": 50,
+        "tail_keep_ms": 65,
+        "fade_ms": 6,
+        "chunk_gap_ms": 110,
+        "mix_gain": 0.82,
+        "loudnorm": "I=-18:TP=-1.5:LRA=9",
+        "turn_gap_ms": 140,
+        "comment_gap_ms": 90,
+        "chapter_gap_ms": 750,
+        "ending_gap_ms": 650
+      }
+    },
+    "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+    "voice_identities": {
+      "久留美/comment": {
+        "reference_audio": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+          "size": 1317766
+        },
+        "emotion_audio": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+          "size": 180586
+        }
+      },
+      "久留美/explain": {
+        "reference_audio": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+          "size": 1317766
+        },
+        "emotion_audio": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+          "size": 180586
+        }
+      },
+      "萌智子/comment": {
+        "reference_audio": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+          "size": 1019580
+        },
+        "emotion_audio": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+          "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+          "size": 156558
+        }
+      },
+      "萌智子/explain": {
+        "reference_audio": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+          "size": 1019580
+        },
+        "emotion_audio": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+          "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+          "size": 269806
+        }
+      },
+      "萌智子/question": {
+        "reference_audio": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+          "size": 1019580
+        },
+        "emotion_audio": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+          "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+          "size": 161424
+        }
+      }
+    },
+    "listening_verified": false
+  },
+  "effective_settings": {
+    "seed": 20261002,
+    "seed_offset": 900,
+    "opening_seed": 2026100200,
+    "lang": "ZH",
+    "emo_alpha": 0.5,
+    "use_random": false,
+    "duration_factor": 1.0,
+    "interval_silence": 110,
+    "max_text_tokens_per_segment": 180,
+    "max_mel_tokens": 1500,
+    "opening_max_text_tokens_per_segment": 120,
+    "opening_max_mel_tokens": 1000,
+    "diffusion_steps": 25,
+    "decoder": {
+      "do_sample": true,
+      "top_p": 0.8,
+      "top_k": 30,
+      "temperature": 0.8,
+      "num_beams": 3,
+      "repetition_penalty": 10.0,
+      "length_penalty": 0.0
+    },
+    "sample_rate": 24000,
+    "segment_chars": 50,
+    "chunk_policy": "natural-short-turns",
+    "device": "cuda:0",
+    "use_bf16": true,
+    "use_cuda_kernel": false,
+    "use_deepspeed": false,
+    "use_accel": false,
+    "use_torch_compile": false,
+    "use_qwen_emo": false,
+    "vram_offload": true,
+    "offline": true,
+    "cpu_threads": 4,
+    "postprocess": {
+      "trim_threshold_db": -42,
+      "trim_hop_ms": 10,
+      "head_keep_ms": 50,
+      "tail_keep_ms": 65,
+      "fade_ms": 6,
+      "chunk_gap_ms": 110,
+      "mix_gain": 0.82,
+      "loudnorm": "I=-18:TP=-1.5:LRA=9",
+      "turn_gap_ms": 140,
+      "comment_gap_ms": 90,
+      "chapter_gap_ms": 750,
+      "ending_gap_ms": 650
+    }
+  },
+  "sample_rate": 24000,
+  "duration_seconds": 56.39,
+  "duration_ok": true,
+  "lead_speech_fraction": 0.6677753141167775,
+  "speaker_seconds": {
+    "久留美": 36.14,
+    "萌智子": 17.98
+  },
+  "voice_notes": {
+    "久留美": {
+      "identity_label": "久留美角色分工；铃木爱奈配音的动画对白作音色参考（本地对比实验，非公开演员样本）",
+      "source_kind": "anime_dialogue",
+      "source_url": "动画第2集对白，用户确认的久留美片段 2b 05:58.95–06:13.21 与 08:21.92–08:27.20 拼接（去BGM，长停顿压到≤0.4秒，共14.9秒）",
+      "reference_language": "ja"
+    },
+    "萌智子": {
+      "identity_label": "萌智子角色分工；濑户麻沙美配音的动画对白作音色参考（本地对比实验，非公开演员样本）",
+      "source_kind": "anime_dialogue",
+      "source_url": "动画第2集对白 2b 09:25.82–09:39.92（去BGM，用户确认萌智子片段；停顿压到≤0.4秒，约11.6秒）",
+      "reference_language": "ja"
+    }
+  },
+  "turns": [
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "就算知道每笔交易是谁做的，也看不清做市商的账本。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "Barbon/Buraschi《Gamma Fragility》2021-03 工作论文",
+          "note": "Barbon/Buraschi《Gamma Fragility》2021-03 工作论文"
+        }
+      ],
+      "id": "001",
+      "start": 0.0,
+      "end": 3.995,
+      "duration": 3.995,
+      "pauses": [
+        2.255
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261903,
+        "chunk_chars": 50,
+        "text": "就算知道每笔交易是谁做的，也看不清做市商的账本。",
+        "tts_text": "就算知道每笔交易是谁做的，也看不清做市商的账本。",
+        "delivery": "explain",
+        "chunks": [
+          "就算知道每笔交易是谁做的，也看不清做市商的账本。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "就算知道每笔交易是谁做的，也看不清做市商的账本。"
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "question",
+      "text": "那还差什么？",
+      "opening": true,
+      "id": "002",
+      "start": 4.135,
+      "end": 5.21,
+      "duration": 1.075,
+      "pauses": [],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261904,
+        "chunk_chars": 50,
+        "text": "那还差什么？",
+        "tts_text": "那还差什么？",
+        "delivery": "question",
+        "chunks": [
+          "那还差什么？"
+        ],
+        "speaker": "萌智子",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "size": 1019580,
+          "mtime_ns": 1792610705771053200
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+          "size": 161424,
+          "mtime_ns": 1790938920839037300
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "那还差什么？"
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "巴尔邦和布拉斯基有篇工作论文，叫《伽马脆弱性》，用了纳斯达克三家交易所的数据。",
+      "id": "003",
+      "start": 5.35,
+      "end": 11.275,
+      "duration": 5.925,
+      "pauses": [
+        2.445,
+        3.905
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261905,
+        "chunk_chars": 50,
+        "text": "巴尔邦和布拉斯基有篇工作论文，叫《伽马脆弱性》，用了纳斯达克三家交易所的数据。",
+        "tts_text": "巴尔邦和布拉斯基有篇工作论文，叫《伽马脆弱性》，用了纳斯达克三家交易所的数据。",
+        "delivery": "explain",
+        "chunks": [
+          "巴尔邦和布拉斯基有篇工作论文，叫《<伽|GA1><马|MA3>脆弱性》，用了纳斯达克三家交易所的数据。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "巴尔邦和布拉斯基有篇工作论文，叫《<伽|GA1><马|MA3>脆弱性》，用了纳斯达克三家交易所的数据。"
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "这些数据按交易者类型分类，他们用来还原个股期权上做市商的库存。",
+      "id": "004",
+      "start": 11.415,
+      "end": 16.81,
+      "duration": 5.395,
+      "pauses": [
+        2.3
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261906,
+        "chunk_chars": 50,
+        "text": "这些数据按交易者类型分类，他们用来还原个股期权上做市商的库存。",
+        "tts_text": "这些数据按交易者类型分类，他们用来还原个股期权上做市商的库存。",
+        "delivery": "explain",
+        "chunks": [
+          "这些数据按交易者类型分类，他们用来还原个股期权上做市商的库存。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "这些数据按交易者类型分类，他们用来还原个股期权上做市商的库存。"
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "question",
+      "text": "三家交易所的数据，能覆盖多少？",
+      "id": "005",
+      "start": 16.95,
+      "end": 19.555,
+      "duration": 2.605,
+      "pauses": [
+        1.685
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261907,
+        "chunk_chars": 50,
+        "text": "三家交易所的数据，能覆盖多少？",
+        "tts_text": "三家交易所的数据，能覆盖多少？",
+        "delivery": "question",
+        "chunks": [
+          "三家交易所的数据，能覆盖多少？"
+        ],
+        "speaker": "萌智子",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "size": 1019580,
+          "mtime_ns": 1792610705771053200
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+          "size": 161424,
+          "mtime_ns": 1790938920839037300
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "三家交易所的数据，能覆盖多少？"
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "论文说，大约是美国个股期权美元成交量的一到两成，范围有限。",
+      "id": "006",
+      "start": 19.695,
+      "end": 24.35,
+      "duration": 4.655,
+      "pauses": [
+        0.8,
+        3.89
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261908,
+        "chunk_chars": 50,
+        "text": "论文说，大约是美国个股期权美元成交量的一到两成，范围有限。",
+        "tts_text": "论文说，大约是美国个股期权美元成交量的一到两成，范围有限。",
+        "delivery": "explain",
+        "chunks": [
+          "论文说，大约是美国个股期权美元成交量的一到两成，范围有限。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "论文说，大约是美国个股期权美元成交量的一到两成，范围有限。"
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "样本大约是二零一零年底到二零二零年五月。",
+      "id": "007",
+      "start": 24.49,
+      "end": 27.905,
+      "duration": 3.415,
+      "pauses": [],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261909,
+        "chunk_chars": 50,
+        "text": "样本大约是二零一零年底到二零二零年五月。",
+        "tts_text": "样本大约是二零一零年底到二零二零年五月。",
+        "delivery": "explain",
+        "chunks": [
+          "样本大约是二零一零年底到二零二零年五月。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "样本大约是二零一零年底到二零二零年五月。"
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "这样就不用猜谁买谁卖了吧？",
+      "id": "008",
+      "start": 28.045,
+      "end": 30.64,
+      "duration": 2.595,
+      "pauses": [
+        0.8,
+        1.99
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261910,
+        "chunk_chars": 50,
+        "text": "这样就不用猜谁买谁卖了吧？",
+        "tts_text": "这样就不用猜谁买谁卖了吧？",
+        "delivery": "comment",
+        "chunks": [
+          "这样就不用猜谁<买|MAI3>谁<卖|MAI4>了吧？"
+        ],
+        "speaker": "萌智子",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "size": 1019580,
+          "mtime_ns": 1792610705771053200
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+          "size": 156558,
+          "mtime_ns": 1790938909265078800
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "这样就不用猜谁<买|MAI3>谁<卖|MAI4>了吧？"
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "个股上好一些，但还得假设只有交易商和做市商会对冲。",
+      "id": "009",
+      "start": 30.73,
+      "end": 35.545,
+      "duration": 4.815,
+      "pauses": [
+        1.325,
+        3.52
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261911,
+        "chunk_chars": 50,
+        "text": "个股上好一些，但还得假设只有交易商和做市商会对冲。",
+        "tts_text": "个股上好一些，但还得假设只有交易商和做市商会对冲。",
+        "delivery": "explain",
+        "chunks": [
+          "个股上好一些，但还得假设只有交易商和做市商会对冲。"
+        ],
+        "speaker": "萌智子",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "size": 1019580,
+          "mtime_ns": 1792610705771053200
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+          "size": 269806,
+          "mtime_ns": 1790938917385059800
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "个股上好一些，但还得假设只有交易商和做市商会对冲。"
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "而且数据不含指数期权，测标普时，又回到了投资者卖看涨、买看跌的假设。",
+      "id": "010",
+      "start": 35.685,
+      "end": 41.0,
+      "duration": 5.315,
+      "pauses": [
+        1.775,
+        4.245
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261912,
+        "chunk_chars": 50,
+        "text": "而且数据不含指数期权，测标普时，又回到了投资者卖看涨、买看跌的假设。",
+        "tts_text": "而且数据不含指数期权，测标普时，又回到了投资者卖看涨、买看跌的假设。",
+        "delivery": "explain",
+        "chunks": [
+          "而且数据不含指数期权，测标普时，又回到了投资者<卖|MAI4>看涨、<买|MAI3>看跌的假设。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "而且数据不含指数期权，测标普时，又回到了投资者<卖|MAI4>看涨、<买|MAI3>看跌的假设。"
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "所以指数部分的结果，和白皮书一样，建立在假设上。",
+      "id": "011",
+      "start": 41.14,
+      "end": 44.715,
+      "duration": 3.575,
+      "pauses": [
+        1.505,
+        2.57
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261913,
+        "chunk_chars": 50,
+        "text": "所以指数部分的结果，和白皮书一样，建立在假设上。",
+        "tts_text": "所以指数部分的结果，和白皮书一样，建立在假设上。",
+        "delivery": "comment",
+        "chunks": [
+          "所以指数部分的结果，和白皮书一样，建立在假设上。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "所以指数部分的结果，和白皮书一样，建立在假设上。"
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "还原库存时，也得从交易量一笔笔往回推。",
+      "id": "012",
+      "start": 44.805,
+      "end": 48.32,
+      "duration": 3.515,
+      "pauses": [
+        1.295
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261914,
+        "chunk_chars": 50,
+        "text": "还原库存时，也得从交易量一笔笔往回推。",
+        "tts_text": "还原库存时，也得从交易量一笔笔往回推。",
+        "delivery": "comment",
+        "chunks": [
+          "还原库存时，也得从交易量一笔笔往回推。"
+        ],
+        "speaker": "萌智子",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "size": 1019580,
+          "mtime_ns": 1792610705771053200
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+          "size": 156558,
+          "mtime_ns": 1790938909265078800
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "还原库存时，也得从交易量一笔笔往回推。"
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "看来做市商的账本，到现在都只能估。",
+      "id": "013",
+      "start": 48.41,
+      "end": 51.785,
+      "duration": 3.375,
+      "pauses": [
+        0.665,
+        1.94,
+        3.09
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261915,
+        "chunk_chars": 50,
+        "text": "看来做市商的账本，到现在都只能估。",
+        "tts_text": "看来做市商的账本，到现在都只能估。",
+        "delivery": "comment",
+        "chunks": [
+          "看来做市商的账本，到现在都只能估。"
+        ],
+        "speaker": "萌智子",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+          "size": 1019580,
+          "mtime_ns": 1792610705771053200
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+          "size": 156558,
+          "mtime_ns": 1790938909265078800
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "看来做市商的账本，到现在都只能估。"
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "对。这还是二零二一年三月的工作论文版本，没有正式发表。",
+      "id": "014",
+      "start": 51.875,
+      "end": 55.74,
+      "duration": 3.865,
+      "pauses": [
+        0.4
+      ],
+      "inference_evidence": {
+        "recipe": "variant",
+        "runtime": {
+          "recipe": "variant",
+          "inherits": "original-chat-20261002",
+          "restoration": false,
+          "original_semantics": true,
+          "label": "custom cast on original-chat-20261002 settings and execution; not restoration",
+          "effective_settings": {
+            "seed": 20261002,
+            "seed_offset": 900,
+            "opening_seed": 2026100200,
+            "lang": "ZH",
+            "emo_alpha": 0.5,
+            "use_random": false,
+            "duration_factor": 1.0,
+            "interval_silence": 110,
+            "max_text_tokens_per_segment": 180,
+            "max_mel_tokens": 1500,
+            "opening_max_text_tokens_per_segment": 120,
+            "opening_max_mel_tokens": 1000,
+            "diffusion_steps": 25,
+            "decoder": {
+              "do_sample": true,
+              "top_p": 0.8,
+              "top_k": 30,
+              "temperature": 0.8,
+              "num_beams": 3,
+              "repetition_penalty": 10.0,
+              "length_penalty": 0.0
+            },
+            "sample_rate": 24000,
+            "segment_chars": 50,
+            "chunk_policy": "natural-short-turns",
+            "device": "cuda:0",
+            "use_bf16": true,
+            "use_cuda_kernel": false,
+            "use_deepspeed": false,
+            "use_accel": false,
+            "use_torch_compile": false,
+            "use_qwen_emo": false,
+            "vram_offload": true,
+            "offline": true,
+            "cpu_threads": 4,
+            "postprocess": {
+              "trim_threshold_db": -42,
+              "trim_hop_ms": 10,
+              "head_keep_ms": 50,
+              "tail_keep_ms": 65,
+              "fade_ms": 6,
+              "chunk_gap_ms": 110,
+              "mix_gain": 0.82,
+              "loudnorm": "I=-18:TP=-1.5:LRA=9",
+              "turn_gap_ms": 140,
+              "comment_gap_ms": 90,
+              "chapter_gap_ms": 750,
+              "ending_gap_ms": 650
+            }
+          },
+          "base_lock_sha256": "d84a15897805fda46c42de8351f3be35b62555af0dd7aa41a1cd86401f98c0d4",
+          "voice_identities": {
+            "久留美/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "久留美/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+                "sha256": "3c954c9bb292503000d8e93e04b0601f90620aa7dc4c086bd712c6c16ba7fc2a",
+                "size": 1317766
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+                "sha256": "7b70d2e3afd8e85cc4044f1a02b674f2669a9bc6c93d87aa3ec18c466a7da0eb",
+                "size": 180586
+              }
+            },
+            "萌智子/comment": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_comment.wav",
+                "sha256": "c9aee0f0e676b76bfdcf5bd2d9e6f7023a91be8622e7844bb8c87a08fc78ae4d",
+                "size": 156558
+              }
+            },
+            "萌智子/explain": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_explain.wav",
+                "sha256": "6bffccf7f65687b4ff69c2ecf155d5cc9ab9e272cc1484f7123912020d47482a",
+                "size": 269806
+              }
+            },
+            "萌智子/question": {
+              "reference_audio": {
+                "path": "<repo>\\local-assets\\anime-20261022\\mochiko_anime_dense_ja.wav",
+                "sha256": "2e03c86c7ba5f03f633e11e944b573adcc30a6ca09011ef15029114410de64fd",
+                "size": 1019580
+              },
+              "emotion_audio": {
+                "path": "<repo>\\local-assets\\original-20261002\\mochiko_question.wav",
+                "sha256": "6a2079b11442237a8cbeb63048bd21e2c62b648c814931da42ab6a2350342fcd",
+                "size": 161424
+              }
+            }
+          },
+          "listening_verified": false
+        },
+        "stage": "preview",
+        "effective_settings": {
+          "seed": 20261002,
+          "seed_offset": 900,
+          "opening_seed": 2026100200,
+          "lang": "ZH",
+          "emo_alpha": 0.5,
+          "use_random": false,
+          "duration_factor": 1.0,
+          "interval_silence": 110,
+          "max_text_tokens_per_segment": 180,
+          "max_mel_tokens": 1500,
+          "opening_max_text_tokens_per_segment": 120,
+          "opening_max_mel_tokens": 1000,
+          "diffusion_steps": 25,
+          "decoder": {
+            "do_sample": true,
+            "top_p": 0.8,
+            "top_k": 30,
+            "temperature": 0.8,
+            "num_beams": 3,
+            "repetition_penalty": 10.0,
+            "length_penalty": 0.0
+          },
+          "sample_rate": 24000,
+          "segment_chars": 50,
+          "chunk_policy": "natural-short-turns",
+          "device": "cuda:0",
+          "use_bf16": true,
+          "use_cuda_kernel": false,
+          "use_deepspeed": false,
+          "use_accel": false,
+          "use_torch_compile": false,
+          "use_qwen_emo": false,
+          "vram_offload": true,
+          "offline": true,
+          "cpu_threads": 4,
+          "postprocess": {
+            "trim_threshold_db": -42,
+            "trim_hop_ms": 10,
+            "head_keep_ms": 50,
+            "tail_keep_ms": 65,
+            "fade_ms": 6,
+            "chunk_gap_ms": 110,
+            "mix_gain": 0.82,
+            "loudnorm": "I=-18:TP=-1.5:LRA=9",
+            "turn_gap_ms": 140,
+            "comment_gap_ms": 90,
+            "chapter_gap_ms": 750,
+            "ending_gap_ms": 650
+          }
+        },
+        "turn_seed": 20261916,
+        "chunk_chars": 50,
+        "text": "对。这还是二零二一年三月的工作论文版本，没有正式发表。",
+        "tts_text": "对。这还是二零二一年三月的工作论文版本，没有正式发表。",
+        "delivery": "comment",
+        "chunks": [
+          "对。这还是二零二一年三月的工作论文版本，没有正式发表。"
+        ],
+        "speaker": "久留美",
+        "voice": {
+          "path": "<repo>\\local-assets\\anime-20261022\\kurumi_anime_dense_ja.wav",
+          "size": 1317766,
+          "mtime_ns": 1792609907535498300
+        },
+        "emotion": {
+          "path": "<repo>\\local-assets\\original-20261002\\kurumi_explain.wav",
+          "size": 180586,
+          "mtime_ns": 1790938937290386500
+        },
+        "engine_home": "<INDEXTTS_HOME>",
+        "model_dir": "checkpoints",
+        "engine": "IndexTTS2.5",
+        "seed": 20261002,
+        "device": "cuda:0",
+        "use_bf16": true,
+        "emo_alpha": 0.5,
+        "duration_factor": 1.0,
+        "sample_rate": 24000
+      },
+      "effective_chunks": [
+        "对。这还是二零二一年三月的工作论文版本，没有正式发表。"
+      ]
+    }
+  ],
+  "chapters": [
+    {
+      "title": "看不清的账本",
+      "start": 0.0,
+      "end": 56.39
+    }
+  ]
+}

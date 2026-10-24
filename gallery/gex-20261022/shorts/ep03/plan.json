@@ -1,0 +1,88 @@
+{
+  "title": "GEX一分钟 03｜期权会推着股价走",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p2；Ni/Pearson/Poteshman 2005 JFE；Avellaneda/Lipkin 2003 QF。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "explain",
+      "text": "期权到期那天，股价好像会被钉住。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p2；Ni/Pearson/Poteshman 2005 JFE；Avellaneda/Lipkin 2003 QF"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "期权会推着股价走",
+      "delivery": "question",
+      "text": "钉住？谁有这么大的力气？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "explain",
+      "text": "倪、皮尔逊和波特斯曼三位学者，二零零五年在《金融经济学期刊》上发表过研究。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "explain",
+      "text": "他们发现，有期权的个股，到期日收盘价更容易落在行权价附近。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "期权会推着股价走",
+      "delivery": "explain",
+      "text": "行权价就是期权约定的买卖价格，通常是整数，比如一百、一百零五。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "期权会推着股价走",
+      "delivery": "explain",
+      "text": "阿韦拉内达和利普金二零零三年在《定量金融》上，给过一个解释。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "期权会推着股价走",
+      "delivery": "explain",
+      "text": "做市商为了对冲去买卖股票，这些买卖本身，就可能把股价往行权价拉。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "comment",
+      "text": "注意，这是模型里的可能，不是说每只股票到期都一定被钉住。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "comment",
+      "text": "所以期权不只是旁边的赌注，它会反过来推股价。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "explain",
+      "text": "但白皮书嫌这太窄了。以前的研究，大多只看期权上市和到期这两个时刻。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "comment",
+      "text": "它想问的是，平时那些没到期的期权，每天又在怎么推着市场走。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "期权会推着股价走",
+      "delivery": "comment",
+      "text": "也就是说，期权的影响，可能不只在到期那一天。"
+    }
+  ]
+}

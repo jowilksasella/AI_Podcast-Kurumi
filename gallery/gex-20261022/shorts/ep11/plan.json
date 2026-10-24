@@ -1,0 +1,88 @@
+{
+  "title": "GEX一分钟 11｜谁导致了谁",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：Ni/Pearson/Poteshman/White 2021 RFS；Frey/Stremme 1997 Math. Finance。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "也许不是负伽马让市场乱，而是市场乱了，才有负伽马。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "Ni/Pearson/Poteshman/White 2021 RFS；Frey/Stremme 1997 Math. Finance",
+          "note": "Ni/Pearson/Poteshman/White 2021 RFS；Frey/Stremme 1997 Math. Finance"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "谁导致了谁",
+      "delivery": "question",
+      "text": "这怎么反过来了？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "市场一跌，大家抢着买看跌期权保护。按假设做市商卖出，伽马敞口就往负走。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "看涨期权离现价越来越远，伽马变小，正的那部分也缩水了。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "谁导致了谁",
+      "delivery": "comment",
+      "text": "就像下雨时雨伞卖得多，但不是雨伞让天下雨。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "谁导致了谁",
+      "delivery": "comment",
+      "text": "所以那张图只说明两者一起出现，不说明谁导致谁。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "不过确实有研究支持对冲推动价格。倪等四位学者的论文，二零二一年刊登在《金融研究评论》。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "他们提供证据，做市商的对冲再平衡，会通过和信息无关的渠道，影响个股波动。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "这篇论文的早期版本，白皮书在参考文献里就引用过。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "弗雷和施特雷姆一九九七年在《数学金融》上也推导过，动态对冲会让波动变大。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "谁导致了谁",
+      "delivery": "explain",
+      "text": "他们还说，效果强不强，要看对冲占总需求的比例，和仓位差异有多大。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "谁导致了谁",
+      "delivery": "comment",
+      "text": "机制有支持，但图上的强度，不能全算在对冲头上。"
+    }
+  ]
+}

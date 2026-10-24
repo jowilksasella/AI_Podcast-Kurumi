@@ -1,0 +1,88 @@
+{
+  "title": "恐慌指数的盲区，和做市商停不下来的买卖",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "依据 <downloads>/white_paper.pdf：SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016年3月首发、2017年12月修订。第2页VIX与GEX分位数比较，第4页动态对冲例子。新短样，待试听。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "开场",
+      "opening": true,
+      "delivery": "explain",
+      "text": "大家好，我是久留美。今天和萌智子聊一份期权白皮书，它说大家常看的恐慌指数有个盲区。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "开场",
+      "opening": true,
+      "delivery": "question",
+      "text": "恐慌指数就是VIX吧？它不就是专门用来猜股市接下来会晃多大的吗？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "盲区",
+      "delivery": "explain",
+      "text": "对，可作者发现，VIX一低就分不太清了。读数十二和十五，第二天的波动其实差不多。",
+      "source_refs": [
+        {
+          "page": 2,
+          "note": "最低与次低VIX四分位后SPX一日标准差0.51%与0.66%；'A VIX of 12 means about the same as 15'"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "盲区",
+      "delivery": "comment",
+      "text": "这就像一支温度计，到了低温那一段，刻度全挤在一起了。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "盲区",
+      "delivery": "explain",
+      "text": "所以他们换个角度：不看报价，而看市场上所有没平仓的期权，以及谁拿着它们。",
+      "source_refs": [
+        {
+          "page": 4,
+          "note": "GEX关注全部行权价、全部到期日的期权数量与持有者"
+        }
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "对冲",
+      "delivery": "explain",
+      "text": "关键人物是做市商。他卖给投资者一张看跌期权，就得先卖出一些股票，把风险对冲住。",
+      "source_refs": [
+        {
+          "page": 4,
+          "note": "卖出20-delta看跌期权后卖空约20股"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "对冲",
+      "delivery": "explain",
+      "text": "而且价格一动他还得重新调。股价往下跌，要再卖一些；涨回来了，又得买回去。",
+      "source_refs": [
+        {
+          "page": 4,
+          "note": "delta由20升到50再卖30股；delta降到0则买回"
+        }
+      ]
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "对冲",
+      "delivery": "comment",
+      "text": "对，这些买卖几乎是被规则推着走的，所以能算出来。这股力量，就叫伽马敞口。",
+      "source_refs": [
+        {
+          "page": 4,
+          "note": "'a predictable and quantifiable regimen of buying and selling stock'"
+        }
+      ]
+    }
+  ]
+}

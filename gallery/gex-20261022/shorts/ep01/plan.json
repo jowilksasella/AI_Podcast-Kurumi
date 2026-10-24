@@ -1,0 +1,94 @@
+{
+  "title": "GEX一分钟 01｜恐慌指数的盲区",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p2–3。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "explain",
+      "text": "预测波动时，恐慌指数十二和十五，几乎是一回事。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p2–3"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "question",
+      "text": "怎么可能？十五明明比十二更紧张啊。",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "explain",
+      "text": "这是一份期权白皮书的发现。作者把VIX收盘值从低到高，分成四等份。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "explain",
+      "text": "最低那一份，标普第二天涨跌的标准差，是百分之零点五一。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "explain",
+      "text": "次低那一份，也只有百分之零点六六，几乎拉不开差距。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "comment",
+      "text": "像一支温度计，到了低温那一段，刻度全挤在一起了。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "explain",
+      "text": "白皮书的图上，两组的分布宽度差不多，只是最低那组中间更尖一点。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "comment",
+      "text": "所以不是VIX没用，而是在低位时，它分不出细微的差别。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "explain",
+      "text": "还有更扎心的。VIX和未来一个月实际波动的相关性，大约零点七五。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "explain",
+      "text": "可它和过去一个月的相关性更高，有零点八五。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "question",
+      "text": "那它到底是在预测未来，还是在回头看？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "comment",
+      "text": "作者就是这么质疑的。不过市场本来就有波动聚集，回头看也不全是坏事。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "恐慌指数的盲区",
+      "delivery": "comment",
+      "text": "所以作者想换一把更细的尺子，叫伽马敞口。"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "title": "GEX一分钟 09｜看不清的账本",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：Barbon/Buraschi《Gamma Fragility》2021-03 工作论文。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "就算知道每笔交易是谁做的，也看不清做市商的账本。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "Barbon/Buraschi《Gamma Fragility》2021-03 工作论文",
+          "note": "Barbon/Buraschi《Gamma Fragility》2021-03 工作论文"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "question",
+      "text": "那还差什么？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "巴尔邦和布拉斯基有篇工作论文，叫《伽马脆弱性》，用了纳斯达克三家交易所的数据。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "这些数据按交易者类型分类，他们用来还原个股期权上做市商的库存。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "question",
+      "text": "三家交易所的数据，能覆盖多少？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "论文说，大约是美国个股期权美元成交量的一到两成，范围有限。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "样本大约是二零一零年底到二零二零年五月。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "这样就不用猜谁买谁卖了吧？"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "个股上好一些，但还得假设只有交易商和做市商会对冲。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "explain",
+      "text": "而且数据不含指数期权，测标普时，又回到了投资者卖看涨、买看跌的假设。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "所以指数部分的结果，和白皮书一样，建立在假设上。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "还原库存时，也得从交易量一笔笔往回推。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "看来做市商的账本，到现在都只能估。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看不清的账本",
+      "delivery": "comment",
+      "text": "对。这还是二零二一年三月的工作论文版本，没有正式发表。"
+    }
+  ]
+}

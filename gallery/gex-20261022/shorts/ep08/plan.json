@@ -1,0 +1,82 @@
+{
+  "title": "GEX一分钟 08｜被期刊借走的假设",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p4–5；Baltussen/Da/Lammers/Martens 2021 JFE。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "被期刊借走的假设",
+      "delivery": "explain",
+      "text": "这份白皮书的算法，后来被一篇期刊论文原样借走了。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p4–5；Baltussen/Da/Lammers/Martens 2021 JFE"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "被期刊借走的假设",
+      "delivery": "question",
+      "text": "借走了什么？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "被期刊借走的假设",
+      "delivery": "explain",
+      "text": "四个假设。除了谁买谁卖，还有一条，每笔期权交易都有一方会做德尔塔对冲。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "被期刊借走的假设",
+      "delivery": "explain",
+      "text": "另一条，做市商会精确按德尔塔对冲。作者也承认，现实里他们用对冲区间。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "被期刊借走的假设",
+      "delivery": "explain",
+      "text": "就是偏离到一定程度才调整，在成本和风险之间平衡。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "被期刊借走的假设",
+      "delivery": "explain",
+      "text": "巴尔图森等四位学者，二零二一年在《金融经济学期刊》上的论文，用的正是这四条。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "被期刊借走的假设",
+      "delivery": "explain",
+      "text": "后几年的数据还来自SqueezeMetrics。他们也明说，没有场外和终端投资者的持仓。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "被期刊借走的假设",
+      "delivery": "comment",
+      "text": "换句话说，期刊论文也承认这是估算，不是直接看到做市商的账本。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "被期刊借走的假设",
+      "delivery": "comment",
+      "text": "他们还认为，因为有交易成本，做市商白天只会间断对冲，收盘前再调整。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "被期刊借走的假设",
+      "delivery": "comment",
+      "text": "这刚好戳中第四个假设的软肋，不是价格一动就对冲。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "被期刊借走的假设",
+      "delivery": "comment",
+      "text": "不过能被这样借用，说明这套思路至少值得认真检验。"
+    }
+  ]
+}

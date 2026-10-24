@@ -1,0 +1,100 @@
+{
+  "title": "GEX一分钟 06｜先问单位",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p5；Baltussen 等 2021 JFE 式15。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "看到一个吓人的伽马敞口数字，先别慌，先问单位。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p5；Baltussen 等 2021 JFE 式15"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "先问单位",
+      "delivery": "question",
+      "text": "单位还能不一样？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "先看白皮书的公式。看涨期权的伽马敞口，是伽马乘以未平仓量，再乘以一百。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "乘一百，是因为一张合约对应一百股。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "先问单位",
+      "delivery": "question",
+      "text": "未平仓量，就是还没平掉的合约数量吧？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "对，是某天收盘时，市场上还存在的合约总数。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "看跌期权要乘以负一百，因为对做市商来说它是负伽马。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "再把所有到期月、所有行权价加起来，就是整个指数的伽马敞口。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "加总之后是正数，说明做市商整体是正伽马；负数，就是负伽马。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "先问单位",
+      "delivery": "explain",
+      "text": "白皮书算标普时，用的单位是美元，不是股数。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "comment",
+      "text": "可有的机构按每一点算，有的按每百分之一，有的还要除以市值。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "先问单位",
+      "delivery": "joke",
+      "text": "就像有人用斤，有人用公斤，数字差一倍，人可没变胖。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "comment",
+      "text": "所以不同来源的伽马敞口，别直接拿来比。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "先问单位",
+      "delivery": "comment",
+      "text": "先弄清它是怎么算的，再看它是正是负、有多大。"
+    }
+  ]
+}

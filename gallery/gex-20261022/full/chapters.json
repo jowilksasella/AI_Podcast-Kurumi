@@ -1,0 +1,86 @@
+[
+  {
+    "title": "开场",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\01-开场.mp3",
+    "start": 0.0,
+    "end": 38.105,
+    "seconds": 38.105
+  },
+  {
+    "title": "以前的研究看哪里",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\02-以前的研究看哪里.mp3",
+    "start": 38.105,
+    "end": 134.24,
+    "seconds": 96.135
+  },
+  {
+    "title": "恐慌指数的盲区",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\03-恐慌指数的盲区.mp3",
+    "start": 134.24,
+    "end": 287.655,
+    "seconds": 153.415
+  },
+  {
+    "title": "不看报价，看持仓",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\04-不看报价，看持仓.mp3",
+    "start": 287.655,
+    "end": 324.315,
+    "seconds": 36.66
+  },
+  {
+    "title": "做市商的动态对冲",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\05-做市商的动态对冲.mp3",
+    "start": 324.315,
+    "end": 398.595,
+    "seconds": 74.28
+  },
+  {
+    "title": "四个假设",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\06-四个假设.mp3",
+    "start": 398.595,
+    "end": 596.06,
+    "seconds": 197.465
+  },
+  {
+    "title": "伽马敞口怎么算",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\07-伽马敞口怎么算.mp3",
+    "start": 596.06,
+    "end": 688.164875,
+    "seconds": 92.105
+  },
+  {
+    "title": "减震器和放大器",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\08-减震器和放大器.mp3",
+    "start": 688.164875,
+    "end": 743.389875,
+    "seconds": 55.226
+  },
+  {
+    "title": "这张图能证明什么",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\09-这张图能证明什么.mp3",
+    "start": 743.389875,
+    "end": 881.414875,
+    "seconds": 138.026
+  },
+  {
+    "title": "白皮书之外",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\10-白皮书之外.mp3",
+    "start": 881.414875,
+    "end": 969.404875,
+    "seconds": 87.99
+  },
+  {
+    "title": "作者的结论和我们的保留",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\11-作者的结论和我们的保留.mp3",
+    "start": 969.404875,
+    "end": 1045.419875,
+    "seconds": 76.015
+  },
+  {
+    "title": "收尾",
+    "file": "<outputs>\\gex-anime-full-20261022\\full\\chapters\\12-收尾.mp3",
+    "start": 1045.419875,
+    "end": 1070.364875,
+    "seconds": 24.945
+  }
+]

@@ -1,0 +1,3447 @@
+{
+ "paper": {
+  "file": "<downloads>\\white_paper.pdf",
+  "title": "Gamma Exposure (GEX)™: Quantifying hedge rebalancing in SPX options",
+  "publisher": "SqueezeMetrics Research（PDF 页脚 sqzme.co；免责声明署 Prior Analytics LLC）",
+  "dates": "2016-03 首发，2017-12 修订",
+  "pages": 8,
+  "coordinates": "rect 为 PDF 点坐标（612×792.5，左上为原点）；pages/ 与 crops/ 为 150 dpi 渲染"
+ },
+ "white_paper_sources": {
+  "WP-P1-DISCLAIMER": {
+   "page": 1,
+   "section": "第1页 Disclaimer 整段 + 页脚 sales@sqzme.co",
+   "quote": "The information contained in these documents is confidential... Prior Analytics LLC makes no representations and gives no warranties...",
+   "zh": "免责声明：文件属 Prior Analytics LLC，未经书面同意不得使用、发布或再分发；不保证信息准确或完整。页脚有销售邮箱 sales@sqzme.co。",
+   "rects": [
+    [
+     57,
+     112,
+     547,
+     265
+    ],
+    [
+     57,
+     712,
+     555,
+     736
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P1-DISCLAIMER.png"
+   ]
+  },
+  "WP-P2-TITLE": {
+   "page": 2,
+   "section": "第2页 标题区：标题、副标题、日期；左栏 SqueezeMetrics Research",
+   "quote": "Gamma Exposure (GEX)™ Quantifying hedge rebalancing in SPX options / March 2016 / Revised December 2017",
+   "zh": "白皮书标题《Gamma Exposure (GEX)》，副标题“量化 SPX 期权的对冲再平衡”，2016年3月首发，2017年12月修订，署名 SqueezeMetrics Research。",
+   "rects": [
+    [
+     178,
+     84,
+     527,
+     182
+    ],
+    [
+     65,
+     143,
+     142,
+     168
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-TITLE.png"
+   ]
+  },
+  "WP-P2-INTRO-POORLY": {
+   "page": 2,
+   "section": "第2页 正文第1段",
+   "quote": "A survey of academic literature and the methods of market practitioners suggests that the relationship ... is still very poorly understood.",
+   "zh": "期权市场与标的股票的关系仍很少被理解。",
+   "rects": [
+    [
+     178,
+     201,
+     533,
+     239
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-INTRO-POORLY.png"
+   ]
+  },
+  "WP-P2-INTRO-LIT": {
+   "page": 2,
+   "section": "第2页 正文第2段",
+   "quote": "Historically, the published research on the effect of equity options on underlying prices has been limited to theorizing about the effects of option introduction and expiration. Meanwhile, practitioners refer almost exclusively to ... a small strip of strike prices, interpolated across two near-term contracts.",
+   "zh": "以往研究只限于期权上市与到期的影响；业界几乎只看一小段行权价、两个近月合约插值得出的隐含波动率/方差。",
+   "rects": [
+    [
+     178,
+     253,
+     555,
+     316
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-INTRO-LIT.png"
+   ]
+  },
+  "WP-P2-INTRO-FIRST": {
+   "page": 2,
+   "section": "第2页 正文第3段",
+   "quote": "Since few have even acknowledged the pervasive impact of existing options on their underlying stocks, none have put forward a pragmatic model ... GEX is the first attempt at such a model.",
+   "zh": "几乎没人承认现有期权对标的的普遍影响，也没人提出预测其日常影响的实用模型；GEX 自称第一个尝试。",
+   "rects": [
+    [
+     178,
+     330,
+     550,
+     380
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-INTRO-FIRST.png"
+   ]
+  },
+  "WP-P2-VIX-DEF": {
+   "page": 2,
+   "section": "第2页 “An Illustration” 第1段",
+   "quote": "The S&P 500 Index (SPX) has a large and deeply liquid market for cash-settled options. ... VIX ... a calculation of 30-day option-implied variance ...",
+   "zh": "SPX 期权市场大且流动性好、现金结算；VIX 由这些期权报价算出，是30天期权隐含方差，可理解为对标普未来波动幅度的估计。",
+   "rects": [
+    [
+     178,
+     394,
+     553,
+     470
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-VIX-DEF.png"
+   ]
+  },
+  "WP-P2-VIX-CORR": {
+   "page": 2,
+   "section": "第2页 “An Illustration” 第2段（含 “This calls into question...” 一句）+ 左栏旁注 “* CBOE (see References)”",
+   "quote": "the CBOE places the correlation at 0.75. But the VIX is more strongly correlated (0.85) to the realized volatility of the previous month. This calls into question whether VIX can be used to forecast SPX variance.",
+   "zh": "据 CBOE，VIX 与未来30天实际波动相关系数0.75，与过去一个月实际波动相关0.85；作者据此质疑 VIX 能否预测方差。",
+   "rects": [
+    [
+     178,
+     483,
+     538,
+     534
+    ],
+    [
+     73,
+     503,
+     142,
+     526
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-VIX-CORR.png"
+   ]
+  },
+  "WP-P2-VIX-QUART": {
+   "page": 2,
+   "section": "第2页 “An Illustration” 第3段",
+   "quote": "The 1-day standard deviation of SPX returns following the lowest quartile of spot VIX closes (0.51%) is not a great deal different from that of the second-lowest quartile (0.66%). A VIX of 12 means about the same as 15 when it comes to predicting variance.",
+   "zh": "VIX 收盘最低四分位之后 SPX 一日收益标准差0.51%，次低四分位0.66%，差别不大；“VIX 12 和 15 在预测方差上差不多”。",
+   "rects": [
+    [
+     178,
+     547,
+     552,
+     610
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-VIX-QUART.png"
+   ]
+  },
+  "WP-P2-GEX-QUART": {
+   "page": 2,
+   "section": "第2页 “An Illustration” 第4段",
+   "quote": "When instead we compare the highest and second-highest** quartiles of GEX to subsequent SPX variance, the 1-day standard deviations are 0.55% and 0.85% ... On an index trading at 2000, the difference between 0.66% and 0.85% is a 4-point difference in range every day.",
+   "zh": "GEX 最高与次高四分位之后的一日标准差分别为0.55%与0.85%；指数2000点时，0.66%与0.85%之差约为每天4点波动区间。",
+   "rects": [
+    [
+     178,
+     623,
+     555,
+     673
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-GEX-QUART.png"
+   ]
+  },
+  "WP-P2-NOTE-HIGHGEX": {
+   "page": 2,
+   "section": "第2页 左栏旁注 “**”",
+   "quote": "** Like low VIX, high GEX predicts low volatility.",
+   "zh": "旁注：和低 VIX 一样，高 GEX 预示低波动（所以 GEX 看最高两档、VIX 看最低两档）。",
+   "rects": [
+    [
+     67,
+     629,
+     141,
+     664
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P2-NOTE-HIGHGEX.png"
+   ]
+  },
+  "WP-P3-FIG-VIX": {
+   "page": 3,
+   "section": "第3页 上图 “SPX Distributions On Lowest Quartiles of VIX (2004-Present)”（全页只有两张图，无正文）",
+   "quote": "[图] x轴 1-day SPX Return（-3%到3%），y轴 频数（-20到140）；深青色线 VIX Q1-Q2，浅绿色线 VIX <Q1",
+   "zh": "VIX 最低两档之后的标普次日收益分布。浅绿（最低档）峰值约134，深青（次低档）峰值约92；两条线左右宽度相近，大多在约 -1.5% 到 +1.5% 之间。",
+   "rects": [
+    [
+     126,
+     106,
+     492,
+     388
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P3-FIG-VIX.png"
+   ]
+  },
+  "WP-P3-FIG-GEX": {
+   "page": 3,
+   "section": "第3页 下图 “SPX Distributions On Highest Quartiles of GEX (2004-Present)”",
+   "quote": "[图] x轴 1-day SPX Return（-3%到3%），y轴 频数（-20到120）；深青色线 GEX Q2-Q3，浅绿色线 GEX >Q3",
+   "zh": "GEX 最高两档之后的标普次日收益分布。浅绿（最高档 >Q3）又高又窄，峰值约113；深青（Q2-Q3）峰值约74、两侧尾巴更宽，延伸到约 ±2% 以外。",
+   "rects": [
+    [
+     126,
+     407,
+     492,
+     690
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P3-FIG-GEX.png"
+   ]
+  },
+  "WP-P4-BELIEF": {
+   "page": 4,
+   "section": "第4页 第1段",
+   "quote": "We believe that the greater granularity of the GEX distributions suggests that there is some element of market volatility that is simply not able to be captured by the VIX model ... GEX concerns itself with the quantity and characteristics of all existing option contracts at all strikes, and at all expirations―and the market participants who trade them.",
+   "zh": "作者“相信”GEX 分布更细，说明有一部分波动是 VIX 或任何基于报价的指标抓不到的；GEX 看的是所有行权价、所有到期日的现存合约数量与特征，以及交易它们的参与者。",
+   "rects": [
+    [
+     181,
+     84,
+     552,
+     159
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-BELIEF.png"
+   ]
+  },
+  "WP-P4-DH-INTRO": {
+   "page": 4,
+   "section": "第4页 “Dynamic Hedging” 第1段",
+   "quote": "The predictive power of GEX is essentially driven by the necessity of option dealers' (market makers') re-hedging activities. In order to limit risk and realize profit, an option market-maker must limit his exposure to deltas.",
+   "zh": "GEX 的预测力来自做市商必须再对冲；为控制风险、实现利润，做市商要限制德尔塔敞口。",
+   "rects": [
+    [
+     181,
+     173,
+     548,
+     224
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-DH-INTRO.png"
+   ]
+  },
+  "WP-P4-DH-20PUT": {
+   "page": 4,
+   "section": "第4页 “Dynamic Hedging” 第2段",
+   "quote": "If, e.g., a market-maker sells a single, 20-delta put contract to an investor, he must then short-sell approximately 20 shares ... Since the convexity itself cannot be hedged away, the market-maker must commit to re-hedging ...",
+   "zh": "做市商卖给投资者一张20德尔塔看跌期权后，要卖空约20股暂时中和；凸性对冲不掉，所以价格变动够大时必须重新对冲。",
+   "rects": [
+    [
+     181,
+     238,
+     553,
+     314
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-DH-20PUT.png"
+   ]
+  },
+  "WP-P4-DH-FOOT": {
+   "page": 4,
+   "section": "第4页 左栏脚注 “*”",
+   "quote": "* It is easier to speak of dynamic hedging in terms of shares, but SPX options have no underlying shares, and can be hedged with futures.",
+   "zh": "脚注：用股数讲比较方便，但 SPX 期权没有股票可买卖，可用期货对冲。",
+   "rects": [
+    [
+     62,
+     235,
+     144,
+     327
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-DH-FOOT.png"
+   ]
+  },
+  "WP-P4-DH-REHEDGE": {
+   "page": 4,
+   "section": "第4页 “Dynamic Hedging” 第3段",
+   "quote": "If in one case the price of the underlying falls and the put delta rises from 20 to 50, the market-maker will be compelled to short-sell an additional 30 shares ... If instead the underlying rises and the put delta falls to 0, the market-maker would buy back ... a predictable and quantifiable regimen of buying and selling stock.",
+   "zh": "标的下跌、看跌德尔塔从20升到50，要再卖空30股；标的上涨、德尔塔降到0，就买回之前卖空的股票。做市商因此被绑在一套可预测、可量化的买卖程序上。",
+   "rects": [
+    [
+     181,
+     328,
+     554,
+     404
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-DH-REHEDGE.png"
+   ]
+  },
+  "WP-P4-A-INTRO": {
+   "page": 4,
+   "section": "第4页 “Four Assumptions” 引言段",
+   "quote": "The size and liquidity of the equity option market is what makes it possible to glean predictive information ... With a few assumptions, we attempt to overcome those challenges:",
+   "zh": "期权市场的规模与流动性既让预测成为可能，也带来难题；作者用几个假设来克服。",
+   "rects": [
+    [
+     181,
+     418,
+     545,
+     481
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-A-INTRO.png"
+   ]
+  },
+  "WP-P4-A1": {
+   "page": 4,
+   "section": "第4页 假设1",
+   "quote": "1. All traded options are facilitated by delta-hedgers. ... every option contract is either bought by, or sold by, a market participant whose business is to profitably manage a book of options.",
+   "zh": "假设1：所有期权交易都由德尔塔对冲者促成——每张合约的买方或卖方之一，是以管理期权账簿盈利为业的参与者。",
+   "rects": [
+    [
+     181,
+     494,
+     544,
+     532
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-A1.png"
+   ]
+  },
+  "WP-P4-A2": {
+   "page": 4,
+   "section": "第4页 假设2",
+   "quote": "2. Call options are sold by investors; bought by market-makers. It is difficult to determine the “direction” of a trade ... A vast majority will trade at the midpoint ... an analysis of skew, open interest at strike, and (circularly) the effects of GEX ... call overwriting (and stock collaring) drives the market for calls.",
+   "zh": "假设2：看涨由投资者卖出、做市商买入。SPX 期权大多在买卖价中点成交，难判方向；作者依据偏斜、各行权价未平仓量以及（循环地）GEX 的效果，认为备兑看涨与领口策略主导看涨市场。",
+   "rects": [
+    [
+     181,
+     545,
+     551,
+     620
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P4-A2.png"
+   ]
+  },
+  "WP-P4-A3": {
+   "page": 4,
+   "section": "第4页 假设3（延续到第5页第1行 “this reason, thus influencing the apparent vertical skew of index options.”）",
+   "quote": "3. Put options are bought by investors; sold by market-makers. ... The “protective put” commands a premium for this reason, thus influencing the apparent vertical skew of index options.",
+   "zh": "假设3：看跌由投资者买入、做市商卖出。投资者多已持有标的，用保护性看跌改变组合收益，因此看跌有溢价，影响指数期权的偏斜。",
+   "rects": [
+    [
+     181,
+     633,
+     554,
+     684
+    ]
+   ],
+   "extra": [
+    [
+     5,
+     [
+      180,
+      84,
+      534,
+      96
+     ]
+    ]
+   ],
+   "crops": [
+    "crops/WP-P4-A3-1.png",
+    "crops/WP-P4-A3-2.png"
+   ]
+  },
+  "WP-P5-A4": {
+   "page": 5,
+   "section": "第5页 假设4",
+   "quote": "4. Market-makers hedge precisely to the option delta. ... In reality, market-makers utilize “hedging bands” ... Since it is not feasible to gauge the breadth of every market-maker's hedging band, we simply use the delta of the option.",
+   "zh": "假设4：做市商精确按德尔塔对冲。现实里用“对冲区间”平衡成本与风险；因无法知道各家区间宽度，作者直接用期权德尔塔。",
+   "rects": [
+    [
+     180,
+     109,
+     554,
+     185
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P5-A4.png"
+   ]
+  },
+  "WP-P5-GAMMA-DEF": {
+   "page": 5,
+   "section": "第5页 “Computation” 第1段",
+   "quote": "The gamma of an option is the first derivative of its delta, expressed as the rate of change of delta per 1-point move in the underlying.",
+   "zh": "伽马是德尔塔的一阶导数，即标的每动1点德尔塔的变化；GEX 要算这变化对做市商账簿的股数影响。",
+   "rects": [
+    [
+     180,
+     225,
+     548,
+     289
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P5-GAMMA-DEF.png"
+   ]
+  },
+  "WP-P5-50D": {
+   "page": 5,
+   "section": "第5页 “Computation” 第2段",
+   "quote": "Thus, if the gamma of a single 50-delta call option is 10 ... re-hedge that option to either 40 or 60 delta ... if the underlying moves up 1 point and the new delta is 60, the market-maker will short-sell 10 shares. If the underlying moves down 1 point and the new delta is 40, the market-maker will buy back 10 shares.",
+   "zh": "50德尔塔、伽马10的看涨期权：标的±1点，德尔塔变60或40；涨1点做市商卖空10股，跌1点买回10股。",
+   "rects": [
+    [
+     180,
+     303,
+     551,
+     391
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P5-50D.png"
+   ]
+  },
+  "WP-P5-PUT": {
+   "page": 5,
+   "section": "第5页 “Computation” 第3段",
+   "quote": "In the case of a put option (assumed to be held short by a market-maker), the mechanism is the same, whereby re-hedging involves selling shares as delta rises and buying as delta falls.",
+   "zh": "看跌期权（假设做市商持有空头）机制相同：德尔塔上升时卖股，下降时买回。",
+   "rects": [
+    [
+     180,
+     405,
+     555,
+     443
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P5-PUT.png"
+   ]
+  },
+  "WP-P5-FORMULA": {
+   "page": 5,
+   "section": "第5页 公式部分：call 公式 GEX = Γ·OI·100、符号说明、put 公式 GEX = Γ·OI·(-100)、负号原因、全部加总",
+   "quote": "GEX = Γ · OI · 100 ... In the case of put options: GEX = Γ · OI · (-100) ... for market-makers, where calls represent long gamma, puts represent short gamma. The GEX of a stock (or index) is the summation of GEX at every strike price in every available contract.",
+   "zh": "某行权价看涨 GEX = 伽马 × 未平仓量 × 100（100为合约转股数）；看跌乘以 -100，因为对做市商看涨是多头伽马、看跌是空头伽马；股票或指数的 GEX 是所有行权价、所有合约的加总。",
+   "rects": [
+    [
+     180,
+     457,
+     555,
+     668
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P5-FORMULA.png"
+   ]
+  },
+  "WP-P5-FOOT-USD": {
+   "page": 5,
+   "section": "第5页 左栏脚注 “*”",
+   "quote": "* When computing for SPX, we denominate GEX in dollars.",
+   "zh": "脚注：计算 SPX 时，GEX 以美元计价。",
+   "rects": [
+    [
+     63,
+     475,
+     143,
+     520
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P5-FOOT-USD.png"
+   ]
+  },
+  "WP-P6-IMPACT": {
+   "page": 6,
+   "section": "第6页 “Market Impact” 第1段",
+   "quote": "a GEX figure that is positive implies that option market-makers will hedge their positions in a fashion that stifles volatility (buying into lows, selling into highs). A GEX figure that is negative implies the opposite (selling into lows, buying into highs), thus magnifying market volatility.",
+   "zh": "GEX 为正：做市商对冲压低波动（低处买、高处卖）；为负：相反（低处卖、高处买），放大波动。",
+   "rects": [
+    [
+     180,
+     84,
+     543,
+     160
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P6-IMPACT.png"
+   ]
+  },
+  "WP-P6-ZERO": {
+   "page": 6,
+   "section": "第6页 “Market Impact” 第2段",
+   "quote": "A corollary is that a GEX figure approaching zero will allow the market to move naturally and without any particular interference from market-makers' re-hedging activities.",
+   "zh": "推论：GEX 接近零时，市场自然波动，几乎不受做市商再对冲干扰。",
+   "rects": [
+    [
+     180,
+     173,
+     554,
+     210
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P6-ZERO.png"
+   ]
+  },
+  "WP-P6-FIG": {
+   "page": 6,
+   "section": "第6页 引图句 “The figure below, plotting SPX returns against SPX options' prior day Gamma Exposure, bears this out.” + 散点图 “SPX Returns to Prior Day GEX Close (2004 - Present)”",
+   "quote": "[图] x轴 Gamma Exposure (GEX)，刻度 -3 到 4，单位 1e9（美元）；y轴 1-day Close-to-close Return，-15% 到 15%",
+   "zh": "散点图：每点一个交易日，横轴前一日收盘 GEX（数据约 -20亿 到 +29亿美元），纵轴标普次日收盘对收盘收益。GEX 小于0时点散得很开（极端点约 +11.5%、-9%），GEX 越大点越集中在0%附近的细带。",
+   "rects": [
+    [
+     180,
+     223,
+     554,
+     248
+    ],
+    [
+     96,
+     279,
+     520,
+     558
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P6-FIG.png"
+   ]
+  },
+  "WP-P6-NOTE": {
+   "page": 6,
+   "section": "第6页 图下两段",
+   "quote": "Note the exponential increase in volatility as GEX trends below zero, and the gradual tightening of the distribution as GEX rises. It would be difficult to come up with an alternate explanation for this behavior.",
+   "zh": "作者解读：GEX 跌破零后波动呈指数式上升，GEX 升高分布逐渐收紧；“很难想出别的解释”。",
+   "rects": [
+    [
+     180,
+     603,
+     554,
+     666
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P6-NOTE.png"
+   ]
+  },
+  "WP-P7-BEYOND": {
+   "page": 7,
+   "section": "第7页 “Beyond SPX” 第1段",
+   "quote": "GEX can be used to forecast return distributions in any optionable equity with enough open interest to influence prices. Aggregating GEX data across a basket of stocks or sectors ... is another plausible use-case.",
+   "zh": "GEX 可用于任何未平仓量足以影响价格的可期权股票；也可在一篮子股票或板块层面加总。",
+   "rects": [
+    [
+     180,
+     84,
+     555,
+     160
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P7-BEYOND.png"
+   ]
+  },
+  "WP-P7-SCREEN": {
+   "page": 7,
+   "section": "第7页 “Beyond SPX” 第2段 + 第3段（一句）",
+   "quote": "An investment process that selected potential investments from the components of the S&P 500 by screening for a GEX near zero yielded excess returns. All of the above are subjects for further investigation.",
+   "zh": "在标普500成分股中筛选 GEX 接近零的股票“得到超额收益”（无数字、样本、成本）；“以上都有待进一步研究”。",
+   "rects": [
+    [
+     180,
+     173,
+     552,
+     236
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P7-SCREEN.png"
+   ]
+  },
+  "WP-P7-CONC1": {
+   "page": 7,
+   "section": "第7页 “Conclusion” 第1段",
+   "quote": "they would do well to consider Gamma Exposure as a smarter alternative to price-derived volatility and variance estimates.",
+   "zh": "结论：寻找期权信号的投资者应把 GEX 当作比报价推导的波动/方差更聪明的替代。",
+   "rects": [
+    [
+     180,
+     249,
+     550,
+     300
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P7-CONC1.png"
+   ]
+  },
+  "WP-P7-CONC2": {
+   "page": 7,
+   "section": "第7页 “Conclusion” 第2段",
+   "quote": "no two market-makers' books are the same, and a tight spread from any one market-maker completely obscures the risk appetite of every other ... computing the GEX of options known to be in circulation and deriving projected return distributions from the historical market impact of those contracts.",
+   "zh": "用报价判断波动的缺陷：各做市商账簿不同，一家的窄价差会遮住其他人的风险偏好；应计算流通中期权的 GEX，并依历史影响推算收益分布。",
+   "rects": [
+    [
+     180,
+     313,
+     550,
+     388
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P7-CONC2.png"
+   ]
+  },
+  "WP-P7-CONC3": {
+   "page": 7,
+   "section": "第7页 “Conclusion” 第3段",
+   "quote": "we think that it is a natural next step to consider GEX an essential addition to the equity investment process.",
+   "zh": "当投资者承认期权对股价有普遍日常影响时，GEX 应成为股票投资流程的必备工具。",
+   "rects": [
+    [
+     180,
+     402,
+     553,
+     453
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P7-CONC3.png"
+   ]
+  },
+  "WP-P8-REFS": {
+   "page": 8,
+   "section": "第8页 References（参考文献列表）",
+   "quote": "Avellaneda & Lipkin 2003; CBOE 1976; CBOE VIX primer/white paper; Frey & Stremme 1997; Pearson, Poteshman & White 2007 (SSRN 970592, AFA 2008); Sorescu 2000",
+   "zh": "白皮书参考文献：含 Avellaneda/Lipkin 2003、Frey/Stremme 1997、Pearson/Poteshman/White 2007 工作论文等。",
+   "rects": [
+    [
+     50,
+     80,
+     562,
+     365
+    ]
+   ],
+   "extra": [],
+   "crops": [
+    "crops/WP-P8-REFS.png"
+   ]
+  }
+ },
+ "external_sources": {
+  "EXT-NPP2005": {
+   "cite": "Sophie Xiaoyan Ni, Neil D. Pearson, Allen M. Poteshman. “Stock price clustering on option expiration dates.” Journal of Financial Economics 78(1):49–87, 2005-10. DOI 10.1016/j.jfineco.2004.08.005",
+   "where": "摘要（及出版社引言摘录）。不在白皮书参考文献中。",
+   "zh": "有期权的个股，到期日收盘价聚集在行权价附近。",
+   "local": ""
+  },
+  "EXT-AL2003": {
+   "cite": "Marco Avellaneda, Michael D. Lipkin. “A market-induced mechanism for stock pinning.” Quantitative Finance 3(6):417–425, 2003. DOI 10.1088/1469-7688/3/6/301",
+   "where": "摘要。白皮书第8页参考文献列出此文。",
+   "zh": "理论模型：做市商的德尔塔对冲交易可能把股价拉向行权价（钉价）。",
+   "local": ""
+  },
+  "EXT-BW2004": {
+   "cite": "Nicolas P. B. Bollen, Robert E. Whaley. “Does Net Buying Pressure Affect the Shape of Implied Volatility Functions?” The Journal of Finance 59(2):711–753, 2004-04（2004-03-25在线）。DOI 10.1111/j.1540-6261.2004.00647.x",
+   "where": "摘要：“changes in implied volatility of S&P 500 options are most strongly affected by buying pressure for index puts”。",
+   "zh": "标普500期权隐含波动率变化，受指数看跌期权买入压力影响最大。",
+   "local": ""
+  },
+  "EXT-BDLM2021": {
+   "cite": "Guido Baltussen, Zhi Da, Sten Lammers, Martin Martens. “Hedging demand and market intraday momentum.” Journal of Financial Economics 142(1):377–403, 2021-10（2021-05-04在线）。DOI 10.1016/j.jfineco.2021.04.029",
+   "where": "正文重点阅读。§4.1 印刷页 p388：做市商净伽马敞口（NGE）的四条假设、式(13)–(15)（OI×±100×指数水平，除以标普市值）；脚注7：OptionMetrics 1996–2017 + SqueezeMetrics 延至2020-05；脚注8：无场外期权与终端投资者精确持仓。表7 印刷页 p389：前一日 NGE≥0 斜率0.82（t=1.03）、NGE<0 斜率6.63（t=4.78）（系数×100）。§4.1 原句 “On days with positive NGE, however, there is no significant intraday momentum.” §4.3 印刷页 p390–391：交易成本下日内只间断对冲、收盘前再调整。",
+   "zh": "沿用白皮书四条假设构建 NGE；负 NGE 日尾盘半小时与之前走势同向的动量显著，正 NGE 日无显著动量。",
+   "local": "<outputs>/mebuki-claim-audit-20261004/research/C23_Hedging_demand_2021.pdf（PDF页 = 印刷页 - 375；p388 = PDF第13页，p389 = PDF第14页）"
+  },
+  "EXT-BB2021": {
+   "cite": "Andrea Barbon, Andrea Buraschi. “Gamma Fragility.” 作者工作论文，2021-03-18 版（SSRN 3725454，2020）。未确认期刊发表。",
+   "where": "正文重点阅读。§II.A（PDF第11–12页）：Nasdaq ISE/GEMX/PHLX 按参与者分类的开平仓成交，约占美国个股期权全球美元成交量10%–20%；§II.B 式(1)–(2)（PDF第13–14页）：假设只有经纪交易商与做市商对冲，由成交量构建库存；表I（PDF第35页）：分析样本 2010-12 至 2020-05；§III.A（PDF第16页）：“the underlying asset market could be sufficiently liquid and frictionless so that dealers' delta hedging strategies have no price or volatility impact”；§III.A（PDF第18页）式(4)：Nasdaq 数据不含指数期权，指数改用“投资者卖看涨、买看跌”假设；§III.B + 表V（PDF第19–20、39页）：低流动性交互项 -8.882（t=-7.614），伽马与绝对收益的关系在低流动性股票更强。",
+   "zh": "分类数据改善个股库存估计但仍有假设；指数回到白皮书式假设；伽马影响在低流动性股票更强。",
+   "local": "<outputs>/mebuki-claim-audit-20261004/research/C22_Gamma_Fragility_2021.pdf（印刷页 = PDF页 - 1）"
+  },
+  "EXT-NPPW2021": {
+   "cite": "Sophie X. Ni, Neil D. Pearson, Allen M. Poteshman, Joshua White. “Does Option Trading Have a Pervasive Impact on Underlying Stock Prices?” The Review of Financial Studies 34(4):1952–1986, 2021（2020-07-19在线）。DOI 10.1093/rfs/hhaa082",
+   "where": "出版社存于 Crossref 的摘要末句：“a noninformational channel through which option market maker hedge rebalancing affects stock return volatility and the probability of large stock price moves”。正文未读。白皮书第8页引用的是其2007年同名工作论文（Pearson, Poteshman, White，SSRN 970592）。",
+   "zh": "做市商对冲再平衡通过与信息无关的渠道影响个股波动与大幅涨跌概率。",
+   "local": ""
+  },
+  "EXT-FS1997": {
+   "cite": "Rüdiger Frey, Alexander Stremme. “Market Volatility and Feedback Effects from Dynamic Hedging.” Mathematical Finance 7(4):351–374, 1997-10. DOI 10.1111/1467-9965.00036",
+   "where": "摘要：动态对冲需求使波动上升并随时间与价格变化；强度取决于对冲占总需求的比例，以及被对冲收益结构的异质性。白皮书第8页参考文献列出此文。",
+   "zh": "理论：动态对冲放大波动，强度看对冲占比与仓位差异。",
+   "local": ""
+  },
+  "EXT-ADEFOV2025": {
+   "cite": "Greg Adams, Chukwuma Dim, Bjorn Eraker, Jean-Sebastien Fontaine, Chayawat Ornthanalai, Grigory Vilkov. “Do S&P500 Options Increase Market Volatility? Evidence from 0DTEs.” SSRN 5641974，2025 工作论文（未正式发表）。",
+   "where": "作者 Chukwuma Dim 研究页摘要：“the presence of 0DTEs dampens market volatility through a shift in market makers' hedging needs ... not due to trading 0DTEs on their expiration day but due to positions in longer-dated options accumulated earlier and becoming 0DTEs”；Vilkov 主页：“merged and resubmitted to RFS”。正文与图表未读。",
+   "zh": "0DTE 存在通过改变做市商对冲需求降低标普波动；来源是早先累积的长期期权到期，而非当日新交易。",
+   "local": ""
+  }
+ },
+ "non_paper_tags": {
+  "OURS-SERIES": "系列编排/串场，非论文内容。",
+  "OURS-BRIDGE": "对话衔接（提问、反应），无独立事实内容。",
+  "OURS-DEF": "一般金融常识定义（非白皮书原文），如德尔塔含义、行权价、未平仓量、备兑看涨。",
+  "OURS-ANALOGY": "我们自己的比喻（温度计、雨伞、浴缸与大海、斤与公斤等），不是论文内容。",
+  "OURS-ANALYSIS": "我们的解读、批评或提醒（如反向因果、分组比较口径、证据层级），不是论文原文主张。"
+ },
+ "episodes": [
+  {
+   "episode": "ep00",
+   "title": "系列开场",
+   "audio": "ep00/out/episode.mp3",
+   "subtitles": "ep00/out/subtitles.srt",
+   "manifest": "ep00/out/manifest.json",
+   "duration": 55.48,
+   "visual_suggestion": [
+    "WP-P2-TITLE",
+    "WP-P1-DISCLAIMER"
+   ],
+   "sources_used": [
+    "WP-P1-DISCLAIMER",
+    "WP-P2-INTRO-FIRST",
+    "WP-P2-TITLE",
+    "WP-P4-DH-INTRO",
+    "WP-P4-DH-REHEDGE",
+    "OURS-BRIDGE",
+    "OURS-DEF",
+    "OURS-SERIES"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.65,
+     "speaker": "久留美",
+     "text": "每天只要一分钟，带你读完一份期权白皮书。",
+     "sources": [
+      "OURS-SERIES",
+      "WP-P2-TITLE"
+     ],
+     "note": "钩子：系列定位"
+    },
+    {
+     "id": "002",
+     "start": 3.79,
+     "end": 5.56,
+     "speaker": "萌智子",
+     "text": "一分钟能讲清楚什么？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.7,
+     "end": 11.21,
+     "speaker": "久留美",
+     "text": "一次只讲一个点。这份白皮书叫《伽马敞口》，二零一六年发布，二零一七年修订。",
+     "sources": [
+      "WP-P2-TITLE"
+     ],
+     "note": "标题与2016-03/2017-12日期"
+    },
+    {
+     "id": "004",
+     "start": 11.36,
+     "end": 16.29,
+     "speaker": "久留美",
+     "text": "它想回答一个问题，做市商为了对冲被迫买卖，会怎样推着股市走。",
+     "sources": [
+      "WP-P4-DH-INTRO",
+      "WP-P4-DH-REHEDGE",
+      "WP-P2-INTRO-FIRST"
+     ],
+     "note": "白皮书核心问题的概括"
+    },
+    {
+     "id": "005",
+     "start": 16.43,
+     "end": 20.14,
+     "speaker": "萌智子",
+     "text": "做市商，就是那些专门报价、赚买卖差价的人吧？",
+     "sources": [
+      "OURS-DEF"
+     ],
+     "note": "做市商定义"
+    },
+    {
+     "id": "006",
+     "start": 20.29,
+     "end": 25.27,
+     "speaker": "久留美",
+     "text": "对。他们不想赌方向，可为了不赌方向，反而得跟着价格不停地买卖。",
+     "sources": [
+      "WP-P4-DH-INTRO",
+      "WP-P4-DH-REHEDGE"
+     ],
+     "note": "限制德尔塔敞口 → 被迫跟价格买卖"
+    },
+    {
+     "id": "007",
+     "start": 25.41,
+     "end": 28.29,
+     "speaker": "萌智子",
+     "text": "听起来很专业，可我每天的时间都是碎的。",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "008",
+     "start": 28.38,
+     "end": 34.27,
+     "speaker": "久留美",
+     "text": "所以我们把它拆成十五集，每集都在一分钟以内，等车、排队的时候就能听完一集。",
+     "sources": [
+      "OURS-SERIES"
+     ],
+     "note": "15集、每集一分钟内"
+    },
+    {
+     "id": "009",
+     "start": 34.41,
+     "end": 35.88,
+     "speaker": "萌智子",
+     "text": "要按顺序听吗？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "010",
+     "start": 36.02,
+     "end": 42.54,
+     "speaker": "久留美",
+     "text": "每集都能单独看懂。按顺序听，会从恐慌指数的盲区，一路讲到怎么读伽马敞口的图。",
+     "sources": [
+      "OURS-SERIES"
+     ],
+     "note": "系列路线：ep01 恐慌指数盲区 → ep15 读图五问题"
+    },
+    {
+     "id": "011",
+     "start": 42.68,
+     "end": 47.3,
+     "speaker": "萌智子",
+     "text": "中间还会穿插相关的学术研究，帮大家分辨哪些说法有证据。",
+     "sources": [
+      "OURS-SERIES"
+     ],
+     "note": "预告穿插外部研究（见 ep03/07/08/09/11/12/13）"
+    },
+    {
+     "id": "012",
+     "start": 47.44,
+     "end": 51.66,
+     "speaker": "久留美",
+     "text": "毕竟这是一家数据公司写的白皮书，不是同行评审的论文。",
+     "sources": [
+      "WP-P1-DISCLAIMER"
+     ],
+     "note": "商业白皮书、非同行评审（依据第1页免责声明与公司署名）"
+    },
+    {
+     "id": "013",
+     "start": 51.75,
+     "end": 55.48,
+     "speaker": "久留美",
+     "text": "好，第一集，我们就从恐慌指数的一个盲区说起。",
+     "sources": [
+      "OURS-SERIES"
+     ],
+     "note": "引向 ep01"
+    }
+   ]
+  },
+  {
+   "episode": "ep01",
+   "title": "恐慌指数的盲区",
+   "audio": "ep01/out/episode.mp3",
+   "subtitles": "ep01/out/subtitles.srt",
+   "manifest": "ep01/out/manifest.json",
+   "duration": 54.81,
+   "visual_suggestion": [
+    "WP-P2-VIX-QUART",
+    "WP-P3-FIG-VIX",
+    "WP-P2-VIX-CORR"
+   ],
+   "sources_used": [
+    "WP-P2-GEX-QUART",
+    "WP-P2-VIX-CORR",
+    "WP-P2-VIX-QUART",
+    "WP-P3-FIG-VIX",
+    "WP-P4-BELIEF",
+    "OURS-ANALOGY",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.94,
+     "speaker": "久留美",
+     "text": "预测波动时，恐慌指数十二和十五，几乎是一回事。",
+     "sources": [
+      "WP-P2-VIX-QUART"
+     ],
+     "note": "钩子：“VIX 12 和 15 差不多”"
+    },
+    {
+     "id": "002",
+     "start": 4.08,
+     "end": 6.85,
+     "speaker": "萌智子",
+     "text": "怎么可能？十五明明比十二更紧张啊。",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 6.99,
+     "end": 12.45,
+     "speaker": "久留美",
+     "text": "这是一份期权白皮书的发现。作者把VIX收盘值从低到高，分成四等份。",
+     "sources": [
+      "WP-P2-VIX-QUART"
+     ],
+     "note": "按 VIX 收盘值分四等份"
+    },
+    {
+     "id": "004",
+     "start": 12.59,
+     "end": 16.89,
+     "speaker": "久留美",
+     "text": "最低那一份，标普第二天涨跌的标准差，是百分之零点五一。",
+     "sources": [
+      "WP-P2-VIX-QUART"
+     ],
+     "note": "最低档 0.51%"
+    },
+    {
+     "id": "005",
+     "start": 17.03,
+     "end": 21.05,
+     "speaker": "久留美",
+     "text": "次低那一份，也只有百分之零点六六，几乎拉不开差距。",
+     "sources": [
+      "WP-P2-VIX-QUART"
+     ],
+     "note": "次低档 0.66%"
+    },
+    {
+     "id": "006",
+     "start": 21.18,
+     "end": 24.73,
+     "speaker": "萌智子",
+     "text": "像一支温度计，到了低温那一段，刻度全挤在一起了。",
+     "sources": [
+      "OURS-ANALOGY"
+     ],
+     "note": "温度计比喻"
+    },
+    {
+     "id": "007",
+     "start": 24.82,
+     "end": 29.89,
+     "speaker": "久留美",
+     "text": "白皮书的图上，两组的分布宽度差不多，只是最低那组中间更尖一点。",
+     "sources": [
+      "WP-P3-FIG-VIX"
+     ],
+     "note": "我们对第3页上图的读图：宽度相近、最低档更尖"
+    },
+    {
+     "id": "008",
+     "start": 30.02,
+     "end": 34.15,
+     "speaker": "萌智子",
+     "text": "所以不是VIX没用，而是在低位时，它分不出细微的差别。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "解读：低位时分辨力不足"
+    },
+    {
+     "id": "009",
+     "start": 34.24,
+     "end": 38.84,
+     "speaker": "久留美",
+     "text": "还有更扎心的。VIX和未来一个月实际波动的相关性，大约零点七五。",
+     "sources": [
+      "WP-P2-VIX-CORR"
+     ],
+     "note": "与未来30天实际波动相关 0.75（CBOE）"
+    },
+    {
+     "id": "010",
+     "start": 38.98,
+     "end": 42.27,
+     "speaker": "久留美",
+     "text": "可它和过去一个月的相关性更高，有零点八五。",
+     "sources": [
+      "WP-P2-VIX-CORR"
+     ],
+     "note": "与过去一个月相关 0.85"
+    },
+    {
+     "id": "011",
+     "start": 42.41,
+     "end": 45.77,
+     "speaker": "萌智子",
+     "text": "那它到底是在预测未来，还是在回头看？",
+     "sources": [
+      "WP-P2-VIX-CORR"
+     ],
+     "note": "转述作者的质疑"
+    },
+    {
+     "id": "012",
+     "start": 45.91,
+     "end": 51.44,
+     "speaker": "久留美",
+     "text": "作者就是这么质疑的。不过市场本来就有波动聚集，回头看也不全是坏事。",
+     "sources": [
+      "WP-P2-VIX-CORR",
+      "OURS-ANALYSIS"
+     ],
+     "note": "前半句=作者质疑；“波动聚集”=我们的补充"
+    },
+    {
+     "id": "013",
+     "start": 51.53,
+     "end": 54.81,
+     "speaker": "萌智子",
+     "text": "所以作者想换一把更细的尺子，叫伽马敞口。",
+     "sources": [
+      "WP-P2-GEX-QUART",
+      "WP-P4-BELIEF"
+     ],
+     "note": "引出伽马敞口（ep02）"
+    }
+   ]
+  },
+  {
+   "episode": "ep02",
+   "title": "一把更细的尺子",
+   "audio": "ep02/out/episode.mp3",
+   "subtitles": "ep02/out/subtitles.srt",
+   "manifest": "ep02/out/manifest.json",
+   "duration": 54.73,
+   "visual_suggestion": [
+    "WP-P2-GEX-QUART",
+    "WP-P3-FIG-GEX",
+    "WP-P3-FIG-VIX",
+    "WP-P2-NOTE-HIGHGEX"
+   ],
+   "sources_used": [
+    "WP-P2-GEX-QUART",
+    "WP-P2-NOTE-HIGHGEX",
+    "WP-P2-TITLE",
+    "WP-P3-FIG-GEX",
+    "WP-P3-FIG-VIX",
+    "WP-P4-BELIEF",
+    "WP-P4-DH-INTRO",
+    "OURS-ANALOGY",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 4.18,
+     "speaker": "久留美",
+     "text": "同样风平浪静的两天，有一把尺子能分出哪天更危险。",
+     "sources": [
+      "WP-P2-GEX-QUART",
+      "OURS-ANALYSIS"
+     ],
+     "note": "钩子：我们对“GEX 能区分平静日子”的口语化概括"
+    },
+    {
+     "id": "002",
+     "start": 4.33,
+     "end": 6.58,
+     "speaker": "萌智子",
+     "text": "什么尺子？还是恐慌指数吗？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 6.72,
+     "end": 10.79,
+     "speaker": "久留美",
+     "text": "不是，是伽马敞口。白皮书把它从高到低，分成四等份。",
+     "sources": [
+      "WP-P2-GEX-QUART"
+     ],
+     "note": "按 GEX 分四等份"
+    },
+    {
+     "id": "004",
+     "start": 10.93,
+     "end": 15.87,
+     "speaker": "久留美",
+     "text": "按作者的说法，伽马敞口越高，市场越平静，所以先看最高的两份。",
+     "sources": [
+      "WP-P2-NOTE-HIGHGEX"
+     ],
+     "note": "高 GEX = 低波动，所以看最高两档"
+    },
+    {
+     "id": "005",
+     "start": 16.01,
+     "end": 21.16,
+     "speaker": "久留美",
+     "text": "最高那份，第二天标准差百分之零点五五；次高那份，百分之零点八五。",
+     "sources": [
+      "WP-P2-GEX-QUART"
+     ],
+     "note": "最高档 0.55%、次高档 0.85%"
+    },
+    {
+     "id": "006",
+     "start": 21.3,
+     "end": 24.98,
+     "speaker": "萌智子",
+     "text": "这次差距一下子拉开了，不像VIX那样挤在一起。",
+     "sources": [
+      "WP-P3-FIG-GEX",
+      "WP-P3-FIG-VIX"
+     ],
+     "note": "与上图对比：GEX 两档拉得开"
+    },
+    {
+     "id": "007",
+     "start": 25.07,
+     "end": 28.98,
+     "speaker": "久留美",
+     "text": "图上最高那组，涨跌几乎都挤在零附近，分布又高又窄。",
+     "sources": [
+      "WP-P3-FIG-GEX"
+     ],
+     "note": "下图浅绿 GEX>Q3 又高又窄"
+    },
+    {
+     "id": "008",
+     "start": 29.11,
+     "end": 33.36,
+     "speaker": "萌智子",
+     "text": "也就是说，看起来平静的市场，其实还分真平静和假平静。",
+     "sources": [
+      "OURS-ANALOGY"
+     ],
+     "note": "真平静/假平静"
+    },
+    {
+     "id": "009",
+     "start": 33.45,
+     "end": 38.44,
+     "speaker": "久留美",
+     "text": "作者还算了笔账，指数两千点时，每天的波动区间差了大约四点。",
+     "sources": [
+      "WP-P2-GEX-QUART"
+     ],
+     "note": "指数2000点、约4点区间"
+    },
+    {
+     "id": "010",
+     "start": 38.58,
+     "end": 42.42,
+     "speaker": "萌智子",
+     "text": "不过这四点，是拿两种分组各自的第二档比出来的吧？",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "批评：0.66（VIX 次低档）vs 0.85（GEX 次高档）来自两种分组"
+    },
+    {
+     "id": "011",
+     "start": 42.56,
+     "end": 46.34,
+     "speaker": "久留美",
+     "text": "没错，严格说不是同一批日子，当成直观感受就好。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "同上"
+    },
+    {
+     "id": "012",
+     "start": 46.42,
+     "end": 51.06,
+     "speaker": "萌智子",
+     "text": "而且数据从二零零四年开始，到白皮书修订时，也就十几年。",
+     "sources": [
+      "WP-P3-FIG-VIX",
+      "WP-P3-FIG-GEX",
+      "WP-P2-TITLE"
+     ],
+     "note": "图标题 2004-Present；修订于2017-12"
+    },
+    {
+     "id": "013",
+     "start": 51.15,
+     "end": 54.73,
+     "speaker": "久留美",
+     "text": "那伽马敞口凭什么能看到这些？答案在做市商身上。",
+     "sources": [
+      "WP-P4-BELIEF",
+      "WP-P4-DH-INTRO"
+     ],
+     "note": "引向做市商（ep04/05）"
+    }
+   ]
+  },
+  {
+   "episode": "ep03",
+   "title": "期权会推着股价走",
+   "audio": "ep03/out/episode.mp3",
+   "subtitles": "ep03/out/subtitles.srt",
+   "manifest": "ep03/out/manifest.json",
+   "duration": 55.65,
+   "visual_suggestion": [
+    "WP-P2-INTRO-LIT",
+    "WP-P8-REFS"
+   ],
+   "sources_used": [
+    "WP-P2-INTRO-FIRST",
+    "WP-P2-INTRO-LIT",
+    "WP-P8-REFS",
+    "EXT-AL2003",
+    "EXT-NPP2005",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE",
+    "OURS-DEF"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 2.77,
+     "speaker": "久留美",
+     "text": "期权到期那天，股价好像会被钉住。",
+     "sources": [
+      "EXT-NPP2005"
+     ],
+     "note": "钩子：到期日钉价"
+    },
+    {
+     "id": "002",
+     "start": 2.92,
+     "end": 5.07,
+     "speaker": "萌智子",
+     "text": "钉住？谁有这么大的力气？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.21,
+     "end": 11.32,
+     "speaker": "久留美",
+     "text": "倪、皮尔逊和波特斯曼三位学者，二零零五年在《金融经济学期刊》上发表过研究。",
+     "sources": [
+      "EXT-NPP2005"
+     ],
+     "note": "作者、期刊、年份"
+    },
+    {
+     "id": "004",
+     "start": 11.46,
+     "end": 16.27,
+     "speaker": "久留美",
+     "text": "他们发现，有期权的个股，到期日收盘价更容易落在行权价附近。",
+     "sources": [
+      "EXT-NPP2005"
+     ],
+     "note": "发现：到期日收盘价聚集在行权价"
+    },
+    {
+     "id": "005",
+     "start": 16.41,
+     "end": 21.7,
+     "speaker": "萌智子",
+     "text": "行权价就是期权约定的买卖价格，通常是整数，比如一百、一百零五。",
+     "sources": [
+      "OURS-DEF"
+     ],
+     "note": "行权价定义"
+    },
+    {
+     "id": "006",
+     "start": 21.84,
+     "end": 26.9,
+     "speaker": "萌智子",
+     "text": "阿韦拉内达和利普金二零零三年在《定量金融》上，给过一个解释。",
+     "sources": [
+      "EXT-AL2003",
+      "WP-P8-REFS"
+     ],
+     "note": "作者、期刊、年份；白皮书参考文献有此文"
+    },
+    {
+     "id": "007",
+     "start": 27.04,
+     "end": 33.15,
+     "speaker": "萌智子",
+     "text": "做市商为了对冲去买卖股票，这些买卖本身，就可能把股价往行权价拉。",
+     "sources": [
+      "EXT-AL2003"
+     ],
+     "note": "对冲交易拉向行权价的机制"
+    },
+    {
+     "id": "008",
+     "start": 33.28,
+     "end": 38.06,
+     "speaker": "久留美",
+     "text": "注意，这是模型里的可能，不是说每只股票到期都一定被钉住。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "提醒：模型可能性，非必然"
+    },
+    {
+     "id": "009",
+     "start": 38.15,
+     "end": 41.81,
+     "speaker": "久留美",
+     "text": "所以期权不只是旁边的赌注，它会反过来推股价。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    },
+    {
+     "id": "010",
+     "start": 41.91,
+     "end": 47.46,
+     "speaker": "久留美",
+     "text": "但白皮书嫌这太窄了。以前的研究，大多只看期权上市和到期这两个时刻。",
+     "sources": [
+      "WP-P2-INTRO-LIT"
+     ],
+     "note": "以往研究只看上市与到期"
+    },
+    {
+     "id": "011",
+     "start": 47.6,
+     "end": 52.13,
+     "speaker": "久留美",
+     "text": "它想问的是，平时那些没到期的期权，每天又在怎么推着市场走。",
+     "sources": [
+      "WP-P2-INTRO-FIRST"
+     ],
+     "note": "现存期权的普遍日常影响"
+    },
+    {
+     "id": "012",
+     "start": 52.23,
+     "end": 55.65,
+     "speaker": "久留美",
+     "text": "也就是说，期权的影响，可能不只在到期那一天。",
+     "sources": [
+      "WP-P2-INTRO-FIRST"
+     ],
+     "note": "小结"
+    }
+   ]
+  },
+  {
+   "episode": "ep04",
+   "title": "越跌越卖的人",
+   "audio": "ep04/out/episode.mp3",
+   "subtitles": "ep04/out/subtitles.srt",
+   "manifest": "ep04/out/manifest.json",
+   "duration": 52.6,
+   "visual_suggestion": [
+    "WP-P4-DH-20PUT",
+    "WP-P4-DH-REHEDGE",
+    "WP-P4-DH-FOOT"
+   ],
+   "sources_used": [
+    "WP-P4-DH-20PUT",
+    "WP-P4-DH-FOOT",
+    "WP-P4-DH-INTRO",
+    "WP-P4-DH-REHEDGE",
+    "WP-P5-FORMULA",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE",
+    "OURS-DEF"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.02,
+     "speaker": "久留美",
+     "text": "有一群人，股价越跌，他们越得卖。",
+     "sources": [
+      "WP-P4-DH-REHEDGE"
+     ],
+     "note": "钩子：越跌越卖（看跌德尔塔上升要再卖空）"
+    },
+    {
+     "id": "002",
+     "start": 3.15,
+     "end": 5.4,
+     "speaker": "萌智子",
+     "text": "这不是割肉吗？谁会这么干？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.54,
+     "end": 10.2,
+     "speaker": "久留美",
+     "text": "做市商。比如他卖给投资者一张二十德尔塔的看跌期权。",
+     "sources": [
+      "WP-P4-DH-20PUT"
+     ],
+     "note": "卖出20德尔塔看跌期权"
+    },
+    {
+     "id": "004",
+     "start": 10.34,
+     "end": 15.05,
+     "speaker": "萌智子",
+     "text": "二十德尔塔，就是股价每动一块钱，期权价格大约动两毛。",
+     "sources": [
+      "OURS-DEF"
+     ],
+     "note": "德尔塔含义"
+    },
+    {
+     "id": "005",
+     "start": 15.19,
+     "end": 19.77,
+     "speaker": "久留美",
+     "text": "要是股价下跌，他就会亏钱，所以先卖空大约二十股来对冲。",
+     "sources": [
+      "WP-P4-DH-20PUT"
+     ],
+     "note": "卖空约20股对冲"
+    },
+    {
+     "id": "006",
+     "start": 19.91,
+     "end": 24.09,
+     "speaker": "萌智子",
+     "text": "可股价真跌了，这张期权的德尔塔，从二十升到五十。",
+     "sources": [
+      "WP-P4-DH-REHEDGE"
+     ],
+     "note": "德尔塔 20→50"
+    },
+    {
+     "id": "007",
+     "start": 24.23,
+     "end": 27.52,
+     "speaker": "萌智子",
+     "text": "原来的二十股就不够了，他还得再卖空三十股。",
+     "sources": [
+      "WP-P4-DH-REHEDGE"
+     ],
+     "note": "再卖空30股"
+    },
+    {
+     "id": "008",
+     "start": 27.66,
+     "end": 31.89,
+     "speaker": "久留美",
+     "text": "反过来股价上涨，德尔塔掉到零，他又得把股票全部买回来。",
+     "sources": [
+      "WP-P4-DH-REHEDGE"
+     ],
+     "note": "德尔塔→0 买回"
+    },
+    {
+     "id": "009",
+     "start": 32.03,
+     "end": 36.02,
+     "speaker": "久留美",
+     "text": "期权的凸性对冲不掉，所以价格一动，他就得重新调整。",
+     "sources": [
+      "WP-P4-DH-20PUT"
+     ],
+     "note": "凸性对冲不掉、必须再对冲"
+    },
+    {
+     "id": "010",
+     "start": 36.16,
+     "end": 38.78,
+     "speaker": "萌智子",
+     "text": "跌了卖，涨了买，等于一直追着价格跑。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "追着价格跑"
+    },
+    {
+     "id": "011",
+     "start": 38.87,
+     "end": 44.1,
+     "speaker": "久留美",
+     "text": "对。白皮书说，这是一套可预测、可量化的买卖程序，也是伽马敞口的基础。",
+     "sources": [
+      "WP-P4-DH-REHEDGE",
+      "WP-P4-DH-INTRO"
+     ],
+     "note": "可预测、可量化的买卖程序"
+    },
+    {
+     "id": "012",
+     "start": 44.2,
+     "end": 48.3,
+     "speaker": "久留美",
+     "text": "这就是负伽马的样子，下跌时加码卖，上涨时加码买。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P5-FORMULA"
+     ],
+     "note": "我们把这个例子标为负伽马（第5页：看跌对做市商是空头伽马）"
+    },
+    {
+     "id": "013",
+     "start": 48.39,
+     "end": 52.6,
+     "speaker": "久留美",
+     "text": "标普指数没有股票可以买卖，实际上可以用期货来对冲。",
+     "sources": [
+      "WP-P4-DH-FOOT"
+     ],
+     "note": "SPX 用期货对冲"
+    }
+   ]
+  },
+  {
+   "episode": "ep05",
+   "title": "减震器和放大器",
+   "audio": "ep05/out/episode.mp3",
+   "subtitles": "ep05/out/subtitles.srt",
+   "manifest": "ep05/out/manifest.json",
+   "duration": 50.54,
+   "visual_suggestion": [
+    "WP-P5-50D",
+    "WP-P6-IMPACT",
+    "WP-P6-ZERO"
+   ],
+   "sources_used": [
+    "WP-P5-50D",
+    "WP-P5-FORMULA",
+    "WP-P5-GAMMA-DEF",
+    "WP-P5-PUT",
+    "WP-P6-IMPACT",
+    "WP-P6-ZERO",
+    "OURS-ANALOGY",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 4.28,
+     "speaker": "久留美",
+     "text": "同一群做市商，有时在帮市场减震，有时却在火上浇油。",
+     "sources": [
+      "WP-P6-IMPACT"
+     ],
+     "note": "钩子：减震/放大"
+    },
+    {
+     "id": "002",
+     "start": 4.42,
+     "end": 7.17,
+     "speaker": "萌智子",
+     "text": "怎么两种角色都是他们？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 7.31,
+     "end": 11.4,
+     "speaker": "久留美",
+     "text": "要看他手里是正伽马还是负伽马。伽马，就是德尔塔变化的速度。",
+     "sources": [
+      "WP-P6-IMPACT",
+      "WP-P5-GAMMA-DEF"
+     ],
+     "note": "正负伽马；伽马定义"
+    },
+    {
+     "id": "004",
+     "start": 11.54,
+     "end": 14.36,
+     "speaker": "萌智子",
+     "text": "就像德尔塔是车速，伽马是加速度？",
+     "sources": [
+      "OURS-ANALOGY"
+     ],
+     "note": "车速/加速度比喻"
+    },
+    {
+     "id": "005",
+     "start": 14.5,
+     "end": 19.39,
+     "speaker": "久留美",
+     "text": "差不多。伽马越大，价格一动，德尔塔变得越快，要调整的股数也越多。",
+     "sources": [
+      "WP-P5-GAMMA-DEF",
+      "OURS-ANALYSIS"
+     ],
+     "note": "伽马越大调整越多（我们的说明）"
+    },
+    {
+     "id": "006",
+     "start": 19.52,
+     "end": 23.58,
+     "speaker": "久留美",
+     "text": "白皮书的例子，一张五十德尔塔的看涨期权，伽马是十。",
+     "sources": [
+      "WP-P5-50D"
+     ],
+     "note": "50德尔塔、伽马10"
+    },
+    {
+     "id": "007",
+     "start": 23.72,
+     "end": 28.61,
+     "speaker": "久留美",
+     "text": "做市商买入它，标的涨一点，德尔塔变成六十，他就再卖空十股。",
+     "sources": [
+      "WP-P5-50D"
+     ],
+     "note": "涨1点 → 德尔塔60 → 卖空10股"
+    },
+    {
+     "id": "008",
+     "start": 28.75,
+     "end": 33.93,
+     "speaker": "萌智子",
+     "text": "跌一点，德尔塔回到四十，他就买回十股。涨了卖，跌了买。",
+     "sources": [
+      "WP-P5-50D"
+     ],
+     "note": "跌1点 → 德尔塔40 → 买回10股"
+    },
+    {
+     "id": "009",
+     "start": 34.07,
+     "end": 37.88,
+     "speaker": "久留美",
+     "text": "这就是正伽马。对冲在高处卖、低处买，像减震器。",
+     "sources": [
+      "WP-P6-IMPACT",
+      "WP-P5-FORMULA"
+     ],
+     "note": "正伽马：高处卖低处买"
+    },
+    {
+     "id": "010",
+     "start": 37.98,
+     "end": 41.64,
+     "speaker": "萌智子",
+     "text": "卖出看跌期权那种，跌了还要卖，就是负伽马吧。",
+     "sources": [
+      "WP-P5-PUT",
+      "WP-P5-FORMULA"
+     ],
+     "note": "看跌空头 = 负伽马"
+    },
+    {
+     "id": "011",
+     "start": 41.73,
+     "end": 46.53,
+     "speaker": "久留美",
+     "text": "对，负伽马像放大器。伽马敞口接近零时，市场就比较自然地走。",
+     "sources": [
+      "WP-P6-IMPACT",
+      "WP-P6-ZERO"
+     ],
+     "note": "负伽马放大；接近零自然波动"
+    },
+    {
+     "id": "012",
+     "start": 46.62,
+     "end": 50.54,
+     "speaker": "萌智子",
+     "text": "所以市场晃不晃，有一部分取决于做市商站在哪一边。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    }
+   ]
+  },
+  {
+   "episode": "ep06",
+   "title": "先问单位",
+   "audio": "ep06/out/episode.mp3",
+   "subtitles": "ep06/out/subtitles.srt",
+   "manifest": "ep06/out/manifest.json",
+   "duration": 56.81,
+   "visual_suggestion": [
+    "WP-P5-FORMULA",
+    "WP-P5-FOOT-USD"
+   ],
+   "sources_used": [
+    "WP-P5-FOOT-USD",
+    "WP-P5-FORMULA",
+    "WP-P6-IMPACT",
+    "EXT-BDLM2021",
+    "OURS-ANALOGY",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE",
+    "OURS-DEF"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.73,
+     "speaker": "久留美",
+     "text": "看到一个吓人的伽马敞口数字，先别慌，先问单位。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "钩子：先问单位"
+    },
+    {
+     "id": "002",
+     "start": 3.87,
+     "end": 5.52,
+     "speaker": "萌智子",
+     "text": "单位还能不一样？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.66,
+     "end": 11.21,
+     "speaker": "久留美",
+     "text": "先看白皮书的公式。看涨期权的伽马敞口，是伽马乘以未平仓量，再乘以一百。",
+     "sources": [
+      "WP-P5-FORMULA"
+     ],
+     "note": "GEX = Γ·OI·100"
+    },
+    {
+     "id": "004",
+     "start": 11.36,
+     "end": 14.14,
+     "speaker": "萌智子",
+     "text": "乘一百，是因为一张合约对应一百股。",
+     "sources": [
+      "WP-P5-FORMULA"
+     ],
+     "note": "100 = 合约转股数"
+    },
+    {
+     "id": "005",
+     "start": 14.28,
+     "end": 17.5,
+     "speaker": "萌智子",
+     "text": "未平仓量，就是还没平掉的合约数量吧？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "006",
+     "start": 17.64,
+     "end": 21.56,
+     "speaker": "久留美",
+     "text": "对，是某天收盘时，市场上还存在的合约总数。",
+     "sources": [
+      "OURS-DEF"
+     ],
+     "note": "未平仓量定义"
+    },
+    {
+     "id": "007",
+     "start": 21.7,
+     "end": 25.91,
+     "speaker": "久留美",
+     "text": "看跌期权要乘以负一百，因为对做市商来说它是负伽马。",
+     "sources": [
+      "WP-P5-FORMULA"
+     ],
+     "note": "看跌 ×(-100)，空头伽马"
+    },
+    {
+     "id": "008",
+     "start": 26.05,
+     "end": 30.77,
+     "speaker": "久留美",
+     "text": "再把所有到期月、所有行权价加起来，就是整个指数的伽马敞口。",
+     "sources": [
+      "WP-P5-FORMULA"
+     ],
+     "note": "所有行权价、所有合约加总"
+    },
+    {
+     "id": "009",
+     "start": 30.91,
+     "end": 35.66,
+     "speaker": "久留美",
+     "text": "加总之后是正数，说明做市商整体是正伽马；负数，就是负伽马。",
+     "sources": [
+      "WP-P6-IMPACT",
+      "OURS-ANALYSIS"
+     ],
+     "note": "正数/负数的含义"
+    },
+    {
+     "id": "010",
+     "start": 35.8,
+     "end": 40.08,
+     "speaker": "萌智子",
+     "text": "白皮书算标普时，用的单位是美元，不是股数。",
+     "sources": [
+      "WP-P5-FOOT-USD"
+     ],
+     "note": "SPX 以美元计价"
+    },
+    {
+     "id": "011",
+     "start": 40.22,
+     "end": 44.89,
+     "speaker": "久留美",
+     "text": "可有的机构按每一点算，有的按每百分之一，有的还要除以市值。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "EXT-BDLM2021"
+     ],
+     "note": "口径差异；Baltussen 等式(15)除以标普市值为例"
+    },
+    {
+     "id": "012",
+     "start": 44.98,
+     "end": 50.22,
+     "speaker": "萌智子",
+     "text": "就像有人用斤，有人用公斤，数字差一倍，人可没变胖。",
+     "sources": [
+      "OURS-ANALOGY"
+     ],
+     "note": "斤/公斤"
+    },
+    {
+     "id": "013",
+     "start": 50.36,
+     "end": 53.29,
+     "speaker": "久留美",
+     "text": "所以不同来源的伽马敞口，别直接拿来比。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "不同来源不能直接比"
+    },
+    {
+     "id": "014",
+     "start": 53.38,
+     "end": 56.81,
+     "speaker": "久留美",
+     "text": "先弄清它是怎么算的，再看它是正是负、有多大。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    }
+   ]
+  },
+  {
+   "episode": "ep07",
+   "title": "它其实在猜",
+   "audio": "ep07/out/episode.mp3",
+   "subtitles": "ep07/out/subtitles.srt",
+   "manifest": "ep07/out/manifest.json",
+   "duration": 57.69,
+   "visual_suggestion": [
+    "WP-P4-A2",
+    "WP-P4-A3"
+   ],
+   "sources_used": [
+    "WP-P4-A-INTRO",
+    "WP-P4-A2",
+    "WP-P4-A3",
+    "EXT-BW2004",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE",
+    "OURS-DEF"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.79,
+     "speaker": "久留美",
+     "text": "伽马敞口最大的秘密，是它其实在猜谁买谁卖。",
+     "sources": [
+      "WP-P4-A-INTRO",
+      "WP-P4-A2",
+      "WP-P4-A3"
+     ],
+     "note": "钩子：GEX 依赖“谁买谁卖”的假设"
+    },
+    {
+     "id": "002",
+     "start": 3.94,
+     "end": 6.0,
+     "speaker": "萌智子",
+     "text": "猜？不是直接算出来的吗？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 6.14,
+     "end": 11.34,
+     "speaker": "久留美",
+     "text": "标普期权大多在买卖价中间成交，很难知道方向，所以白皮书做了假设。",
+     "sources": [
+      "WP-P4-A2",
+      "WP-P4-A-INTRO"
+     ],
+     "note": "中点成交、难判方向"
+    },
+    {
+     "id": "004",
+     "start": 11.47,
+     "end": 15.08,
+     "speaker": "萌智子",
+     "text": "在中间成交，就看不出是买方急，还是卖方急了。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "解释中点成交的含义"
+    },
+    {
+     "id": "005",
+     "start": 15.17,
+     "end": 20.89,
+     "speaker": "久留美",
+     "text": "它假设看涨期权是投资者卖出、做市商买入，因为很多人持股再卖出备兑看涨。",
+     "sources": [
+      "WP-P4-A2"
+     ],
+     "note": "看涨：投资者卖、做市商买；备兑看涨"
+    },
+    {
+     "id": "006",
+     "start": 21.04,
+     "end": 25.98,
+     "speaker": "久留美",
+     "text": "备兑看涨，就是手里有股票，再卖出看涨期权，收一笔权利金。",
+     "sources": [
+      "OURS-DEF"
+     ],
+     "note": "备兑看涨定义"
+    },
+    {
+     "id": "007",
+     "start": 26.12,
+     "end": 32.05,
+     "speaker": "萌智子",
+     "text": "看跌期权则是投资者买入、做市商卖出，就像给手里的股票买份保险。",
+     "sources": [
+      "WP-P4-A3"
+     ],
+     "note": "看跌：投资者买、做市商卖；保护性"
+    },
+    {
+     "id": "008",
+     "start": 32.2,
+     "end": 37.41,
+     "speaker": "久留美",
+     "text": "这一点有研究撑腰。博伦和惠利二零零四年，在《金融期刊》上发表过论文。",
+     "sources": [
+      "EXT-BW2004"
+     ],
+     "note": "作者、期刊、年份"
+    },
+    {
+     "id": "009",
+     "start": 37.55,
+     "end": 43.23,
+     "speaker": "久留美",
+     "text": "他们发现，标普五百期权隐含波动率的变化，受指数看跌期权买压影响最大。",
+     "sources": [
+      "EXT-BW2004"
+     ],
+     "note": "发现：标普期权 IV 受指数看跌买压影响最大"
+    },
+    {
+     "id": "010",
+     "start": 43.38,
+     "end": 48.8,
+     "speaker": "萌智子",
+     "text": "大家都抢着买保险，看跌期权就特别贵，这也是偏斜的来源之一。",
+     "sources": [
+      "WP-P4-A3"
+     ],
+     "note": "保护性看跌溢价 → 指数期权偏斜（第4页末至第5页首行）"
+    },
+    {
+     "id": "011",
+     "start": 48.89,
+     "end": 53.38,
+     "speaker": "萌智子",
+     "text": "不过作者还拿伽马敞口的效果来支持假设，有点循环论证。",
+     "sources": [
+      "WP-P4-A2"
+     ],
+     "note": "“(circularly) the effects of GEX”"
+    },
+    {
+     "id": "012",
+     "start": 53.48,
+     "end": 57.69,
+     "speaker": "久留美",
+     "text": "他自己也承认。所以这只是平均画像，不是每一张合约都这样。",
+     "sources": [
+      "WP-P4-A2",
+      "OURS-ANALYSIS"
+     ],
+     "note": "作者承认循环；平均画像为我们的提醒"
+    }
+   ]
+  },
+  {
+   "episode": "ep08",
+   "title": "被期刊借走的假设",
+   "audio": "ep08/out/episode.mp3",
+   "subtitles": "ep08/out/subtitles.srt",
+   "manifest": "ep08/out/manifest.json",
+   "duration": 53.05,
+   "visual_suggestion": [
+    "WP-P4-A1",
+    "WP-P5-A4"
+   ],
+   "sources_used": [
+    "WP-P4-A1",
+    "WP-P5-A4",
+    "EXT-BDLM2021",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.98,
+     "speaker": "久留美",
+     "text": "这份白皮书的算法，后来被一篇期刊论文原样借走了。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "钩子：期刊论文沿用白皮书假设"
+    },
+    {
+     "id": "002",
+     "start": 4.12,
+     "end": 5.81,
+     "speaker": "萌智子",
+     "text": "借走了什么？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.95,
+     "end": 11.43,
+     "speaker": "久留美",
+     "text": "四个假设。除了谁买谁卖，还有一条，每笔期权交易都有一方会做德尔塔对冲。",
+     "sources": [
+      "WP-P4-A1"
+     ],
+     "note": "假设1"
+    },
+    {
+     "id": "004",
+     "start": 11.56,
+     "end": 16.85,
+     "speaker": "久留美",
+     "text": "另一条，做市商会精确按德尔塔对冲。作者也承认，现实里他们用对冲区间。",
+     "sources": [
+      "WP-P5-A4"
+     ],
+     "note": "假设4与对冲区间"
+    },
+    {
+     "id": "005",
+     "start": 16.99,
+     "end": 21.34,
+     "speaker": "萌智子",
+     "text": "就是偏离到一定程度才调整，在成本和风险之间平衡。",
+     "sources": [
+      "WP-P5-A4"
+     ],
+     "note": "对冲区间解释"
+    },
+    {
+     "id": "006",
+     "start": 21.48,
+     "end": 27.21,
+     "speaker": "久留美",
+     "text": "巴尔图森等四位学者，二零二一年在《金融经济学期刊》上的论文，用的正是这四条。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "§4.1 四条假设"
+    },
+    {
+     "id": "007",
+     "start": 27.35,
+     "end": 33.97,
+     "speaker": "久留美",
+     "text": "后几年的数据还来自SqueezeMetrics。他们也明说，没有场外和终端投资者的持仓。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "脚注7 SqueezeMetrics 数据；脚注8 无场外/终端持仓"
+    },
+    {
+     "id": "008",
+     "start": 34.1,
+     "end": 38.79,
+     "speaker": "久留美",
+     "text": "换句话说，期刊论文也承认这是估算，不是直接看到做市商的账本。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "§4.1 “we proxy the net gamma exposure”"
+    },
+    {
+     "id": "009",
+     "start": 38.88,
+     "end": 44.88,
+     "speaker": "萌智子",
+     "text": "他们还认为，因为有交易成本，做市商白天只会间断对冲，收盘前再调整。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "§4.3 间断对冲、收盘前调整"
+    },
+    {
+     "id": "010",
+     "start": 44.98,
+     "end": 49.18,
+     "speaker": "萌智子",
+     "text": "这刚好戳中第四个假设的软肋，不是价格一动就对冲。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P5-A4"
+     ],
+     "note": "与假设4的对照"
+    },
+    {
+     "id": "011",
+     "start": 49.27,
+     "end": 53.05,
+     "speaker": "久留美",
+     "text": "不过能被这样借用，说明这套思路至少值得认真检验。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    }
+   ]
+  },
+  {
+   "episode": "ep09",
+   "title": "看不清的账本",
+   "audio": "ep09/out/episode.mp3",
+   "subtitles": "ep09/out/subtitles.srt",
+   "manifest": "ep09/out/manifest.json",
+   "duration": 55.74,
+   "visual_suggestion": [
+    "WP-P4-A2",
+    "WP-P4-A3"
+   ],
+   "sources_used": [
+    "WP-P4-A2",
+    "WP-P4-A3",
+    "EXT-BB2021",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 4.0,
+     "speaker": "久留美",
+     "text": "就算知道每笔交易是谁做的，也看不清做市商的账本。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "钩子：分类数据仍看不清账本"
+    },
+    {
+     "id": "002",
+     "start": 4.13,
+     "end": 5.21,
+     "speaker": "萌智子",
+     "text": "那还差什么？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.35,
+     "end": 11.28,
+     "speaker": "久留美",
+     "text": "巴尔邦和布拉斯基有篇工作论文，叫《伽马脆弱性》，用了纳斯达克三家交易所的数据。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "§II.A 三家 Nasdaq 交易所"
+    },
+    {
+     "id": "004",
+     "start": 11.41,
+     "end": 16.81,
+     "speaker": "久留美",
+     "text": "这些数据按交易者类型分类，他们用来还原个股期权上做市商的库存。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "§II.A/II.B 分类成交 → 构建库存"
+    },
+    {
+     "id": "005",
+     "start": 16.95,
+     "end": 19.55,
+     "speaker": "萌智子",
+     "text": "三家交易所的数据，能覆盖多少？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "006",
+     "start": 19.7,
+     "end": 24.35,
+     "speaker": "久留美",
+     "text": "论文说，大约是美国个股期权美元成交量的一到两成，范围有限。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "§II.A 覆盖约10%–20%"
+    },
+    {
+     "id": "007",
+     "start": 24.49,
+     "end": 27.91,
+     "speaker": "久留美",
+     "text": "样本大约是二零一零年底到二零二零年五月。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "表I 样本 2010-12 至 2020-05"
+    },
+    {
+     "id": "008",
+     "start": 28.05,
+     "end": 30.64,
+     "speaker": "萌智子",
+     "text": "这样就不用猜谁买谁卖了吧？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "009",
+     "start": 30.73,
+     "end": 35.55,
+     "speaker": "萌智子",
+     "text": "个股上好一些，但还得假设只有交易商和做市商会对冲。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "§II.B 只有交易商/做市商对冲的假设"
+    },
+    {
+     "id": "010",
+     "start": 35.69,
+     "end": 41.0,
+     "speaker": "久留美",
+     "text": "而且数据不含指数期权，测标普时，又回到了投资者卖看涨、买看跌的假设。",
+     "sources": [
+      "EXT-BB2021",
+      "WP-P4-A2",
+      "WP-P4-A3"
+     ],
+     "note": "§III.A 式(4)：指数回到白皮书式假设"
+    },
+    {
+     "id": "011",
+     "start": 41.14,
+     "end": 44.72,
+     "speaker": "久留美",
+     "text": "所以指数部分的结果，和白皮书一样，建立在假设上。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    },
+    {
+     "id": "012",
+     "start": 44.8,
+     "end": 48.32,
+     "speaker": "萌智子",
+     "text": "还原库存时，也得从交易量一笔笔往回推。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "§II.B 由成交量回推库存"
+    },
+    {
+     "id": "013",
+     "start": 48.41,
+     "end": 51.78,
+     "speaker": "萌智子",
+     "text": "看来做市商的账本，到现在都只能估。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    },
+    {
+     "id": "014",
+     "start": 51.88,
+     "end": 55.74,
+     "speaker": "久留美",
+     "text": "对。这还是二零二一年三月的工作论文版本，没有正式发表。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "版本：2021-03 工作论文"
+    }
+   ]
+  },
+  {
+   "episode": "ep10",
+   "title": "那张散点图",
+   "audio": "ep10/out/episode.mp3",
+   "subtitles": "ep10/out/subtitles.srt",
+   "manifest": "ep10/out/manifest.json",
+   "duration": 51.16,
+   "visual_suggestion": [
+    "WP-P6-FIG",
+    "WP-P6-NOTE"
+   ],
+   "sources_used": [
+    "WP-P6-FIG",
+    "WP-P6-NOTE",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.48,
+     "speaker": "久留美",
+     "text": "一张图上，市场的暴涨暴跌，几乎全挤在一边。",
+     "sources": [
+      "WP-P6-FIG"
+     ],
+     "note": "钩子：暴涨暴跌挤在 GEX<0 一侧"
+    },
+    {
+     "id": "002",
+     "start": 3.62,
+     "end": 4.39,
+     "speaker": "萌智子",
+     "text": "哪一边？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 4.53,
+     "end": 11.12,
+     "speaker": "久留美",
+     "text": "伽马敞口小于零的那一边。横轴是前一天收盘的伽马敞口，纵轴是标普第二天涨跌幅。",
+     "sources": [
+      "WP-P6-FIG"
+     ],
+     "note": "横轴/纵轴"
+    },
+    {
+     "id": "004",
+     "start": 11.26,
+     "end": 16.89,
+     "speaker": "久留美",
+     "text": "每个点代表一个交易日，横轴最右边大约是三十亿美元，最左边大约负二十亿。",
+     "sources": [
+      "WP-P6-FIG"
+     ],
+     "note": "我们读图：每点一日；横轴约 -20亿 到 +30亿美元"
+    },
+    {
+     "id": "005",
+     "start": 17.03,
+     "end": 21.11,
+     "speaker": "萌智子",
+     "text": "零以下，点散得很开，还有涨跌超过百分之十的日子。",
+     "sources": [
+      "WP-P6-FIG"
+     ],
+     "note": "零以下离散，>10% 的点"
+    },
+    {
+     "id": "006",
+     "start": 21.25,
+     "end": 25.58,
+     "speaker": "萌智子",
+     "text": "越往右，点越收拢，涨跌几乎挤成一条细线。",
+     "sources": [
+      "WP-P6-FIG"
+     ],
+     "note": "往右收拢成细带"
+    },
+    {
+     "id": "007",
+     "start": 25.72,
+     "end": 31.57,
+     "speaker": "久留美",
+     "text": "作者说，二零零四年以来，伽马敞口跌破零后，波动呈指数式上升。",
+     "sources": [
+      "WP-P6-NOTE",
+      "WP-P6-FIG"
+     ],
+     "note": "“exponential increase”；图标题 2004-Present"
+    },
+    {
+     "id": "008",
+     "start": 31.71,
+     "end": 35.84,
+     "speaker": "久留美",
+     "text": "意思是从正变负，市场不是慢慢变晃，而是一下子晃得厉害。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "解读“指数式”"
+    },
+    {
+     "id": "009",
+     "start": 35.93,
+     "end": 38.62,
+     "speaker": "久留美",
+     "text": "他还加了一句，很难想出别的解释。",
+     "sources": [
+      "WP-P6-NOTE"
+     ],
+     "note": "“difficult to come up with an alternate explanation”"
+    },
+    {
+     "id": "010",
+     "start": 38.72,
+     "end": 40.33,
+     "speaker": "萌智子",
+     "text": "这口气有点满。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "反应"
+    },
+    {
+     "id": "011",
+     "start": 40.42,
+     "end": 43.2,
+     "speaker": "萌智子",
+     "text": "毕竟图上只显示两者一起出现。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "相关不等于因果"
+    },
+    {
+     "id": "012",
+     "start": 43.3,
+     "end": 47.66,
+     "speaker": "久留美",
+     "text": "而且白皮书只有这张图，没有给回归结果，也没有控制其他因素。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P6-FIG"
+     ],
+     "note": "观察：第6页只有这张图，无回归、无控制变量"
+    },
+    {
+     "id": "013",
+     "start": 47.8,
+     "end": 51.16,
+     "speaker": "久留美",
+     "text": "真的没有别的解释吗？这张图，其实还能反过来读。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "引向 ep11"
+    }
+   ]
+  },
+  {
+   "episode": "ep11",
+   "title": "谁导致了谁",
+   "audio": "ep11/out/episode.mp3",
+   "subtitles": "ep11/out/subtitles.srt",
+   "manifest": "ep11/out/manifest.json",
+   "duration": 58.15,
+   "visual_suggestion": [
+    "WP-P6-FIG",
+    "WP-P6-NOTE",
+    "WP-P8-REFS"
+   ],
+   "sources_used": [
+    "WP-P4-A3",
+    "WP-P6-NOTE",
+    "WP-P8-REFS",
+    "EXT-FS1997",
+    "EXT-NPPW2021",
+    "OURS-ANALOGY",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.48,
+     "speaker": "久留美",
+     "text": "也许不是负伽马让市场乱，而是市场乱了，才有负伽马。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P6-NOTE"
+     ],
+     "note": "钩子：反向因果，回应第6页“没有别的解释”"
+    },
+    {
+     "id": "002",
+     "start": 3.62,
+     "end": 5.2,
+     "speaker": "萌智子",
+     "text": "这怎么反过来了？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.34,
+     "end": 12.26,
+     "speaker": "久留美",
+     "text": "市场一跌，大家抢着买看跌期权保护。按假设做市商卖出，伽马敞口就往负走。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P4-A3"
+     ],
+     "note": "下跌时买看跌 → 按假设做市商卖出 → GEX 变负"
+    },
+    {
+     "id": "004",
+     "start": 12.39,
+     "end": 17.56,
+     "speaker": "萌智子",
+     "text": "看涨期权离现价越来越远，伽马变小，正的那部分也缩水了。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "看涨伽马缩小"
+    },
+    {
+     "id": "005",
+     "start": 17.7,
+     "end": 21.14,
+     "speaker": "萌智子",
+     "text": "就像下雨时雨伞卖得多，但不是雨伞让天下雨。",
+     "sources": [
+      "OURS-ANALOGY"
+     ],
+     "note": "雨伞比喻"
+    },
+    {
+     "id": "006",
+     "start": 21.23,
+     "end": 24.94,
+     "speaker": "久留美",
+     "text": "所以那张图只说明两者一起出现，不说明谁导致谁。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    },
+    {
+     "id": "007",
+     "start": 25.03,
+     "end": 31.95,
+     "speaker": "久留美",
+     "text": "不过确实有研究支持对冲推动价格。倪等四位学者的论文，二零二一年刊登在《金融研究评论》。",
+     "sources": [
+      "EXT-NPPW2021"
+     ],
+     "note": "作者、期刊、年份"
+    },
+    {
+     "id": "008",
+     "start": 32.09,
+     "end": 37.64,
+     "speaker": "久留美",
+     "text": "他们提供证据，做市商的对冲再平衡，会通过和信息无关的渠道，影响个股波动。",
+     "sources": [
+      "EXT-NPPW2021"
+     ],
+     "note": "摘要末句：非信息渠道"
+    },
+    {
+     "id": "009",
+     "start": 37.78,
+     "end": 41.48,
+     "speaker": "久留美",
+     "text": "这篇论文的早期版本，白皮书在参考文献里就引用过。",
+     "sources": [
+      "WP-P8-REFS"
+     ],
+     "note": "白皮书引用其2007年工作论文"
+    },
+    {
+     "id": "010",
+     "start": 41.62,
+     "end": 48.0,
+     "speaker": "萌智子",
+     "text": "弗雷和施特雷姆一九九七年在《数学金融》上也推导过，动态对冲会让波动变大。",
+     "sources": [
+      "EXT-FS1997",
+      "WP-P8-REFS"
+     ],
+     "note": "作者、期刊、年份；对冲使波动变大"
+    },
+    {
+     "id": "011",
+     "start": 48.14,
+     "end": 54.05,
+     "speaker": "萌智子",
+     "text": "他们还说，效果强不强，要看对冲占总需求的比例，和仓位差异有多大。",
+     "sources": [
+      "EXT-FS1997"
+     ],
+     "note": "强度看对冲占比与异质性"
+    },
+    {
+     "id": "012",
+     "start": 54.19,
+     "end": 58.15,
+     "speaker": "久留美",
+     "text": "机制有支持，但图上的强度，不能全算在对冲头上。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    }
+   ]
+  },
+  {
+   "episode": "ep12",
+   "title": "浴缸和大海",
+   "audio": "ep12/out/episode.mp3",
+   "subtitles": "ep12/out/subtitles.srt",
+   "manifest": "ep12/out/manifest.json",
+   "duration": 53.74,
+   "visual_suggestion": [
+    "WP-P6-IMPACT"
+   ],
+   "sources_used": [
+    "EXT-BB2021",
+    "EXT-BDLM2021",
+    "OURS-ANALOGY",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE",
+    "OURS-DEF"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.79,
+     "speaker": "久留美",
+     "text": "同样一桶水，倒进浴缸和倒进大海，效果完全不一样。",
+     "sources": [
+      "OURS-ANALOGY"
+     ],
+     "note": "钩子：浴缸与大海"
+    },
+    {
+     "id": "002",
+     "start": 3.92,
+     "end": 6.29,
+     "speaker": "萌智子",
+     "text": "这跟伽马敞口有什么关系？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 6.43,
+     "end": 11.86,
+     "speaker": "久留美",
+     "text": "《伽马脆弱性》发现，伽马和个股涨跌幅的关系，在流动性差的股票上更强。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "§III.B 表V 低流动性更强"
+    },
+    {
+     "id": "004",
+     "start": 11.99,
+     "end": 15.69,
+     "speaker": "久留美",
+     "text": "流动性差，就是同样金额的买卖，更容易把价格推动。",
+     "sources": [
+      "OURS-DEF"
+     ],
+     "note": "流动性差的含义"
+    },
+    {
+     "id": "005",
+     "start": 15.83,
+     "end": 19.7,
+     "speaker": "萌智子",
+     "text": "流动性足够好的市场，对冲交易可能根本推不动价格。",
+     "sources": [
+      "EXT-BB2021"
+     ],
+     "note": "§III.A 足够流动则无价格影响"
+    },
+    {
+     "id": "006",
+     "start": 19.8,
+     "end": 24.35,
+     "speaker": "久留美",
+     "text": "巴尔图森等人，还看了一九九六年到二零二零年五月的标普期货。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "S&P 500 期货 1996–2020-05"
+    },
+    {
+     "id": "007",
+     "start": 24.49,
+     "end": 29.18,
+     "speaker": "久留美",
+     "text": "他们研究的是尾盘半小时的涨跌，和当天前面的走势有什么关系。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "表7设定：尾盘半小时 vs 之前收益"
+    },
+    {
+     "id": "008",
+     "start": 29.32,
+     "end": 33.94,
+     "speaker": "久留美",
+     "text": "前一天净伽马为负的日子，尾盘半小时更容易顺着当天方向走。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "表7 NGE<0 动量显著"
+    },
+    {
+     "id": "009",
+     "start": 34.08,
+     "end": 36.62,
+     "speaker": "萌智子",
+     "text": "那净伽马为正，就会反转吗？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "010",
+     "start": 36.76,
+     "end": 42.3,
+     "speaker": "久留美",
+     "text": "不会。论文说，净伽马为正时没有显著的日内动量。没动量，不等于反转。",
+     "sources": [
+      "EXT-BDLM2021"
+     ],
+     "note": "§4.1 正 NGE 无显著动量"
+    },
+    {
+     "id": "011",
+     "start": 42.44,
+     "end": 45.66,
+     "speaker": "萌智子",
+     "text": "减震器是让晃动变小，不是让价格往回走。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "减震≠反转"
+    },
+    {
+     "id": "012",
+     "start": 45.74,
+     "end": 50.31,
+     "speaker": "久留美",
+     "text": "这也说明，伽马的影响是有条件的，要看流动性，也要看时间点。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "条件性"
+    },
+    {
+     "id": "013",
+     "start": 50.4,
+     "end": 53.74,
+     "speaker": "萌智子",
+     "text": "而且这些是统计上的倾向，不是每天都会这样。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "统计倾向"
+    }
+   ]
+  },
+  {
+   "episode": "ep13",
+   "title": "零日期权的反转",
+   "audio": "ep13/out/episode.mp3",
+   "subtitles": "ep13/out/subtitles.srt",
+   "manifest": "ep13/out/manifest.json",
+   "duration": 56.97,
+   "visual_suggestion": [
+    "WP-P6-FIG"
+   ],
+   "sources_used": [
+    "WP-P6-FIG",
+    "EXT-ADEFOV2025",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE",
+    "OURS-DEF"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 4.33,
+     "speaker": "久留美",
+     "text": "大家都怕零日到期期权放大波动，有研究却发现正好相反。",
+     "sources": [
+      "EXT-ADEFOV2025"
+     ],
+     "note": "钩子：0DTE 反而降低波动"
+    },
+    {
+     "id": "002",
+     "start": 4.47,
+     "end": 7.04,
+     "speaker": "萌智子",
+     "text": "相反？它让市场更稳了？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 7.18,
+     "end": 11.96,
+     "speaker": "久留美",
+     "text": "零日到期期权，就是当天到期的期权，这几年交易非常热。",
+     "sources": [
+      "OURS-DEF"
+     ],
+     "note": "0DTE 定义（“交易非常热”为一般描述，无具体数据）"
+    },
+    {
+     "id": "004",
+     "start": 12.1,
+     "end": 17.4,
+     "speaker": "久留美",
+     "text": "亚当斯等六位学者的工作论文，二零二五年发在SSRN上，还没正式发表。",
+     "sources": [
+      "EXT-ADEFOV2025"
+     ],
+     "note": "作者、SSRN、2025、未发表"
+    },
+    {
+     "id": "005",
+     "start": 17.54,
+     "end": 22.38,
+     "speaker": "久留美",
+     "text": "作者页面说，这篇已经重新投稿到《金融研究评论》，但还没有被接收。",
+     "sources": [
+      "EXT-ADEFOV2025"
+     ],
+     "note": "Vilkov 主页：重新投稿 RFS"
+    },
+    {
+     "id": "006",
+     "start": 22.52,
+     "end": 28.8,
+     "speaker": "久留美",
+     "text": "摘要说，零日到期期权的存在，通过改变做市商的对冲需求，降低了标普的波动。",
+     "sources": [
+      "EXT-ADEFOV2025"
+     ],
+     "note": "摘要：降低波动"
+    },
+    {
+     "id": "007",
+     "start": 28.94,
+     "end": 32.63,
+     "speaker": "久留美",
+     "text": "这是摘要里的结论，具体样本和方法，还要看正文。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "证据层级提醒"
+    },
+    {
+     "id": "008",
+     "start": 32.73,
+     "end": 35.21,
+     "speaker": "萌智子",
+     "text": "是因为当天大家都在交易它吗？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "009",
+     "start": 35.35,
+     "end": 41.37,
+     "speaker": "久留美",
+     "text": "他们说不是。是更早买卖的长期期权，一路持有，最后一天才变成零日到期期权。",
+     "sources": [
+      "EXT-ADEFOV2025"
+     ],
+     "note": "摘要：来自早先累积的长期期权"
+    },
+    {
+     "id": "010",
+     "start": 41.51,
+     "end": 45.29,
+     "speaker": "萌智子",
+     "text": "这也提醒我们，白皮书用的是前一天收盘的未平仓量。",
+     "sources": [
+      "WP-P6-FIG"
+     ],
+     "note": "白皮书用前一日收盘 GEX"
+    },
+    {
+     "id": "011",
+     "start": 45.38,
+     "end": 49.4,
+     "speaker": "萌智子",
+     "text": "当天新开、当天平掉的仓位，未平仓量是看不到的。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "未平仓量看不到日内开平"
+    },
+    {
+     "id": "012",
+     "start": 49.48,
+     "end": 52.53,
+     "speaker": "萌智子",
+     "text": "所以研究零日期权，光看未平仓量是不够的。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    },
+    {
+     "id": "013",
+     "start": 52.62,
+     "end": 56.97,
+     "speaker": "久留美",
+     "text": "而且这只是工作论文的摘要，不能说零日期权就永远安全。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "不能说永远安全"
+    }
+   ]
+  },
+  {
+   "episode": "ep14",
+   "title": "没给数字的超额收益",
+   "audio": "ep14/out/episode.mp3",
+   "subtitles": "ep14/out/subtitles.srt",
+   "manifest": "ep14/out/manifest.json",
+   "duration": 55.19,
+   "visual_suggestion": [
+    "WP-P7-SCREEN",
+    "WP-P7-CONC2",
+    "WP-P1-DISCLAIMER"
+   ],
+   "sources_used": [
+    "WP-P1-DISCLAIMER",
+    "WP-P6-ZERO",
+    "WP-P7-BEYOND",
+    "WP-P7-CONC1",
+    "WP-P7-CONC2",
+    "WP-P7-SCREEN",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 4.07,
+     "speaker": "久留美",
+     "text": "这份白皮书说能挑出超额收益的股票，却没给一个数字。",
+     "sources": [
+      "WP-P7-SCREEN"
+     ],
+     "note": "钩子：超额收益无数字"
+    },
+    {
+     "id": "002",
+     "start": 4.21,
+     "end": 5.72,
+     "speaker": "萌智子",
+     "text": "一个数字都没有？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 5.86,
+     "end": 11.51,
+     "speaker": "久留美",
+     "text": "作者说，在标普五百成分股里，筛选伽马敞口接近零的股票，能得到超额收益。",
+     "sources": [
+      "WP-P7-SCREEN"
+     ],
+     "note": "标普500成分股、GEX≈0"
+    },
+    {
+     "id": "004",
+     "start": 11.64,
+     "end": 16.93,
+     "speaker": "久留美",
+     "text": "但没有收益率，没有样本年份，也没算成本，他自己写了有待进一步研究。",
+     "sources": [
+      "WP-P7-SCREEN",
+      "OURS-ANALYSIS"
+     ],
+     "note": "我们指出缺收益率/年份/成本；“further investigation”为原文"
+    },
+    {
+     "id": "005",
+     "start": 17.07,
+     "end": 21.84,
+     "speaker": "久留美",
+     "text": "按白皮书的思路，伽马敞口接近零，做市商的对冲最不干扰价格。",
+     "sources": [
+      "WP-P6-ZERO"
+     ],
+     "note": "GEX≈0 对冲最不干扰"
+    },
+    {
+     "id": "006",
+     "start": 21.98,
+     "end": 24.34,
+     "speaker": "萌智子",
+     "text": "那为什么这样的股票会有超额收益？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "007",
+     "start": 24.48,
+     "end": 28.09,
+     "speaker": "久留美",
+     "text": "白皮书也没解释，所以只能当成一个待验证的线索。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "白皮书未解释"
+    },
+    {
+     "id": "008",
+     "start": 28.18,
+     "end": 33.13,
+     "speaker": "萌智子",
+     "text": "它还说伽马敞口能用在任何未平仓量够大的个股，或者整个板块上。",
+     "sources": [
+      "WP-P7-BEYOND"
+     ],
+     "note": "个股、板块"
+    },
+    {
+     "id": "009",
+     "start": 33.27,
+     "end": 37.66,
+     "speaker": "久留美",
+     "text": "作者的结论很笃定，说伽马敞口比报价算出的波动率更聪明。",
+     "sources": [
+      "WP-P7-CONC1"
+     ],
+     "note": "更聪明的替代"
+    },
+    {
+     "id": "010",
+     "start": 37.8,
+     "end": 43.74,
+     "speaker": "久留美",
+     "text": "理由是每家做市商的账本都不同，一家报出很窄的价差，会遮住其他人的风险偏好。",
+     "sources": [
+      "WP-P7-CONC2"
+     ],
+     "note": "账簿不同、窄价差遮住风险偏好"
+    },
+    {
+     "id": "011",
+     "start": 43.88,
+     "end": 47.72,
+     "speaker": "萌智子",
+     "text": "不过这是一家卖数据的公司写的，不是同行评审论文。",
+     "sources": [
+      "WP-P1-DISCLAIMER"
+     ],
+     "note": "商业公司、非同行评审"
+    },
+    {
+     "id": "012",
+     "start": 47.8,
+     "end": 52.48,
+     "speaker": "久留美",
+     "text": "白皮书开头还有免责声明，说不保证内容的准确和完整。",
+     "sources": [
+      "WP-P1-DISCLAIMER"
+     ],
+     "note": "免责声明"
+    },
+    {
+     "id": "013",
+     "start": 52.62,
+     "end": 55.19,
+     "speaker": "久留美",
+     "text": "所以机制可以听，数字要打个折扣。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    }
+   ]
+  },
+  {
+   "episode": "ep15",
+   "title": "看图前的五个问题",
+   "audio": "ep15/out/episode.mp3",
+   "subtitles": "ep15/out/subtitles.srt",
+   "manifest": "ep15/out/manifest.json",
+   "duration": 51.7,
+   "visual_suggestion": [
+    "WP-P5-FORMULA",
+    "WP-P6-FIG",
+    "WP-P6-IMPACT"
+   ],
+   "sources_used": [
+    "WP-P2-VIX-DEF",
+    "WP-P4-A2",
+    "WP-P4-A3",
+    "WP-P4-DH-REHEDGE",
+    "WP-P5-FOOT-USD",
+    "WP-P5-FORMULA",
+    "WP-P6-FIG",
+    "WP-P6-IMPACT",
+    "EXT-ADEFOV2025",
+    "EXT-BB2021",
+    "EXT-BDLM2021",
+    "OURS-ANALYSIS",
+    "OURS-BRIDGE",
+    "OURS-SERIES"
+   ],
+   "lines": [
+    {
+     "id": "001",
+     "start": 0.0,
+     "end": 3.21,
+     "speaker": "久留美",
+     "text": "下次看到伽马敞口的图，先问这五个问题。",
+     "sources": [
+      "OURS-SERIES"
+     ],
+     "note": "钩子：五个问题（总结前14集）"
+    },
+    {
+     "id": "002",
+     "start": 3.35,
+     "end": 4.09,
+     "speaker": "萌智子",
+     "text": "哪五个？",
+     "sources": [
+      "OURS-BRIDGE"
+     ],
+     "note": ""
+    },
+    {
+     "id": "003",
+     "start": 4.23,
+     "end": 8.41,
+     "speaker": "久留美",
+     "text": "第一，它怎么判断谁买谁卖？是靠假设，还是有分类数据？",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P4-A2",
+      "WP-P4-A3",
+      "EXT-BB2021"
+     ],
+     "note": "问题1：方向判断（ep07/ep09）"
+    },
+    {
+     "id": "004",
+     "start": 8.55,
+     "end": 11.85,
+     "speaker": "久留美",
+     "text": "白皮书就是假设投资者卖看涨、买看跌。",
+     "sources": [
+      "WP-P4-A2",
+      "WP-P4-A3"
+     ],
+     "note": "白皮书的假设"
+    },
+    {
+     "id": "005",
+     "start": 11.99,
+     "end": 16.82,
+     "speaker": "萌智子",
+     "text": "第二，单位是什么？每一点、每百分之一，还是除过市值？",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P5-FORMULA",
+      "WP-P5-FOOT-USD",
+      "EXT-BDLM2021"
+     ],
+     "note": "问题2：单位（ep06）"
+    },
+    {
+     "id": "006",
+     "start": 16.96,
+     "end": 22.26,
+     "speaker": "久留美",
+     "text": "第三，用的是哪天的持仓？昨天收盘的未平仓量，看不到今天新开的仓位。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P6-FIG",
+      "WP-P5-FORMULA"
+     ],
+     "note": "问题3：持仓日期（ep13）"
+    },
+    {
+     "id": "007",
+     "start": 22.4,
+     "end": 25.26,
+     "speaker": "萌智子",
+     "text": "当天新开的零日期权，尤其容易漏掉。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "EXT-ADEFOV2025"
+     ],
+     "note": "0DTE 容易漏掉"
+    },
+    {
+     "id": "008",
+     "start": 25.4,
+     "end": 29.61,
+     "speaker": "萌智子",
+     "text": "第四，标的流动性怎么样？浴缸和大海，效果不一样。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "EXT-BB2021"
+     ],
+     "note": "问题4：流动性（ep12）"
+    },
+    {
+     "id": "009",
+     "start": 29.75,
+     "end": 34.53,
+     "speaker": "久留美",
+     "text": "第五，它说的是波动大小，不是涨跌方向。负伽马不等于一定会跌。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "WP-P6-IMPACT"
+     ],
+     "note": "问题5：波动≠方向"
+    },
+    {
+     "id": "010",
+     "start": 34.67,
+     "end": 37.61,
+     "speaker": "萌智子",
+     "text": "正伽马也不等于，价格一定会被拉回来。",
+     "sources": [
+      "OURS-ANALYSIS",
+      "EXT-BDLM2021"
+     ],
+     "note": "正伽马≠反转（ep12）"
+    },
+    {
+     "id": "011",
+     "start": 37.7,
+     "end": 41.39,
+     "speaker": "久留美",
+     "text": "它告诉你市场可能晃得多厉害，不告诉你往哪边晃。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    },
+    {
+     "id": "012",
+     "start": 41.53,
+     "end": 45.69,
+     "speaker": "久留美",
+     "text": "问完这五个问题，再看图上的数字，心里就有底多了。",
+     "sources": [
+      "OURS-ANALYSIS"
+     ],
+     "note": "小结"
+    },
+    {
+     "id": "013",
+     "start": 45.78,
+     "end": 51.7,
+     "speaker": "久留美",
+     "text": "这份白皮书最妙的，是换了个问题。不问市场怕不怕，而问谁会被规则逼着买卖。",
+     "sources": [
+      "WP-P4-DH-REHEDGE",
+      "WP-P2-VIX-DEF"
+     ],
+     "note": "全系列主旨：报价 vs 被规则逼着买卖"
+    }
+   ]
+  }
+ ]
+}

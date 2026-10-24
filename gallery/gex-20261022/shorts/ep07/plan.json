@@ -1,0 +1,88 @@
+{
+  "title": "GEX一分钟 07｜它其实在猜",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p4–5；Bollen/Whaley 2004 JF。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "它其实在猜",
+      "delivery": "explain",
+      "text": "伽马敞口最大的秘密，是它其实在猜谁买谁卖。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p4–5；Bollen/Whaley 2004 JF"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "它其实在猜",
+      "delivery": "question",
+      "text": "猜？不是直接算出来的吗？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "它其实在猜",
+      "delivery": "explain",
+      "text": "标普期权大多在买卖价中间成交，很难知道方向，所以白皮书做了假设。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "它其实在猜",
+      "delivery": "comment",
+      "text": "在中间成交，就看不出是买方急，还是卖方急了。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "它其实在猜",
+      "delivery": "explain",
+      "text": "它假设看涨期权是投资者卖出、做市商买入，因为很多人持股再卖出备兑看涨。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "它其实在猜",
+      "delivery": "explain",
+      "text": "备兑看涨，就是手里有股票，再卖出看涨期权，收一笔权利金。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "它其实在猜",
+      "delivery": "explain",
+      "text": "看跌期权则是投资者买入、做市商卖出，就像给手里的股票买份保险。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "它其实在猜",
+      "delivery": "explain",
+      "text": "这一点有研究撑腰。博伦和惠利二零零四年，在《金融期刊》上发表过论文。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "它其实在猜",
+      "delivery": "explain",
+      "text": "他们发现，标普五百期权隐含波动率的变化，受指数看跌期权买压影响最大。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "它其实在猜",
+      "delivery": "comment",
+      "text": "大家都抢着买保险，看跌期权就特别贵，这也是偏斜的来源之一。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "它其实在猜",
+      "delivery": "comment",
+      "text": "不过作者还拿伽马敞口的效果来支持假设，有点循环论证。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "它其实在猜",
+      "delivery": "comment",
+      "text": "他自己也承认。所以这只是平均画像，不是每一张合约都这样。"
+    }
+  ]
+}

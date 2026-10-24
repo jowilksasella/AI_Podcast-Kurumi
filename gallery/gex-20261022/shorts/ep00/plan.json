@@ -1,0 +1,94 @@
+{
+  "title": "GEX一分钟 00｜系列开场",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p2；系列说明。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "explain",
+      "text": "每天只要一分钟，带你读完一份期权白皮书。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p2；系列说明"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "系列开场",
+      "delivery": "question",
+      "text": "一分钟能讲清楚什么？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "explain",
+      "text": "一次只讲一个点。这份白皮书叫《伽马敞口》，二零一六年发布，二零一七年修订。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "explain",
+      "text": "它想回答一个问题，做市商为了对冲被迫买卖，会怎样推着股市走。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "系列开场",
+      "delivery": "question",
+      "text": "做市商，就是那些专门报价、赚买卖差价的人吧？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "explain",
+      "text": "对。他们不想赌方向，可为了不赌方向，反而得跟着价格不停地买卖。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "系列开场",
+      "delivery": "comment",
+      "text": "听起来很专业，可我每天的时间都是碎的。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "explain",
+      "text": "所以我们把它拆成十五集，每集都在一分钟以内，等车、排队的时候就能听完一集。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "系列开场",
+      "delivery": "question",
+      "text": "要按顺序听吗？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "explain",
+      "text": "每集都能单独看懂。按顺序听，会从恐慌指数的盲区，一路讲到怎么读伽马敞口的图。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "系列开场",
+      "delivery": "explain",
+      "text": "中间还会穿插相关的学术研究，帮大家分辨哪些说法有证据。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "comment",
+      "text": "毕竟这是一家数据公司写的白皮书，不是同行评审的论文。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "系列开场",
+      "delivery": "comment",
+      "text": "好，第一集，我们就从恐慌指数的一个盲区说起。"
+    }
+  ]
+}

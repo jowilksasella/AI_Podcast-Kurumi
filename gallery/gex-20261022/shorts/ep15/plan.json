@@ -1,0 +1,94 @@
+{
+  "title": "GEX一分钟 15｜看图前的五个问题",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：综合。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "下次看到伽马敞口的图，先问这五个问题。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "综合",
+          "note": "综合"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看图前的五个问题",
+      "delivery": "question",
+      "text": "哪五个？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "第一，它怎么判断谁买谁卖？是靠假设，还是有分类数据？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "白皮书就是假设投资者卖看涨、买看跌。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "第二，单位是什么？每一点、每百分之一，还是除过市值？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "第三，用的是哪天的持仓？昨天收盘的未平仓量，看不到今天新开的仓位。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "当天新开的零日期权，尤其容易漏掉。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "第四，标的流动性怎么样？浴缸和大海，效果不一样。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "第五，它说的是波动大小，不是涨跌方向。负伽马不等于一定会跌。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "看图前的五个问题",
+      "delivery": "comment",
+      "text": "正伽马也不等于，价格一定会被拉回来。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "explain",
+      "text": "它告诉你市场可能晃得多厉害，不告诉你往哪边晃。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "comment",
+      "text": "问完这五个问题，再看图上的数字，心里就有底多了。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "看图前的五个问题",
+      "delivery": "comment",
+      "text": "这份白皮书最妙的，是换了个问题。不问市场怕不怕，而问谁会被规则逼着买卖。"
+    }
+  ]
+}

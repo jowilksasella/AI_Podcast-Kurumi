@@ -1,0 +1,94 @@
+{
+  "title": "GEX一分钟 10｜那张散点图",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p6。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "explain",
+      "text": "一张图上，市场的暴涨暴跌，几乎全挤在一边。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p6"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "那张散点图",
+      "delivery": "question",
+      "text": "哪一边？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "explain",
+      "text": "伽马敞口小于零的那一边。横轴是前一天收盘的伽马敞口，纵轴是标普第二天涨跌幅。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "explain",
+      "text": "每个点代表一个交易日，横轴最右边大约是三十亿美元，最左边大约负二十亿。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "那张散点图",
+      "delivery": "explain",
+      "text": "零以下，点散得很开，还有涨跌超过百分之十的日子。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "那张散点图",
+      "delivery": "explain",
+      "text": "越往右，点越收拢，涨跌几乎挤成一条细线。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "explain",
+      "text": "作者说，二零零四年以来，伽马敞口跌破零后，波动呈指数式上升。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "comment",
+      "text": "意思是从正变负，市场不是慢慢变晃，而是一下子晃得厉害。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "comment",
+      "text": "他还加了一句，很难想出别的解释。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "那张散点图",
+      "delivery": "comment",
+      "text": "这口气有点满。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "那张散点图",
+      "delivery": "comment",
+      "text": "毕竟图上只显示两者一起出现。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "explain",
+      "text": "而且白皮书只有这张图，没有给回归结果，也没有控制其他因素。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "那张散点图",
+      "delivery": "comment",
+      "text": "真的没有别的解释吗？这张图，其实还能反过来读。"
+    }
+  ]
+}

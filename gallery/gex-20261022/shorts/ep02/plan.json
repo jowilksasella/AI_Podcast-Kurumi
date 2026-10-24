@@ -1,0 +1,94 @@
+{
+  "title": "GEX一分钟 02｜一把更细的尺子",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p2–3。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "explain",
+      "text": "同样风平浪静的两天，有一把尺子能分出哪天更危险。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p2–3"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "一把更细的尺子",
+      "delivery": "question",
+      "text": "什么尺子？还是恐慌指数吗？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "explain",
+      "text": "不是，是伽马敞口。白皮书把它从高到低，分成四等份。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "explain",
+      "text": "按作者的说法，伽马敞口越高，市场越平静，所以先看最高的两份。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "explain",
+      "text": "最高那份，第二天标准差百分之零点五五；次高那份，百分之零点八五。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "一把更细的尺子",
+      "delivery": "comment",
+      "text": "这次差距一下子拉开了，不像VIX那样挤在一起。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "explain",
+      "text": "图上最高那组，涨跌几乎都挤在零附近，分布又高又窄。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "一把更细的尺子",
+      "delivery": "comment",
+      "text": "也就是说，看起来平静的市场，其实还分真平静和假平静。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "explain",
+      "text": "作者还算了笔账，指数两千点时，每天的波动区间差了大约四点。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "一把更细的尺子",
+      "delivery": "question",
+      "text": "不过这四点，是拿两种分组各自的第二档比出来的吧？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "comment",
+      "text": "没错，严格说不是同一批日子，当成直观感受就好。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "一把更细的尺子",
+      "delivery": "comment",
+      "text": "而且数据从二零零四年开始，到白皮书修订时，也就十几年。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "一把更细的尺子",
+      "delivery": "comment",
+      "text": "那伽马敞口凭什么能看到这些？答案在做市商身上。"
+    }
+  ]
+}

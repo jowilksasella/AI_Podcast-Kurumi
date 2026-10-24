@@ -1,0 +1,22 @@
+{
+  "title": "GEX一分钟｜片尾关注",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "片尾号召关注，通用于全部集数。音色 config.anime-both-dense.local.json。 只取久留美一句做片尾；萌智子一句仅为满足双人校验，不使用。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "片尾",
+      "delivery": "explain",
+      "text": "觉得这一分钟有帮助，就关注我吧！我们一起把这个系列看完。",
+      "opening": true
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "片尾",
+      "delivery": "comment",
+      "text": "嗯，我们下一集见。",
+      "opening": true
+    }
+  ]
+}

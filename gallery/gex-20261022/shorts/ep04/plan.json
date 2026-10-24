@@ -1,0 +1,94 @@
+{
+  "title": "GEX一分钟 04｜越跌越卖的人",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p4。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "有一群人，股价越跌，他们越得卖。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p4"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "越跌越卖的人",
+      "delivery": "question",
+      "text": "这不是割肉吗？谁会这么干？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "做市商。比如他卖给投资者一张二十德尔塔的看跌期权。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "二十德尔塔，就是股价每动一块钱，期权价格大约动两毛。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "要是股价下跌，他就会亏钱，所以先卖空大约二十股来对冲。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "可股价真跌了，这张期权的德尔塔，从二十升到五十。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "原来的二十股就不够了，他还得再卖空三十股。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "反过来股价上涨，德尔塔掉到零，他又得把股票全部买回来。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "期权的凸性对冲不掉，所以价格一动，他就得重新调整。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "越跌越卖的人",
+      "delivery": "comment",
+      "text": "跌了卖，涨了买，等于一直追着价格跑。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "comment",
+      "text": "对。白皮书说，这是一套可预测、可量化的买卖程序，也是伽马敞口的基础。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "comment",
+      "text": "这就是负伽马的样子，下跌时加码卖，上涨时加码买。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "越跌越卖的人",
+      "delivery": "explain",
+      "text": "标普指数没有股票可以买卖，实际上可以用期货来对冲。"
+    }
+  ]
+}

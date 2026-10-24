@@ -1,0 +1,88 @@
+{
+  "title": "GEX一分钟 05｜减震器和放大器",
+  "language": "普通话",
+  "lead": "久留美",
+  "source_note": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订；本集：p5–6。音色 config.anime-both-dense.local.json。",
+  "lines": [
+    {
+      "speaker": "久留美",
+      "chapter": "减震器和放大器",
+      "delivery": "explain",
+      "text": "同一群做市商，有时在帮市场减震，有时却在火上浇油。",
+      "opening": true,
+      "source_refs": [
+        {
+          "source": "SqueezeMetrics《Gamma Exposure (GEX)》白皮书，2016-03首发、2017-12修订",
+          "note": "p5–6"
+        }
+      ]
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "减震器和放大器",
+      "delivery": "question",
+      "text": "怎么两种角色都是他们？",
+      "opening": true
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "减震器和放大器",
+      "delivery": "explain",
+      "text": "要看他手里是正伽马还是负伽马。伽马，就是德尔塔变化的速度。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "减震器和放大器",
+      "delivery": "question",
+      "text": "就像德尔塔是车速，伽马是加速度？"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "减震器和放大器",
+      "delivery": "explain",
+      "text": "差不多。伽马越大，价格一动，德尔塔变得越快，要调整的股数也越多。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "减震器和放大器",
+      "delivery": "explain",
+      "text": "白皮书的例子，一张五十德尔塔的看涨期权，伽马是十。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "减震器和放大器",
+      "delivery": "explain",
+      "text": "做市商买入它，标的涨一点，德尔塔变成六十，他就再卖空十股。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "减震器和放大器",
+      "delivery": "explain",
+      "text": "跌一点，德尔塔回到四十，他就买回十股。涨了卖，跌了买。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "减震器和放大器",
+      "delivery": "comment",
+      "text": "这就是正伽马。对冲在高处卖、低处买，像减震器。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "减震器和放大器",
+      "delivery": "comment",
+      "text": "卖出看跌期权那种，跌了还要卖，就是负伽马吧。"
+    },
+    {
+      "speaker": "久留美",
+      "chapter": "减震器和放大器",
+      "delivery": "comment",
+      "text": "对，负伽马像放大器。伽马敞口接近零时，市场就比较自然地走。"
+    },
+    {
+      "speaker": "萌智子",
+      "chapter": "减震器和放大器",
+      "delivery": "comment",
+      "text": "所以市场晃不晃，有一部分取决于做市商站在哪一边。"
+    }
+  ]
+}

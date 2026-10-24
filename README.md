@@ -57,7 +57,7 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 
 ## 动画音色定稿（GEX）
 
-2026-10-22 用户听过短样后认可：**久留美与萌智子都用动画对白音色**，中文情绪、seed 规则与采样设置继承原始配置。参考已提交在 [voices/anime-20261022/](voices/anime-20261022/)（含用户确认的对白片段集），配置模板是 [anime-cast.variant.json](examples/anime-cast.variant.json)：复制到根目录为 `config.anime.local.json` 即可，中文情绪参考仍用本机原始库。
+2026-10-22 用户听过短样后认可：**久留美与萌智子都用动画对白音色**，中文情绪、seed 规则与采样设置继承原始配置。参考已提交在 [voices/anime-20261022/](voices/anime-20261022/)（含用户确认的对白片段集），配置模板是 [anime-cast.variant.json](examples/anime-cast.variant.json)：复制到根目录为 `config.anime.local.json` 即可，中文情绪参考用同样已提交的原始库 `voices/original-20261002/`。
 
     .\scripts\run.ps1 render preview.json --config config.anime.local.json --out outputs/anime-preview --stage preview
 
@@ -101,11 +101,11 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
     python -m kurumi_podcast extract "YOUR_PAPER.pdf" --out outputs/source.json
     python -m kurumi_podcast validate examples/preview.json --stage preview
 
-**本地一次性准备原始库**：将已有的八个原始文件放在忽略的 `local-assets/original-20261002/`，或直接指定已经按公共槽位命名的现有目录。文件名见[运行文档](skills/research-podcast-kurumi/references/runtime.md#原始资产槽位)。无需上传声音。
+**原始库已随仓库提交**：八个原始文件在 [voices/original-20261002/](voices/original-20261002/)（身份与公开配方一致），也可指定其他已按公共槽位命名的目录。文件名见[运行文档](skills/research-podcast-kurumi/references/runtime.md#原始资产槽位)。
 
 让绑定命令检查原始文件并生成冻结的本地配置，**不要复制模板后直接渲染**：
 
-    .\scripts\run.ps1 bind-original --assets local-assets/original-20261002 --index-home "YOUR_EXISTING_INDEXTTS_DIRECTORY" --out config.local.json
+    .\scripts\run.ps1 bind-original --assets voices/original-20261002 --index-home "YOUR_EXISTING_INDEXTTS_DIRECTORY" --out config.local.json
     .\scripts\run.ps1 doctor --config config.local.json --plan examples/preview.json
     .\scripts\run.ps1 render examples/preview.json --config config.local.json --out outputs/preview --stage preview
 
@@ -140,7 +140,7 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 
 ## 材料与检查
 
-仓库发布流程、代码、配方元数据和写作示例；按用户决定（2026-10-24）另外发布动画音色参考（`voices/`）与 GEX 展示成品（`gallery/`）。不发布原始演员样本与中文情绪库、PDF 原文、模型、密钥或本机路径（成品 manifest 里的本机路径已替换为 `<repo>` 等占位符）。演员日语样本是音色参考，中文聊天片段是表演参考，不是演员本人的普通话录音或角色专用模型；成品是 AI 生成普通话。
+仓库发布流程、代码、配方元数据和写作示例；按用户决定（2026-10-24）另外发布原始演员日语样本与中文情绪库（`voices/original-20261002/`）、动画音色参考（`voices/anime-20261022/`）与 GEX 展示成品（`gallery/`）。不发布 PDF 原文、模型、密钥或本机路径（成品 manifest 里的本机路径已替换为 `<repo>` 等占位符）。演员日语样本是音色参考，中文聊天片段是表演参考，不是演员本人的普通话录音或角色专用模型；成品是 AI 生成普通话。
 
 结构检查：
 
@@ -155,4 +155,4 @@ variant 继承原始配置的全部采样设置与 IndexTTS 环境（写了不�
 - [FX 战士久留美角色资料](https://fxkurumi-info.com/)
 - [历史标签](https://github.com/jowilksasella/AI_Podcast-Kurumi/tags)：v0.1.0 是历史模板，v0.2.0 是独立实验，v0.3.0 恢复原始配方，v0.4.0 加入 variant 换搭档、qa/分章工具与本地动画声线素材流程；默认使用当前 main 恢复工作流
 
-本仓库自有代码与文档采用 MIT；不分发上游模型。`voices/` 里的动画对白片段与 `gallery/` 里的白皮书页面/截图属第三方素材，版权归原权利人（《FX战士久留美》、SqueezeMetrics / Prior Analytics LLC），不适用 MIT，按仓库所有者的决定放在这里供本工作流复用。
+本仓库自有代码与文档采用 MIT；不分发上游模型。`voices/` 里的演员公开样本、AI 聊天表演片段与动画对白片段，以及 `gallery/` 里的白皮书页面/截图属第三方素材，版权归原权利人（配音演员及其事务所、《FX战士久留美》、SqueezeMetrics / Prior Analytics LLC），不适用 MIT，按仓库所有者的决定放在这里供本工作流复用。

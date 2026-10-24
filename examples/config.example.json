@@ -34,12 +34,12 @@
       "source_kind": "seiyuu_sample",
       "source_url": "https://atrays.jp/actor/talent/suzuki-aina/",
       "reference_language": "ja",
-      "reference_audio": "local-assets/original-20261002/kurumi_ja.wav",
+      "reference_audio": "voices/original-20261002/kurumi_ja.wav",
       "emotion_audio": {
-        "explain": "local-assets/original-20261002/kurumi_explain.wav",
-        "comment": "local-assets/original-20261002/kurumi_explain.wav",
-        "question": "local-assets/original-20261002/kurumi_question.wav",
-        "joke": "local-assets/original-20261002/kurumi_joke.wav"
+        "explain": "voices/original-20261002/kurumi_explain.wav",
+        "comment": "voices/original-20261002/kurumi_explain.wav",
+        "question": "voices/original-20261002/kurumi_question.wav",
+        "joke": "voices/original-20261002/kurumi_joke.wav"
       }
     },
     "萌智子": {
@@ -48,12 +48,12 @@
       "source_kind": "seiyuu_sample",
       "source_url": "https://www.starcrew.co.jp/talent/setoasami/",
       "reference_language": "ja",
-      "reference_audio": "local-assets/original-20261002/mochiko_ja.wav",
+      "reference_audio": "voices/original-20261002/mochiko_ja.wav",
       "emotion_audio": {
-        "explain": "local-assets/original-20261002/mochiko_explain.wav",
-        "comment": "local-assets/original-20261002/mochiko_comment.wav",
-        "question": "local-assets/original-20261002/mochiko_question.wav",
-        "joke": "local-assets/original-20261002/kurumi_joke.wav"
+        "explain": "voices/original-20261002/mochiko_explain.wav",
+        "comment": "voices/original-20261002/mochiko_comment.wav",
+        "question": "voices/original-20261002/mochiko_question.wav",
+        "joke": "voices/original-20261002/kurumi_joke.wav"
       }
     }
   }

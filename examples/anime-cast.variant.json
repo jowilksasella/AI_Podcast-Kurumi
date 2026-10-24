@@ -1,5 +1,5 @@
 {
-  "_template_note": "动画对白音色（GEX 定稿，2026-10-22 用户认可）。复制到仓库根目录为 config.anime.local.json；base_config 指向已用 bind-original 绑定的原始配置。音色参考已随仓库提交在 voices/anime-20261022/；中文情绪参考沿用原始库槽位（local-assets/original-20261002/，不随仓库提交）。设置与引擎从 base 继承。",
+  "_template_note": "动画对白音色（GEX 定稿，2026-10-22 用户认可）。复制到仓库根目录为 config.anime.local.json；base_config 指向已用 bind-original 绑定的原始配置。音色参考已随仓库提交在 voices/anime-20261022/；中文情绪参考是原始库（已随仓库提交在 voices/original-20261002/）。设置与引擎从 base 继承。",
   "recipe": "variant",
   "base_config": "config.original.local.json",
   "voices": {
@@ -11,10 +11,10 @@
       "reference_language": "ja",
       "reference_audio": "voices/anime-20261022/kurumi_anime_dense_ja.wav",
       "emotion_audio": {
-        "explain": "local-assets/original-20261002/kurumi_explain.wav",
-        "comment": "local-assets/original-20261002/kurumi_explain.wav",
-        "question": "local-assets/original-20261002/kurumi_question.wav",
-        "joke": "local-assets/original-20261002/kurumi_joke.wav"
+        "explain": "voices/original-20261002/kurumi_explain.wav",
+        "comment": "voices/original-20261002/kurumi_explain.wav",
+        "question": "voices/original-20261002/kurumi_question.wav",
+        "joke": "voices/original-20261002/kurumi_joke.wav"
       }
     },
     "萌智子": {
@@ -25,10 +25,10 @@
       "reference_language": "ja",
       "reference_audio": "voices/anime-20261022/mochiko_anime_dense_ja.wav",
       "emotion_audio": {
-        "explain": "local-assets/original-20261002/mochiko_explain.wav",
-        "comment": "local-assets/original-20261002/mochiko_comment.wav",
-        "question": "local-assets/original-20261002/mochiko_question.wav",
-        "joke": "local-assets/original-20261002/kurumi_joke.wav"
+        "explain": "voices/original-20261002/mochiko_explain.wav",
+        "comment": "voices/original-20261002/mochiko_comment.wav",
+        "question": "voices/original-20261002/mochiko_question.wav",
+        "joke": "voices/original-20261002/kurumi_joke.wav"
       }
     }
   }

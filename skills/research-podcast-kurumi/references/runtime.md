@@ -4,7 +4,7 @@
 
 ## 一次准备、绑定后复用
 
-配方是公开元数据；原始声音留在本地。已有的原始文件可一次性复制/按槽位命名到忽略的 `local-assets/original-20261002/`，也可直接绑定已具备这些文件名的现有目录。只复制已有原件，不自动下载、重剪或重新生成替代声音。
+配方是公开元数据。八个原始文件按用户决定（2026-10-24）已提交在 `voices/original-20261002/`，身份（sha256）与公开配方一致，可直接绑定；也可绑定其他已具备这些文件名的目录（如本机忽略的 `local-assets/original-20261002/`）。只复制已有原件，不自动下载、重剪或重新生成替代声音。
 
 ### 原始资产槽位
 
@@ -25,7 +25,7 @@
 
 在仓库根目录，使用已有模型环境绑定：
 
-    .\scripts\run.ps1 bind-original --assets local-assets/original-20261002 --index-home "YOUR_EXISTING_INDEXTTS_DIRECTORY" --out config.local.json
+    .\scripts\run.ps1 bind-original --assets voices/original-20261002 --index-home "YOUR_EXISTING_INDEXTTS_DIRECTORY" --out config.local.json
 
 CLI 等价入口（需在已有环境能导入完整仓库）：
 
@@ -104,7 +104,7 @@ Linux/macOS 已有模型环境的占位调用：
 用户听过短样后认可：久留美与萌智子都用动画对白音色，中文情绪、seed 规则与全部设置继承原始配置。
 
 - 参考：`voices/anime-20261022/kurumi_anime_dense_ja.wav`（第 2 集三段确认片段拼接，停顿压到 ≤0.4 秒，14.9 秒）与 `mochiko_anime_dense_ja.wav`（第 2 集 09:25.82–09:39.92，停顿压到 ≤0.4 秒，11.6 秒）。来历、确认片段集与弃用参考见该目录 README。
-- 配置：复制 [anime-cast.variant.json](../../../examples/anime-cast.variant.json) 到仓库根目录为 `config.anime.local.json`，`base_config` 指向已绑定的原始配置；中文情绪参考仍在本机原始库槽位。
+- 配置：复制 [anime-cast.variant.json](../../../examples/anime-cast.variant.json) 到仓库根目录为 `config.anime.local.json`，`base_config` 指向已绑定的原始配置；中文情绪参考用已提交的 `voices/original-20261002/`。
 - 教训：第一次用的久留美单段参考有 45% 是停顿，生成时出现约 8 秒静音与漏读；萌智子原片段 0.6–1.1 秒的停顿让台词里出现 1.6–1.9 秒空白。参考片段一律先压停顿。
 
 ## 动画对白声线素材（本地、可选）
